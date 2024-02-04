@@ -1,8 +1,7 @@
-<div *ngFor="let artwork of artworks" (click)="openArtworkDetails(artwork)">
+<div *ngIf="artwork">
     <h2>{{ artwork.Name }}</h2>
     <p>Description: {{ artwork.Description }}</p>
     <p>Technique: {{ artwork.Technique }}</p>
     <p>Year: {{ artwork.Year }}</p>
-    <p>Price: {{ artwork.Price }}</p>  
-    <hr>
+    <p>Price: {{ artwork.Price }}</p>
 </div>

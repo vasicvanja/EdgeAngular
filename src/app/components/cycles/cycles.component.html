@@ -1,4 +1,4 @@
-<div *ngFor="let cycle of cycles">
+<div *ngFor="let cycle of cycles" (click)="openCycleDetails(cycle)">
     <h2>{{ cycle.Name }}</h2>
     <p>Description: {{ cycle.Description }}</p>
     <hr>

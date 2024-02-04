@@ -10,12 +10,16 @@ import { ArtworksComponent } from "./components/artworks/artworks.component";
 import { CyclesComponent } from "./components/cycles/cycles.component";
 import { ToastrModule } from "ngx-toastr";
 import { HttpClientModule } from '@angular/common/http';
+import { ArtworkDetailsComponent } from "./components/artwork-details/artwork-details.component";
+import { CyclesDetailsComponent } from "./components/cycles-details/cycles-details.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         ArtworksComponent,
-        CyclesComponent
+        CyclesComponent,
+        ArtworkDetailsComponent,
+        CyclesDetailsComponent
     ],
     imports: [
         BrowserModule,
