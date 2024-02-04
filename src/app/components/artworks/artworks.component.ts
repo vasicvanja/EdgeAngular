@@ -39,4 +39,8 @@ export class ArtworksComponent implements OnInit {
       console.error(error);
     }
   }
+
+  openArtworkDetails(artwork: Artwork) {
+    this.router.navigate(['/artwork-details', artwork.Id]);
+  } 
 }

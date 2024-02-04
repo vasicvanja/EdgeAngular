@@ -39,4 +39,8 @@ export class CyclesComponent implements OnInit {
       console.error(error);
     }
   }
+
+  openCycleDetails(cycle: Cycle) {
+    this.router.navigate(['/cycle-details', cycle.Id]);
+  }
 }
