@@ -1,4 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from "./app.component";
@@ -12,6 +13,12 @@ import { ToastrModule } from "ngx-toastr";
 import { HttpClientModule } from '@angular/common/http';
 import { ArtworkDetailsComponent } from "./components/artwork-details/artwork-details.component";
 import { CyclesDetailsComponent } from "./components/cycles-details/cycles-details.component";
+import { LoginComponent } from "./components/login/login.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { AuthService } from "./services/auth.service";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LogoutComponent } from "./components/logout/logout.component";
+import { HomeComponent } from "./components/home/home.component";
 
 @NgModule({
     declarations: [
@@ -19,23 +26,31 @@ import { CyclesDetailsComponent } from "./components/cycles-details/cycles-detai
         ArtworksComponent,
         CyclesComponent,
         ArtworkDetailsComponent,
-        CyclesDetailsComponent
+        CyclesDetailsComponent,
+        LoginComponent,
+        RegisterComponent,
+        LogoutComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
         ToastrModule.forRoot({
             timeOut: 2500,
             preventDuplicates: true,
             positionClass: "toast-top-center",
             tapToDismiss: true
-          }),
+        }),
     ],
     providers: [
         EncodeService,
         ArtworksService,
-        CyclesService
+        CyclesService,
+        AuthService
     ],
     bootstrap: [
         AppComponent

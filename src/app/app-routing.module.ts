@@ -4,8 +4,15 @@ import { ArtworksComponent } from "./components/artworks/artworks.component";
 import { CyclesComponent } from "./components/cycles/cycles.component";
 import { ArtworkDetailsComponent } from "./components/artwork-details/artwork-details.component";
 import { CyclesDetailsComponent } from "./components/cycles-details/cycles-details.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { LoginComponent } from "./components/login/login.component";
+import { authGuard } from "./guards/auth.guard";
+import { HomeComponent } from "./components/home/home.component";
 
 const routes: Routes = [
+    { path: 'home', component: HomeComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'cycles', component: CyclesComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
