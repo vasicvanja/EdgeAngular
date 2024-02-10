@@ -19,18 +19,20 @@ import { AuthService } from "./services/auth.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { HomeComponent } from "./components/home/home.component";
+import { ArtworkCreateComponent } from "./components/artwork-create/artwork-create.component";
 
 @NgModule({
     declarations: [
         AppComponent,
+        HomeComponent,
         ArtworksComponent,
-        CyclesComponent,
         ArtworkDetailsComponent,
+        ArtworkCreateComponent,
+        CyclesComponent,
         CyclesDetailsComponent,
         LoginComponent,
         RegisterComponent,
-        LogoutComponent,
-        HomeComponent
+        LogoutComponent
     ],
     imports: [
         BrowserModule,

@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { EncodeService } from './encode.service';
 import { Artwork } from '../models/artwork';
 import { environment } from '../../environments/environment';
+import { CreateArtwork } from '../models/create-artwork';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,12 @@ export class ArtworksService {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/" + id));
   }
 
-  public createArtwork = (artwork: Artwork): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/create", this.encodeService.customFormUrlEncoded(artwork)));
+  public createArtwork = (artwork: CreateArtwork): any => {
+    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/create", artwork));
   }
 
   public updateArtwork = (artwork: Artwork): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/update", this.encodeService.customFormUrlEncoded(artwork)));
+    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/update", artwork));
   }
 
   public deleteArtwork = (id: number): any => {

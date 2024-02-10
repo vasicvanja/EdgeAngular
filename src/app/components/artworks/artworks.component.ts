@@ -42,5 +42,9 @@ export class ArtworksComponent implements OnInit {
 
   openArtworkDetails(artwork: Artwork) {
     this.router.navigate(['/artwork-details', artwork.Id]);
-  } 
+  }
+
+  openArtworkCreate() {
+    this.router.navigate(['/artwork-create']);
+  }
 }
