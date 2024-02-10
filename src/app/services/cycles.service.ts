@@ -34,6 +34,6 @@ export class CyclesService {
   }
 
   public deleteCycle = (id: number): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/delete", this.encodeService.customFormUrlEncoded({id: id})));
+    return firstValueFrom(this.http.post(this.baseUrl + `/api/Cycles/delete?id=${id}`, {}));
   }
 }
