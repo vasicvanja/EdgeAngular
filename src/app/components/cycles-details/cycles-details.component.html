@@ -1,13 +1,13 @@
 <div *ngIf="cycle">
-    <h2>{{ cycle.Name }}</h2>
-    <p>Description: {{ cycle.Description }}</p>  
-    <ul>
-      <li *ngFor="let artwork of cycle.Artworks">
-        <strong>{{ artwork.Name }}</strong>
-        <p>Technique: {{ artwork.Technique }}</p>
-        <p>Year: {{ artwork.Year }}</p>
-        <p>Price: ${{ artwork.Price }}</p>
-      </li>
-    </ul>
-  </div>
-  
+  <h2>{{ cycle.Name }}</h2>
+  <p>Description: {{ cycle.Description }}</p>
+  <ul>
+    <li *ngFor="let artwork of cycle.Artworks">
+      <strong>{{ artwork.Name }}</strong>
+      <p>Technique: {{ artwork.Technique }}</p>
+      <p>Year: {{ artwork.Year }}</p>
+      <p>Price: ${{ artwork.Price }}</p>
+    </li>
+  </ul>
+</div>
+<button (click)="deleteCycle()">Delete</button>

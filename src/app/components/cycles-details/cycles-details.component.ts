@@ -3,6 +3,7 @@ import { CyclesService } from '../../services/cycles.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cycle } from '../../models/cycle';
+import { ResponseMessages } from '../../const/response-messages';
 
 @Component({
   selector: 'cycles-details',
@@ -12,6 +13,7 @@ import { Cycle } from '../../models/cycle';
 export class CyclesDetailsComponent implements OnInit {
 
   cycle!: Cycle;
+  cycleId: any;
 
   constructor(
     private cyclesService: CyclesService,
@@ -26,8 +28,8 @@ export class CyclesDetailsComponent implements OnInit {
       const idParam = params.get('id');
 
       if (idParam !== null) {
-        const cycleId = +idParam;
-        await this.getCycleDetails(cycleId);
+        this.cycleId = +idParam;
+        await this.getCycleDetails(this.cycleId);
       } else {
         console.error('Cycle ID not provided in route parameters.');
       }
@@ -41,6 +43,22 @@ export class CyclesDetailsComponent implements OnInit {
         this.cycle = Data;
         return Data;
       } else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async deleteCycle() {
+    try {
+      const { Data, Succeeded, ErrorMessage } = await this.cyclesService.deleteCycle(this.cycleId);
+      if (Succeeded) {
+        this.toastrService.success(ResponseMessages.Success_delete_cycle(this.cycle.Name));
+        this.router.navigate(['/artworks']);
+        return Data;
+      }
+      else {  
         this.toastrService.error(ErrorMessage);
       }
     } catch (error) {

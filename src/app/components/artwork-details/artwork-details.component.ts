@@ -51,7 +51,6 @@ export class ArtworkDetailsComponent implements OnInit {
 
   async deleteArtwork() {
     try {
-      console.log(this.artworkId);
       const { Data, Succeeded, ErrorMessage } = await this.artworksService.deleteArtwork(this.artworkId);
       if (Succeeded) {
         this.toastrService.success(ResponseMessages.Success_delete_artwork(this.artwork.Name));
