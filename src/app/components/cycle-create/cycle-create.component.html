@@ -1,1 +1,18 @@
-<p>cycle-create works!</p>
+<div>
+    <h2>Create New Cycle</h2>
+
+    <form (submit)="createCycle()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="cycle.Name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="cycle.Description" name="description" required></textarea>
+
+        <label for="artwork">Select Artworks:</label>
+        <select id="artwork" [(ngModel)]="selectedArtworks" name="artwork" required>
+            <option *ngFor="let artwork of artworks" [ngValue]="artwork">{{ artwork.Name }}</option>
+        </select>
+
+        <button type="submit">Create Cycle</button>
+    </form>
+</div>

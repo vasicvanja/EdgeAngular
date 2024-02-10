@@ -8,7 +8,7 @@ export class CreateCycle {
     constructor(
         Name: string = "",
         Description: string = "",
-        Artworks: Artwork[]
+        Artworks: Artwork[] = []
     ) {
         this.Name = Name;
         this.Description = Description;
