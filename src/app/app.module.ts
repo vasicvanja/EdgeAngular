@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { HomeComponent } from "./components/home/home.component";
 import { ArtworkCreateComponent } from "./components/artwork-create/artwork-create.component";
+import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { ArtworkCreateComponent } from "./components/artwork-create/artwork-crea
         ArtworkCreateComponent,
         CyclesComponent,
         CyclesDetailsComponent,
+        CycleCreateComponent,
         LoginComponent,
         RegisterComponent,
         LogoutComponent

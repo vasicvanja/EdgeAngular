@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-cycle-create',
-  standalone: true,
-  imports: [],
+  selector: 'cycle-create',
   templateUrl: './cycle-create.component.html',
   styleUrl: './cycle-create.component.scss'
 })
