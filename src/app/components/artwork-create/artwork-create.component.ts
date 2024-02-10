@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Artwork } from '../../models/artwork';
 import { ArtworksService } from '../../services/artworks.service';
 import { ToastrService } from 'ngx-toastr';
 import { ResponseMessages } from '../../const/response-messages';
@@ -27,7 +26,6 @@ export class ArtworkCreateComponent {
 
   async createArtwork() {
     try {
-      console.log(this.artwork);
       const { Data, Succeeded, ErrorMessage } = await this.artworksService.createArtwork(this.artwork);
       if (Succeeded) {
         this.artworkId = Data.artworkId;

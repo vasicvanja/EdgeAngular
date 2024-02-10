@@ -9,6 +9,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { authGuard } from "./guards/auth.guard";
 import { HomeComponent } from "./components/home/home.component";
 import { ArtworkCreateComponent } from "./components/artwork-create/artwork-create.component";
+import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent },
     { path: 'cycles', component: CyclesComponent },
-    { path: 'cycle-details/:id', component: CyclesDetailsComponent }
+    { path: 'cycle-details/:id', component: CyclesDetailsComponent },
+    { path: 'cycle-create', component: CycleCreateComponent }
 ];
 
 @NgModule({

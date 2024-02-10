@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { EncodeService } from './encode.service';
 import { Cycle } from '../models/cycle';
 import { environment } from '../../environments/environment';
+import { CreateCycle } from '../models/create-cycle';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class CyclesService {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Cycles/" + id));
   }
 
-  public createCycle = (cycle: Cycle): any => {
+  public createCycle = (cycle: CreateCycle): any => {
     return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/create", cycle));
   }
 
