@@ -34,6 +34,6 @@ export class ArtworksService {
   }
 
   public deleteArtwork = (id: number): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/delete", this.encodeService.customFormUrlEncoded({id: id})));
+    return firstValueFrom(this.http.post(this.baseUrl + `/api/Artworks/delete?id=${id}`, {}));
   }
 }

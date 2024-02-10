@@ -3,6 +3,7 @@ import { ArtworksService } from '../../services/artworks.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
+import { ResponseMessages } from '../../const/response-messages';
 
 @Component({
   selector: 'artwork-details',
@@ -12,6 +13,7 @@ import { Artwork } from '../../models/artwork';
 export class ArtworkDetailsComponent implements OnInit {
 
   artwork!: Artwork;
+  artworkId: any;
 
   constructor(
     private artworksService: ArtworksService,
@@ -19,15 +21,14 @@ export class ArtworkDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) {
 
-    }
+  }
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async params => {
       const idParam = params.get('id');
-      
       if (idParam !== null) {
-        const artworkId = +idParam;
-        await this.getArtworkDetails(artworkId);
+        this.artworkId = +idParam;
+        await this.getArtworkDetails(this.artworkId);
       } else {
         console.error('Artwork ID not provided in route parameters.');
       }
@@ -41,6 +42,23 @@ export class ArtworkDetailsComponent implements OnInit {
         this.artwork = Data;
         return Data;
       } else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async deleteArtwork() {
+    try {
+      console.log(this.artworkId);
+      const { Data, Succeeded, ErrorMessage } = await this.artworksService.deleteArtwork(this.artworkId);
+      if (Succeeded) {
+        this.toastrService.success(ResponseMessages.Success_delete_artwork(this.artwork.Name));
+        this.router.navigate(['/artworks']);
+        return Data;
+      }
+      else {  
         this.toastrService.error(ErrorMessage);
       }
     } catch (error) {
