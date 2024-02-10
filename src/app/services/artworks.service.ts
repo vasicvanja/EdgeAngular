@@ -30,7 +30,7 @@ export class ArtworksService {
   }
 
   public updateArtwork = (artwork: Artwork): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/update", this.encodeService.customFormUrlEncoded(artwork)));
+    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/update", artwork));
   }
 
   public deleteArtwork = (id: number): any => {

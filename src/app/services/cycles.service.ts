@@ -25,11 +25,11 @@ export class CyclesService {
   }
 
   public createCycle = (cycle: Cycle): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/create", this.encodeService.customFormUrlEncoded(cycle)));
+    return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/create", cycle));
   }
 
   public updateCycle = (cycle: Cycle): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/update", this.encodeService.customFormUrlEncoded(cycle)));
+    return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/update", cycle));
   }
 
   public deleteCycle = (id: number): any => {
