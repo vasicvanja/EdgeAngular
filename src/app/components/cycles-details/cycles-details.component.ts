@@ -55,7 +55,7 @@ export class CyclesDetailsComponent implements OnInit {
       const { Data, Succeeded, ErrorMessage } = await this.cyclesService.deleteCycle(this.cycleId);
       if (Succeeded) {
         this.toastrService.success(ResponseMessages.Success_delete_cycle(this.cycle.Name));
-        this.router.navigate(['/artworks']);
+        this.router.navigate(['/cycles']);
         return Data;
       }
       else {  
