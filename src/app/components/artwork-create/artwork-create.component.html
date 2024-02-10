@@ -1,0 +1,27 @@
+<div>
+    <h2>Create New Artwork</h2>
+
+    <form (submit)="createArtwork()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="artwork.Name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="artwork.Description" name="description" required></textarea>
+
+        <label for="technique">Technique:</label>
+        <input type="text" id="technique" [(ngModel)]="artwork.Technique" name="technique" required>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" [(ngModel)]="artwork.Year" name="year" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" [(ngModel)]="artwork.Price" name="price" required>
+
+        <label for="type">Type:</label>    
+        <select id="type" [(ngModel)]="artwork.Type" name="type" required>
+            <option *ngFor="let type of artworkTypes" [ngValue]="getArtworkTypeValue(type)">{{ type }}</option>
+        </select>
+        
+        <button type="submit">Create Artwork</button>
+    </form>
+</div>

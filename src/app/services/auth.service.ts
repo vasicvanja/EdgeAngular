@@ -28,7 +28,6 @@ export class AuthService {
         localStorage.setItem('token', response.Data);
         this.loggedInSubject.next(true);
         this.router.navigate(['home']);
-        console.log(response);
         return response;
       })
     );
