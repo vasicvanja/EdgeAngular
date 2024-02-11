@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginObj)
         .subscribe({
           next: (res) => {
-            this.toastrService.success(res.errorMessage);
+            this.toastrService.success(res.ErrorMessage);
             this.loginForm.reset();
           },
           error: (err) => {
-            this.toastrService.error(err?.error.errorMessage);
+            this.toastrService.error(err?.error.ErrorMessage);
           }
         })
     }
