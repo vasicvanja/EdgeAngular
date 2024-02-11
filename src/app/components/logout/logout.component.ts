@@ -19,11 +19,12 @@ export class LogoutComponent {
   onLogout() {
     this.authService.logout().subscribe({
       next: (res: any) => {
-        this.toastrService.success(res.errorMessage);
+        this.toastrService.success(res);
         this.logoutCompleted.emit();
       },
       error: (err) => {
-        this.toastrService.error(err?.error.errorMessage);
+        console.log(err);
+        this.toastrService.error(err?.error.ErrorMessage);
       }
     })
   }

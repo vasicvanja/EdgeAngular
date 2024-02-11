@@ -21,6 +21,7 @@ import { LogoutComponent } from "./components/logout/logout.component";
 import { HomeComponent } from "./components/home/home.component";
 import { ArtworkCreateComponent } from "./components/artwork-create/artwork-create.component";
 import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
+import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { CycleCreateComponent } from "./components/cycle-create/cycle-create.com
         CycleCreateComponent,
         LoginComponent,
         RegisterComponent,
-        LogoutComponent
+        LogoutComponent,
+        NavMenuComponent
     ],
     imports: [
         BrowserModule,

@@ -41,12 +41,12 @@ export class RegisterComponent implements OnInit {
       this.authService.register(registerObj)
         .subscribe({
           next: (res: any) => {
-            this.toastrService.success(res.errorMessage);
+            this.toastrService.success(res.ErrorMessage);
             this.registerForm.reset();
             this.router.navigate(['login']);
           },
           error: (err) => {
-            this.toastrService.error(err?.error.errorMessage);
+            this.toastrService.error(err?.error.ErrorMessage);
           }
         })
     }
