@@ -1,48 +1,65 @@
-<div class="outer">
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-                <div class="panel border bg-white">
-                    <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Register</h3>
+<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
+    id="modalSignin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="fw-bold mb-0 fs-2">Sign up</h1>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <form [formGroup]="registerForm">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="username" formControlName="username"
+                            placeholder="Username">
+                        <label for="username">Username</label>
+                        <div *ngIf="registerForm.controls['username'].dirty && registerForm.hasError('required', 'username')"
+                            class="text-danger">
+                            *Username is required.
+                        </div>
                     </div>
-                    <div class="panel-body p-3">
-                        <form [formGroup]="registerForm">
-                            <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="registerForm.controls['username'].dirty && registerForm.hasError('required', 'username')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="username" type="text" placeholder="Username">
-                                </div>
-                            </div>
-                            <small *ngIf="registerForm.controls['username'].dirty && registerForm.hasError('required', 'username')" class="text-danger">
-                                *Username is required
-                            </small>
-                            <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="registerForm.controls['email'].dirty && registerForm.hasError('required', 'email')">
-                                    <span class="fa fa-envelope p-2"></span>
-                                    <input formControlName="email" type="text" placeholder="E-Mail">
-                                </div>
-                            </div>
-                            <small *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required', 'email')" class="text-danger">
-                                *Password is required
-                            </small>
-                            <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="registerForm.controls['password'].dirty && registerForm.hasError('required', 'password')">
-                                    <span class="fa fa-lock p-2"></span>
-                                    <input formControlName="password" type="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <small *ngIf="registerForm.controls['password'].dirty && registerForm.hasError('required', 'password')" class="text-danger">
-                                *Password is required
-                            </small>
-                            <div class="form-inline fr mt-4">
-                                <a id="forget" class="font-weight-bold">Forgot Password?</a>
-                            </div>
-                            <button (click)="onRegister()" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary btn-block mt-4 w-100">Register</button>
-                            <div class="text-center pt-4 text-muted">Already have an account? <a id="forget" routerLink="/login">Sign in</a></div>
-                        </form>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-3" id="email" formControlName="email"
+                            placeholder="name@example.com">
+                        <label for="email">Email address</label>
+                        <div *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required', 'email')"
+                            class="text-danger">
+                            *Email is required.
+                        </div>
                     </div>
-                </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" id="password" formControlName="password"
+                            placeholder="Password">
+                        <label for="password">Password</label>
+                        <div *ngIf="registerForm.controls['password'].dirty && registerForm.hasError('required', 'password')"
+                            class="text-danger">
+                            *Password is required.
+                        </div>
+                    </div>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" (click)="onRegister()"
+                        [disabled]="registerForm.invalid" type="submit">Sign up</button>
+                    <small class="text-body-secondary">Already have an account? <a id="forget" routerLink="/login">Sign
+                            in</a></small>
+                    <hr class="my-4">
+                    <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="button">
+                        <svg class="bi me-1" width="16" height="16">
+                            <use xlink:href="#twitter" />
+                        </svg>
+                        Sign up with Twitter
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="button">
+                        <svg class="bi me-1" width="16" height="16">
+                            <use xlink:href="#facebook" />
+                        </svg>
+                        Sign up with Facebook
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="button">
+                        <svg class="bi me-1" width="16" height="16">
+                            <use xlink:href="#github" />
+                        </svg>
+                        Sign up with GitHub
+                    </button>
+                </form>
             </div>
         </div>
     </div>

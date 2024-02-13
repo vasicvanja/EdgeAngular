@@ -1,39 +1,36 @@
-<div class="outer">
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-                <div class="panel border bg-white">
-                    <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Login</h3>
+<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
+    id="modalSignin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="fw-bold mb-0 fs-2">Sign in</h1>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <form [formGroup]="loginForm">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="username" formControlName="username"
+                            placeholder="Username">
+                        <label for="username">Username</label>
+                        <div *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')"
+                            class="text-danger">
+                            *Username is required.
+                        </div>
                     </div>
-                    <div class="panel-body p-3">
-                        <form [formGroup]="loginForm">
-                            <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="username" type="text" placeholder="Username">
-                                </div>
-                            </div>
-                            <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')" class="text-danger">
-                                *Username is required
-                            </small>
-                            <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
-                                    <span class="fa fa-lock p-2"></span>
-                                    <input formControlName="password" type="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" class="text-danger">
-                                *Password is required
-                            </small>
-                            <div class="form-inline fr mt-4">
-                                <a id="forget" class="font-weight-bold">Forgot Password?</a>
-                            </div>
-                            <button (click)="onLogin()" [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
-                            <div class="text-center pt-4 text-muted">Don't have an account? <a id="forget" routerLink="/register">Register</a></div>
-                        </form>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" id="password" formControlName="password"
+                            placeholder="Password">
+                        <label for="password">Password</label>
+                        <div *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')"
+                            class="text-danger">
+                            *Password is required.
+                        </div>
                     </div>
-                </div>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" (click)="onLogin()"
+                        [disabled]="loginForm.invalid" type="submit">Sign in</button>
+                    <small class="text-body-secondary">Don't have an account? <a id="forget" routerLink="/register">Sign
+                            up</a></small>
+                </form>
             </div>
         </div>
     </div>
