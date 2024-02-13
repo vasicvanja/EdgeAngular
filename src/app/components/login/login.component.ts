@@ -1,11 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Login } from '../../models/login';
 import { AuthService } from '../../services/auth.service';
 import ValidateForm from '../../helpers/validateForm';
-
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { ResponseMessages } from '../../const/response-messages';
 
 @Component({
   selector: 'login',
@@ -37,6 +38,13 @@ export class LoginComponent implements OnInit {
       }
 
       this.authService.login(loginObj)
+        .pipe(
+          catchError((error) => {
+            console.error('An error occurred:', error);
+            this.toastrService.error(ResponseMessages.Sing_in_failure);
+            return of(null);
+          })
+        )
         .subscribe({
           next: (res) => {
             this.toastrService.success(res.ErrorMessage);
