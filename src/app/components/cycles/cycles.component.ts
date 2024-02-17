@@ -47,4 +47,8 @@ export class CyclesComponent implements OnInit {
   openCycleCreate() {
     this.router.navigate(['/cycle-create']);
   }
+
+  openCycleEdit(cycle: Cycle) {
+    this.router.navigate(['/cycle-edit', cycle.Id]);
+  }
 }

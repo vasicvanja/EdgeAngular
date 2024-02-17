@@ -22,6 +22,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { ArtworkCreateComponent } from "./components/artwork-create/artwork-create.component";
 import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
 import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
+import { FooterComponent } from "./components/footer/footer.component";
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
-        NavMenuComponent
+        NavMenuComponent,
+        FooterComponent,
     ],
     imports: [
         BrowserModule,

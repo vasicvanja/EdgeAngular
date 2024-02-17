@@ -1,18 +1,24 @@
-<div>
-    <h2>Create New Cycle</h2>
-
-    <form (submit)="createCycle()">
-        <label for="name">Name:</label>
-        <input type="text" id="name" [(ngModel)]="cycle.Name" name="name" required>
-
-        <label for="description">Description:</label>
-        <textarea id="description" [(ngModel)]="cycle.Description" name="description" required></textarea>
-
-        <label for="artwork">Select Artworks:</label>
-        <select id="artwork" [(ngModel)]="selectedArtworks" name="artwork" required>
-            <option *ngFor="let artwork of artworks" [ngValue]="artwork">{{ artwork.Name }}</option>
-        </select>
-
-        <button type="submit">Create Cycle</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h2>Create New Cycle</h2>
+            <form (submit)="createCycle()" class="py-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" [(ngModel)]="cycle.Name" name="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea id="description" [(ngModel)]="cycle.Description" name="description" class="form-control" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">Artworks:</label>    
+                    <select id="type" [(ngModel)]="selectedArtworks" name="type" class="form-select" required>
+                        <option *ngFor="let artwork of artworks" [ngValue]="artwork">{{ artwork.Name }}</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Cycle</button>
+            </form>
+        </div>
+    </div>
 </div>

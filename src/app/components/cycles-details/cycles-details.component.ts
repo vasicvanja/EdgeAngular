@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CyclesService } from '../../services/cycles.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Cycle } from '../../models/cycle';
 import { ResponseMessages } from '../../const/response-messages';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'cycles-details',
