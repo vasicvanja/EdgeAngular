@@ -1,8 +1,22 @@
-<div *ngIf="artwork">
-    <h2>{{ artwork.Name }}</h2>
-    <p>Description: {{ artwork.Description }}</p>
-    <p>Technique: {{ artwork.Technique }}</p>
-    <p>Year: {{ artwork.Year }}</p>
-    <p>Price: {{ artwork.Price }}</p>
-</div>
-<button (click)="deleteArtwork()">Delete</button>
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="py-5 text-center">
+                    <h1 class="fw-light">Artwork Details</h1>
+                    <p class="lead text-body-secondary">Here you can see more information about the selected artwork and
+                        delete it if you want.</p>
+                </div>
+                <div *ngIf="artwork">
+                    <img class="img-fluid rounded" src="..." alt="Artwork image">
+                    <h2 class="mt-3">{{ artwork.Name }}</h2>
+                    <p class="text-muted">Description: {{ artwork.Description }}</p>
+                    <p class="text-muted">Technique: {{ artwork.Technique }}</p>
+                    <p class="text-muted">Year: {{ artwork.Year }}</p>
+                    <p class="text-muted">Price: {{ artwork.Price }}</p>
+                    <button type="button" (click)="deleteArtwork()" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
