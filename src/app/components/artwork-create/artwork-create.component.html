@@ -29,6 +29,12 @@
                         <option *ngFor="let type of artworkTypes" [ngValue]="getArtworkTypeValue(type)">{{ type }}</option>
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label for="cycle" class="form-label">Cycle:</label>    
+                    <select id="cycle" [(ngModel)]="artwork.CycleId" name="cycle" class="form-select">
+                        <option *ngFor="let cycle of cycles" [ngValue]="cycle.Id">{{ cycle.Name }}</option>
+                    </select>
+                </div>                
                 <button type="submit" class="btn btn-primary">Create Artwork</button>
             </form>
         </div>
