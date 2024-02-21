@@ -1,1 +1,27 @@
-<p>cycle-update works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h2>Update Cycle</h2>
+            <form #cycleForm="ngForm" (ngSubmit)="updateCycle()" class="py-3 needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" [(ngModel)]="cycle.Name" name="name" class="form-control" required
+                        #name="ngModel" [ngClass]="{ 'is-invalid': cycleForm.submitted && name.invalid }">
+                    <div *ngIf="cycleForm.submitted && name.invalid" class="invalid-feedback">
+                        Name is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea id="description" [(ngModel)]="cycle.Description" name="description" class="form-control"
+                        required #description="ngModel"
+                        [ngClass]="{ 'is-invalid': cycleForm.submitted && description.invalid }"></textarea>
+                    <div *ngIf="cycleForm.submitted && description.invalid" class="invalid-feedback">
+                        Description is required
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Cycle</button>
+            </form>
+        </div>
+    </div>
+</div>
