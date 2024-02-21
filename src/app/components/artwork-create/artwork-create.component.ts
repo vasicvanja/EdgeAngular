@@ -9,7 +9,7 @@ import { Cycle } from '../../models/cycle';
 import { CyclesService } from '../../services/cycles.service';
 
 @Component({
-  selector: 'artwork-create', 
+  selector: 'artwork-create',
   templateUrl: './artwork-create.component.html',
   styleUrl: './artwork-create.component.scss'
 })
@@ -38,7 +38,7 @@ export class ArtworkCreateComponent implements OnInit {
       if (Succeeded) {
         this.artworkId = Data.artworkId;
         this.router.navigate(['/artworks']);
-        this.toastrService.success(ResponseMessages.Success_create_artwork);
+        this.toastrService.success(ResponseMessages.Create_success("Artwork"));
         return Data;
       } else {
         this.toastrService.error(ErrorMessage)

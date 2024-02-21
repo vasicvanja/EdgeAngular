@@ -37,7 +37,7 @@ export class CycleCreateComponent implements OnInit {
       if (Succeeded) {
         this.cycleId = Data.cycleId;
         this.router.navigate(['/cycles']);
-        this.toastrService.success(ResponseMessages.Success_create_cycle);
+        this.toastrService.success(ResponseMessages.Create_success("Cycle"));
         return Data;
       } else {
         this.toastrService.error(ErrorMessage);
