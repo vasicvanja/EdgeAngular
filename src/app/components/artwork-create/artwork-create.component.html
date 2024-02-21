@@ -2,39 +2,63 @@
     <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h2>Create New Artwork</h2>
-            <form (submit)="createArtwork()" class="py-3">
+            <form #artworkForm="ngForm" (ngSubmit)="createArtwork()" class="py-3 needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" [(ngModel)]="artwork.Name" name="name" class="form-control" required>
+                    <input type="text" id="name" [(ngModel)]="artwork.Name" name="name" class="form-control" required
+                        #name="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && name.invalid }">
+                    <div *ngIf="artworkForm.submitted && name.invalid" class="invalid-feedback">
+                        Name is required
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description:</label>
-                    <textarea id="description" [(ngModel)]="artwork.Description" name="description" class="form-control" required></textarea>
+                    <textarea id="description" [(ngModel)]="artwork.Description" name="description" class="form-control" required
+                        #description="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && description.invalid }"></textarea>
+                    <div *ngIf="artworkForm.submitted && description.invalid" class="invalid-feedback">
+                        Description is required
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="technique" class="form-label">Technique:</label>
-                    <input type="text" id="technique" [(ngModel)]="artwork.Technique" name="technique" class="form-control" required>
+                    <input type="text" id="technique" [(ngModel)]="artwork.Technique" name="technique" class="form-control" required
+                        #technique="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && technique.invalid }">
+                    <div *ngIf="artworkForm.submitted && technique.invalid" class="invalid-feedback">
+                        Technique is required
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="year" class="form-label">Year:</label>
-                    <input type="number" id="year" [(ngModel)]="artwork.Year" name="year" class="form-control" required>
+                    <input type="number" id="year" [(ngModel)]="artwork.Year" name="year" class="form-control" required
+                        #year="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && year.invalid }">
+                    <div *ngIf="artworkForm.submitted && year.invalid" class="invalid-feedback">
+                        Year is required
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price:</label>
-                    <input type="number" id="price" [(ngModel)]="artwork.Price" name="price" class="form-control" required>
+                    <input type="number" id="price" [(ngModel)]="artwork.Price" name="price" class="form-control" required
+                        #price="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && price.invalid }">
+                    <div *ngIf="artworkForm.submitted && price.invalid" class="invalid-feedback">
+                        Price is required
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="type" class="form-label">Type:</label>    
-                    <select id="type" [(ngModel)]="artwork.Type" name="type" class="form-select" required>
+                    <label for="type" class="form-label">Type:</label>
+                    <select id="type" [(ngModel)]="artwork.Type" name="type" class="form-select" required
+                        #type="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && type.invalid }">
                         <option *ngFor="let type of artworkTypes" [ngValue]="getArtworkTypeValue(type)">{{ type }}</option>
                     </select>
+                    <div *ngIf="artworkForm.submitted && type.invalid" class="invalid-feedback">
+                        Type is required
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="cycle" class="form-label">Cycle:</label>    
+                    <label for="cycle" class="form-label">Cycle:</label>
                     <select id="cycle" [(ngModel)]="artwork.CycleId" name="cycle" class="form-select">
                         <option *ngFor="let cycle of cycles" [ngValue]="cycle.Id">{{ cycle.Name }}</option>
                     </select>
-                </div>                
+                </div>
                 <button type="submit" class="btn btn-primary">Create Artwork</button>
             </form>
         </div>

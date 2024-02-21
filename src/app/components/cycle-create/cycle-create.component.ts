@@ -28,7 +28,7 @@ export class CycleCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllArtworks();
+    // this.getAllArtworks();
   }
 
   async createCycle() {
@@ -47,19 +47,19 @@ export class CycleCreateComponent implements OnInit {
     }
   }
 
-  async getAllArtworks() {
-    try {
-      const { Data, Succeeded, ErrorMessage } = await this.artworksService.getAllArtworks();
-      if (Succeeded) {
-        this.artworks = Data
-        return Data;
-      }
-      else {
-        this.toastrService.error(ErrorMessage);
-      }
-    }
-    catch (error) {
-      console.error(error);
-    }
-  }
+  // async getAllArtworks() {
+  //   try {
+  //     const { Data, Succeeded, ErrorMessage } = await this.artworksService.getAllArtworks();
+  //     if (Succeeded) {
+  //       this.artworks = Data
+  //       return Data;
+  //     }
+  //     else {
+  //       this.toastrService.error(ErrorMessage);
+  //     }
+  //   }
+  //   catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 }

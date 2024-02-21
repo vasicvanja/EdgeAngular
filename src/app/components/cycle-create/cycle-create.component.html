@@ -2,21 +2,30 @@
     <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h2>Create New Cycle</h2>
-            <form (submit)="createCycle()" class="py-3">
+            <form #cycleForm="ngForm" (ngSubmit)="createCycle()" class="py-3">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" [(ngModel)]="cycle.Name" name="name" class="form-control" required>
+                    <input type="text" id="name" [(ngModel)]="cycle.Name" name="name" class="form-control" required
+                        #name="ngModel" [ngClass]="{ 'is-invalid': cycleForm.submitted && name.invalid }">
+                    <div *ngIf="cycleForm.submitted && name.invalid" class="invalid-feedback">
+                        Name is required
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description:</label>
-                    <textarea id="description" [(ngModel)]="cycle.Description" name="description" class="form-control" required></textarea>
+                    <textarea id="description" [(ngModel)]="cycle.Description" name="description" class="form-control"
+                        required #description="ngModel"
+                        [ngClass]="{ 'is-invalid': cycleForm.submitted && description.invalid }"></textarea>
+                    <div *ngIf="cycleForm.submitted && description.invalid" class="invalid-feedback">
+                        Description is required
+                    </div>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="type" class="form-label">Artworks:</label>    
                     <select id="type" [(ngModel)]="selectedArtworks" name="type" class="form-select" required>
                         <option *ngFor="let artwork of artworks" [ngValue]="artwork">{{ artwork.Name }}</option>
                     </select>
-                </div>
+                </div> -->
                 <button type="submit" class="btn btn-primary">Create Cycle</button>
             </form>
         </div>
