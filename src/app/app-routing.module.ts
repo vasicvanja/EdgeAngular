@@ -9,7 +9,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
 import { ArtworkCreateComponent } from "./components/artwork-create/artwork-create.component";
 import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
-import { ArtwrokUpdateComponent } from "./components/artwork-update/artwork-update.component";
+import { ArtworkUpdateComponent } from "./components/artwork-update/artwork-update.component";
 import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.component";
 
 const routes: Routes = [
@@ -19,7 +19,7 @@ const routes: Routes = [
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent },
-    { path: 'artwork-update/:id', component: ArtwrokUpdateComponent },
+    { path: 'artwork-update/:id', component: ArtworkUpdateComponent },
     { path: 'cycles', component: CyclesComponent },
     { path: 'cycle-details/:id', component: CyclesDetailsComponent },
     { path: 'cycle-create', component: CycleCreateComponent },

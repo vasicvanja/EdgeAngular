@@ -7,26 +7,36 @@ import { ResponseMessages } from '../../const/response-messages';
 import { ArtworkType } from '../../models/artwork-type';
 import { CyclesService } from '../../services/cycles.service';
 import { Cycle } from '../../models/cycle';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'artwork-update',
   templateUrl: './artwork-update.component.html',
   styleUrl: './artwork-update.component.scss'
 })
-export class ArtwrokUpdateComponent implements OnInit {
+export class ArtworkUpdateComponent implements OnInit {
 
   artwork!: Artwork;
   artworkId: any;
   artworkTypes: string[] = Object.keys(ArtworkType).filter(key => isNaN(Number(key)));
   cycles: Cycle[] = [];
+  artworkForm: FormGroup;
 
   constructor(
     private artworksService: ArtworksService,
     private cyclesService: CyclesService,
     private toastrService: ToastrService,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) {
-
+      this.artworkForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+        technique: ['', Validators.required],
+        year: ['', Validators.required],
+        price: ['', Validators.required],
+        type: ['', Validators.required]
+      });
   }
 
   async ngOnInit() {
@@ -57,6 +67,9 @@ export class ArtwrokUpdateComponent implements OnInit {
   }
 
   async updateArtwork() {
+    if (this.artworkForm.invalid) {
+      return;
+    }
     try {
       const { Succeeded, ErrorMessage } = await this.artworksService.updateArtwork(this.artwork);
       if (Succeeded) {

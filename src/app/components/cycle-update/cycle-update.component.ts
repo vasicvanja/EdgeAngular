@@ -4,6 +4,7 @@ import { CyclesService } from '../../services/cycles.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseMessages } from '../../const/response-messages';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'cycle-update',
@@ -14,13 +15,18 @@ export class CycleUpdateComponent implements OnInit {
 
   cycle!: Cycle;
   cycleId: any;
+  cycleForm: FormGroup;
 
   constructor(
     private cyclesService: CyclesService,
     private toastrService: ToastrService,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) {
-
+      this.cycleForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required]
+      });
   }
 
   async ngOnInit() {
@@ -36,6 +42,9 @@ export class CycleUpdateComponent implements OnInit {
   }
 
   async updateCycle() {
+    if (this.cycleForm.invalid) {
+      return;
+    }
     try {
       const { Succeeded, ErrorMessage } = await this.cyclesService.updateCycle(this.cycle);
       if (Succeeded) {

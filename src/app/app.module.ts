@@ -23,7 +23,7 @@ import { ArtworkCreateComponent } from "./components/artwork-create/artwork-crea
 import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
 import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { ArtwrokUpdateComponent } from "./components/artwork-update/artwork-update.component";
+import { ArtworkUpdateComponent } from "./components/artwork-update/artwork-update.component";
 import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.component";
 
 @NgModule({
@@ -33,7 +33,7 @@ import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.com
         ArtworksComponent,
         ArtworkDetailsComponent,
         ArtworkCreateComponent,
-        ArtwrokUpdateComponent,
+        ArtworkUpdateComponent,
         CyclesComponent,
         CyclesDetailsComponent,
         CycleCreateComponent,
