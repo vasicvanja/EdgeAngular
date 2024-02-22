@@ -6,10 +6,11 @@ import { ArtworkDetailsComponent } from "./components/artwork-details/artwork-de
 import { CyclesDetailsComponent } from "./components/cycles-details/cycles-details.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { LoginComponent } from "./components/login/login.component";
-import { authGuard } from "./guards/auth.guard";
 import { HomeComponent } from "./components/home/home.component";
 import { ArtworkCreateComponent } from "./components/artwork-create/artwork-create.component";
 import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
+import { ArtworkUpdateComponent } from "./components/artwork-update/artwork-update.component";
+import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.component";
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -18,13 +19,15 @@ const routes: Routes = [
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent },
+    { path: 'artwork-update/:id', component: ArtworkUpdateComponent },
     { path: 'cycles', component: CyclesComponent },
     { path: 'cycle-details/:id', component: CyclesDetailsComponent },
-    { path: 'cycle-create', component: CycleCreateComponent }
+    { path: 'cycle-create', component: CycleCreateComponent },
+    { path: 'cycle-update/:id', component: CycleUpdateComponent }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
-  })
-  export class AppRoutingModule { }
+})
+export class AppRoutingModule { }

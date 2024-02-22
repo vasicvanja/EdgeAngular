@@ -53,7 +53,7 @@ export class ArtworkDetailsComponent implements OnInit {
     try {
       const { Data, Succeeded, ErrorMessage } = await this.artworksService.deleteArtwork(this.artworkId);
       if (Succeeded) {
-        this.toastrService.success(ResponseMessages.Success_delete_artwork(this.artwork.Name));
+        this.toastrService.success(ResponseMessages.Delete_success("artwork", this.artwork.Name));
         this.router.navigate(['/artworks']);
         return Data;
       }
