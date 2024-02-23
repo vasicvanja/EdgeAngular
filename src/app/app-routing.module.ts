@@ -11,11 +11,15 @@ import { ArtworkCreateComponent } from "./components/artwork-create/artwork-crea
 import { CycleCreateComponent } from "./components/cycle-create/cycle-create.component";
 import { ArtworkUpdateComponent } from "./components/artwork-update/artwork-update.component";
 import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.component";
+import { AboutComponent } from "./components/about/about.component";
+import { ContactComponent } from "./components/contact/contact.component";
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'contact', component: ContactComponent },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent },

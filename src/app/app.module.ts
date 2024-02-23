@@ -25,6 +25,8 @@ import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { ArtworkUpdateComponent } from "./components/artwork-update/artwork-update.component";
 import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.component";
+import { ContactComponent } from "./components/contact/contact.component";
+import { AboutComponent } from "./components/about/about.component";
 
 @NgModule({
     declarations: [
@@ -43,6 +45,8 @@ import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.com
         LogoutComponent,
         NavMenuComponent,
         FooterComponent,
+        ContactComponent,
+        AboutComponent
     ],
     imports: [
         BrowserModule,
