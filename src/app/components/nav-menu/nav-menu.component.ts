@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Cycle } from '../../models/cycle';
 import { AuthService } from '../../services/auth.service';
-import { CyclesService } from '../../services/cycles.service';
+import { CartService } from '../../services/cart.service';
 
 
 @Component({
@@ -13,39 +12,26 @@ import { CyclesService } from '../../services/cycles.service';
 export class NavMenuComponent {
   userLoggedIn: boolean = false;
   cycles: Cycle[] = [];
+  cartItemCount: number = 0;
 
   constructor(
-    private authService: AuthService, 
-    private cyclesService: CyclesService, 
-    private toastrService: ToastrService) {
-      
+    private authService: AuthService,
+    private cartService: CartService) {
+
   }
 
   async ngOnInit() {
     this.authService.isUserLoggedIn$().subscribe((isLoggedIn: boolean) => {
       this.userLoggedIn = isLoggedIn;
-    });
 
-    await this.getAllCycles();
+      this.cartService.getCartItemsCount$().subscribe((count: number) => {
+        this.cartItemCount = count;
+      });
+    });
   }
 
   onLogOutCompleted() {
     this.authService.logout();
   }
 
-  async getAllCycles() {
-    try {
-      const { Data, Succeeded, ErrorMessage } = await this.cyclesService.getAllCycles();
-      if (Succeeded) {
-        this.cycles = Data;
-        return Data;
-      }
-      else {
-        this.toastrService.error(ErrorMessage);
-      }
-    }
-    catch (error) {
-      console.error(error);
-    }
-  }
 }

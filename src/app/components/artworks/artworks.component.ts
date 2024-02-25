@@ -3,6 +3,7 @@ import { ArtworksService } from '../../services/artworks.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'artworks',
@@ -16,6 +17,7 @@ export class ArtworksComponent implements OnInit {
   constructor(
     private artworksService: ArtworksService,
     private toastrService: ToastrService,
+    private cartService: CartService,
     private router: Router) {
 
   }
@@ -50,5 +52,9 @@ export class ArtworksComponent implements OnInit {
 
   openArtworkUpdate(artwork: Artwork) {
     this.router.navigate(['/artwork-update', artwork.Id]);
+  }
+
+  addToCart(artwork: Artwork) {
+    this.cartService.addToCart(artwork);
   }
 }

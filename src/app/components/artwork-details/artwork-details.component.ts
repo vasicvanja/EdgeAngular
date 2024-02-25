@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
 import { ResponseMessages } from '../../const/response-messages';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'artwork-details',
@@ -18,6 +19,7 @@ export class ArtworkDetailsComponent implements OnInit {
   constructor(
     private artworksService: ArtworksService,
     private toastrService: ToastrService,
+    private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router) {
 
@@ -63,5 +65,9 @@ export class ArtworkDetailsComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  addToCart(artwork: Artwork) {
+    this.cartService.addToCart(artwork);
   }
 }

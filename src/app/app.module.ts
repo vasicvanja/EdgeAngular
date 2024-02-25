@@ -27,6 +27,8 @@ import { ArtworkUpdateComponent } from "./components/artwork-update/artwork-upda
 import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.component";
 import { ContactComponent } from "./components/contact/contact.component";
 import { AboutComponent } from "./components/about/about.component";
+import { CartComponent } from "./components/cart/cart.component";
+import { CartService } from "./services/cart.service";
 
 @NgModule({
     declarations: [
@@ -46,7 +48,8 @@ import { AboutComponent } from "./components/about/about.component";
         NavMenuComponent,
         FooterComponent,
         ContactComponent,
-        AboutComponent
+        AboutComponent,
+        CartComponent
     ],
     imports: [
         BrowserModule,
@@ -66,7 +69,8 @@ import { AboutComponent } from "./components/about/about.component";
         EncodeService,
         ArtworksService,
         CyclesService,
-        AuthService
+        AuthService,
+        CartService
     ],
     bootstrap: [
         AppComponent
