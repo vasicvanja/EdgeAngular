@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Cycle } from '../../models/cycle';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -13,11 +14,17 @@ export class NavMenuComponent {
   userLoggedIn: boolean = false;
   cycles: Cycle[] = [];
   cartItemCount: number = 0;
+  isLoginOrRegisterPage!: boolean;
 
   constructor(
     private authService: AuthService,
-    private cartService: CartService) {
-
+    private cartService: CartService,
+    private router: Router) {
+      this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.isLoginOrRegisterPage = ['/login', '/register'].includes(this.router.url);
+      }
+    });
   }
 
   async ngOnInit() {
