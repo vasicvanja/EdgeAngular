@@ -67,20 +67,34 @@ export class CartService {
         }
     }
 
-    // This private method saves the current cart items in LocalStorage. It uses 
-    // JSON.stringify to convert the array of cart items into a JSON string, 
-    // because LocalStorage can only store strings.
-    private saveCartItems() {
-        localStorage.setItem('cartItems', JSON.stringify(this.cartItems.value));
+    // This private method saves the current cart items in LocalStorage along with 
+    // the current timestamp. It usesJSON.stringify to convert the array of cart 
+    // items into a JSON string, because LocalStorage can only store strings.
+    saveCartItems() {
+        const cartData = {
+            items: this.cartItems.value,
+            timestamp: new Date().getTime()
+        };
+        localStorage.setItem('cartItems', JSON.stringify(cartData));
     }
 
     // This private method loads the cart items from LocalStorage. It uses JSON.parse
     // to convert the JSON string back into an array of cart items. If there are 
     // saved cart items in LocalStorage, it updates the cartItems BehaviorSubject with these items.
-    private loadCartItems() {
-        const savedItems = localStorage.getItem('cartItems');
-        if (savedItems) {
-            this.cartItems.next(JSON.parse(savedItems));
+    // The method checks the timestamp when loading the cart items. If the data is older than the 
+    // specified lifetime, it removes the data from LocalStorage.
+    loadCartItems() {
+        const cartItems = localStorage.getItem('cartItems');
+        if (cartItems) {
+            const cartData = JSON.parse(cartItems);
+            const lifetime = 24 * 60 * 60 * 1000; // Lifetime of 24 hours
+            if (new Date().getTime() - cartData.timestamp > lifetime) {
+                // If the data is older than the lifetime, clear it
+                localStorage.removeItem('cartItems');
+            } else {
+                // Otherwise, load the data
+                this.cartItems.next(cartData.items);
+            }
         }
     }
 }
