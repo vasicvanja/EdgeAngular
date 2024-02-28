@@ -87,7 +87,7 @@ export class CartService {
         const cartItems = localStorage.getItem('cartItems');
         if (cartItems) {
             const cartData = JSON.parse(cartItems);
-            const lifetime = 24 * 60 * 60 * 1000; // Lifetime of 24 hours
+            const lifetime = 2 * 60 * 60 * 1000; // Lifetime of 2 hours
             if (new Date().getTime() - cartData.timestamp > lifetime) {
                 // If the data is older than the lifetime, clear it
                 localStorage.removeItem('cartItems');
