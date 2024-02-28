@@ -27,7 +27,7 @@ export class CartService {
     // is used to calculate the total price by summing up the price of each item.
     getTotalPrice$() {
         return this.cartItems.asObservable().pipe(
-            map(items => items.reduce((total, item) => total + item.Price, 0))
+            map(items => items.reduce((total, item) => total + item.Price * item.Quantity, 0))
         );
     }
 
@@ -48,7 +48,13 @@ export class CartService {
     // saveCartItems() to persist the new cart items in LocalStorage.
     addToCart(artwork: Artwork) {
         const currentItems = this.cartItems.value;
-        currentItems.push(artwork);
+        const foundItem = currentItems.find(item => item.Id === artwork.Id);
+        if (foundItem) {
+            foundItem.Quantity += 1;
+        } else {
+            artwork.Quantity = 1;
+            currentItems.push(artwork);
+        }
         this.cartItems.next(currentItems);
         this.saveCartItems();
     }
@@ -59,12 +65,16 @@ export class CartService {
     // with the new array and calls saveCartItems() to persist the new cart items in LocalStorage.
     removeFromCart(artwork: Artwork) {
         const currentItems = this.cartItems.value;
-        const index = currentItems.findIndex(item => item.Id === artwork.Id);
-        if (index > -1) {
-            currentItems.splice(index, 1);
-            this.cartItems.next(currentItems);
-            this.saveCartItems();
+        const foundItem = currentItems.find(item => item.Id === artwork.Id);
+        if (foundItem) {
+            foundItem.Quantity -= 1;
+            if (foundItem.Quantity === 0) {
+                const index = currentItems.indexOf(foundItem);
+                currentItems.splice(index, 1);
+            }
         }
+        this.cartItems.next(currentItems);
+        this.saveCartItems();
     }
 
     // This private method saves the current cart items in LocalStorage along with 
