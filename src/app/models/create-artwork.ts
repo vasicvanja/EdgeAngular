@@ -6,6 +6,7 @@ export class CreateArtwork {
     public Technique: string;
     public Year: number;
     public Price: number;
+    public Quantity: number;
     public Type: ArtworkType | any;
     public CycleId: number | null;
 
@@ -15,6 +16,7 @@ export class CreateArtwork {
         Technique: string = "",
         Year: number = 0,
         Price: number = 0,
+        Quantity: number = 0,
         Type: ArtworkType | any = null,
         CycleId: number | null = null) {
             this.Name = Name;
@@ -22,6 +24,7 @@ export class CreateArtwork {
             this.Technique = Technique;
             this.Year = Year;
             this.Price = Price;
+            this.Quantity = Quantity;
             this.Type = Type;
             this.CycleId = CycleId;
     }

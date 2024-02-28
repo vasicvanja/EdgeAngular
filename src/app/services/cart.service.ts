@@ -93,7 +93,13 @@ export class CartService {
                 localStorage.removeItem('cartItems');
             } else {
                 // Otherwise, load the data
-                this.cartItems.next(cartData.items);
+                // Ensure cartData.items is defined and is an array
+                if (Array.isArray(cartData.items)) {
+                    this.cartItems.next(cartData.items);
+                } else {
+                    console.warn('Invalid cart data:', cartData);
+                    this.cartItems.next([]);
+                }
             }
         }
     }
