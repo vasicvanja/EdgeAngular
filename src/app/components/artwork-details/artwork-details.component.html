@@ -14,6 +14,7 @@
                     <p class="text-muted">Technique: {{ artwork.Technique }}</p>
                     <p class="text-muted">Year: {{ artwork.Year }}</p>
                     <p class="text-muted">Price: {{ artwork.Price }}</p>
+                    <p class="text-muted">Quantity {{ artwork.Quantity }}</p>
                     <button type="button" (click)="addToCart(artwork)" class="btn btn-primary" id="addToCart">Add to Cart</button>
                     <button type="button" (click)="deleteArtwork()" class="btn btn-danger">Delete</button>
                 </div>
