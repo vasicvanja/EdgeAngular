@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Artwork } from '../models/artwork';
+import { ToastrService } from 'ngx-toastr';
+import { ResponseMessages } from '../const/response-messages';
 
 @Injectable({
     providedIn: 'root'
@@ -9,15 +11,12 @@ import { Artwork } from '../models/artwork';
 export class CartService {
     private cartItems = new BehaviorSubject<Artwork[]>([]);
 
-    // This is the constructor of the CartService class. It initializes the cartItems 
-    // property as a BehaviorSubject that holds an array of Artwork objects. The BehaviorSubject 
-    // is a type of subject from the RxJS library that can emit the current value to new subscribers.
-    constructor() {
+    constructor(private toastrService: ToastrService) {
         this.loadCartItems();
     }
 
     // This method returns an Observable of the current cart items.
-    // An Observable is a stream of values that can be subscribed to
+    // An Observable is a stream of values that can be subscribed to.
     getCartItems$() {
         return this.cartItems.asObservable();
     }
@@ -49,14 +48,23 @@ export class CartService {
     addToCart(artwork: Artwork) {
         const currentItems = this.cartItems.value;
         const foundItem = currentItems.find(item => item.Id === artwork.Id);
-        if (foundItem) {
-            foundItem.Quantity += 1;
-        } else {
-            artwork.Quantity = 1;
-            currentItems.push(artwork);
+        if (artwork && artwork != null && artwork.Quantity > 0) {
+            if (foundItem && foundItem != null) {
+                foundItem.Quantity++;
+                artwork.Quantity--;
+            }
+            else {
+                const newArtwork = { ...artwork, Quantity: 1 };
+                artwork.Quantity--;
+                currentItems.push(newArtwork);
+            }
+            this.cartItems.next(currentItems);
+            this.saveCartItems();
+            this.toastrService.success(ResponseMessages.Successfully_added_to_cart(artwork.Name));
         }
-        this.cartItems.next(currentItems);
-        this.saveCartItems();
+        else {
+            this.toastrService.error(ResponseMessages.Unsuccessfully_added_to_cart);
+        }
     }
 
     // This method removes an artwork from the cart. It first gets the current cart items,
@@ -65,16 +73,20 @@ export class CartService {
     // with the new array and calls saveCartItems() to persist the new cart items in LocalStorage.
     removeFromCart(artwork: Artwork) {
         const currentItems = this.cartItems.value;
-        const foundItem = currentItems.find(item => item.Id === artwork.Id);
-        if (foundItem) {
-            foundItem.Quantity -= 1;
-            if (foundItem.Quantity === 0) {
-                const index = currentItems.indexOf(foundItem);
+        const itemToRemove = currentItems.find(item => item.Id === artwork.Id);
+        if (itemToRemove && itemToRemove != null && itemToRemove.Quantity > 0) {
+            itemToRemove.Quantity--;
+            if (itemToRemove.Quantity === 0) {
+                const index = currentItems.indexOf(itemToRemove);
                 currentItems.splice(index, 1);
             }
+            this.cartItems.next(currentItems);
+            this.saveCartItems();
+            this.toastrService.success(ResponseMessages.Successfully_removed_from_cart(itemToRemove.Name));
+        } 
+        else {
+            this.toastrService.error(ResponseMessages.Unsuccessfully_removed_from_cart);
         }
-        this.cartItems.next(currentItems);
-        this.saveCartItems();
     }
 
     // This private method saves the current cart items in LocalStorage along with 
