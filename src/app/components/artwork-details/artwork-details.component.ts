@@ -15,6 +15,8 @@ export class ArtworkDetailsComponent implements OnInit {
 
   artwork!: Artwork;
   artworkId: any;
+  cartItems: Artwork[] = [];
+  initialQuantity!: number;
 
   constructor(
     private artworksService: ArtworksService,
@@ -35,6 +37,7 @@ export class ArtworkDetailsComponent implements OnInit {
         console.error('Artwork ID not provided in route parameters.');
       }
     });
+    this.loadCartItems();
   }
 
   async getArtworkDetails(artworkId: number) {
@@ -42,6 +45,8 @@ export class ArtworkDetailsComponent implements OnInit {
       const { Data, Succeeded, ErrorMessage } = await this.artworksService.getArtworkById(artworkId);
       if (Succeeded) {
         this.artwork = Data;
+        this.initialQuantity = this.artwork.Quantity;
+        this.syncArtworkQuantity();
         return Data;
       } else {
         this.toastrService.error(ErrorMessage);
@@ -59,7 +64,7 @@ export class ArtworkDetailsComponent implements OnInit {
         this.router.navigate(['/artworks']);
         return Data;
       }
-      else {  
+      else {
         this.toastrService.error(ErrorMessage);
       }
     } catch (error) {
@@ -69,5 +74,22 @@ export class ArtworkDetailsComponent implements OnInit {
 
   addToCart(artwork: Artwork) {
     this.cartService.addToCart(artwork);
+  }
+
+  loadCartItems() {
+    this.cartService.getCartItems$().subscribe(items => {
+      this.cartItems = items;
+      this.syncArtworkQuantity();
+    });
+  }
+
+  syncArtworkQuantity() {
+    const cartItem = this.cartItems.find(item => item.Id === this.artworkId);
+    if (cartItem) {
+      const cartQuantity = cartItem.Quantity;
+      this.artwork.Quantity = this.initialQuantity - cartQuantity;
+    } else {
+      this.artwork.Quantity = this.initialQuantity;
+    }
   }
 }
