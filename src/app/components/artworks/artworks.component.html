@@ -37,6 +37,7 @@
                                     <button type="button" (click)="openArtworkDetails(artwork)" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" (click)="openArtworkUpdate(artwork)" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
+                                <button type="button" [disabled]="artwork.Quantity == 0" (click)="addToCart(artwork)" class="btn btn-sm btn-primary">Add to Cart</button>
                             </div>
                         </div>
                     </div>

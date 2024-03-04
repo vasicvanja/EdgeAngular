@@ -63,6 +63,10 @@ export class CycleUpdateComponent implements OnInit {
       const { Data, Succeeded, ErrorMessage } = await this.cyclesService.getCycleById(cycleId);
       if (Succeeded) {
         this.cycle = Data;
+        this.cycleForm.patchValue({
+          name: this.cycle.Name,
+          description: this.cycle.Description
+        });
         return Data;
       } else {
         this.toastrService.error(ErrorMessage);

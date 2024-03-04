@@ -13,6 +13,7 @@ import { ArtworkUpdateComponent } from "./components/artwork-update/artwork-upda
 import { CycleUpdateComponent } from "./components/cycle-update/cycle-update.component";
 import { AboutComponent } from "./components/about/about.component";
 import { ContactComponent } from "./components/contact/contact.component";
+import { CartComponent } from "./components/cart/cart.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: 'cycles', component: CyclesComponent },
     { path: 'cycle-details/:id', component: CyclesDetailsComponent },
     { path: 'cycle-create', component: CycleCreateComponent },
-    { path: 'cycle-update/:id', component: CycleUpdateComponent }
+    { path: 'cycle-update/:id', component: CycleUpdateComponent },
+    { path: 'cart', component: CartComponent}
 ];
 
 @NgModule({

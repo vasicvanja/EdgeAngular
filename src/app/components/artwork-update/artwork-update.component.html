@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="artwork">
     <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h2>Update Artwork</h2>
@@ -46,6 +46,14 @@
                     </div>
                 </div>
                 <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" id="quantity" [(ngModel)]="artwork.Quantity" name="quantity" class="form-control"
+                        required #quantity="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && quantity.invalid }">
+                    <div *ngIf="artworkForm.submitted && quantity.invalid" class="invalid-feedback">
+                        Quantity is required
+                    </div>
+                </div>
+                <div class="mb-3">
                     <label for="type" class="form-label">Type:</label>
                     <select id="type" [(ngModel)]="artwork.Type" name="type" class="form-select" required
                         #type="ngModel" [ngClass]="{ 'is-invalid': artworkForm.submitted && type.invalid }">
@@ -59,7 +67,7 @@
                 <div class="mb-3">
                     <label for="cycle" class="form-label">Cycle:</label>
                     <select id="cycle" [(ngModel)]="artwork.CycleId" name="cycle" class="form-select">
-                        <option *ngFor="let cycle of cycles" [ngValue]="cycle.Id">{{ cycle.Name }}</option>
+                        <option *ngFor="let cycle of cycles" [ngValue]="cycle?.Id">{{ cycle?.Name }}</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Artwork</button>

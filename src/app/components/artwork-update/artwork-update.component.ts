@@ -57,6 +57,16 @@ export class ArtworkUpdateComponent implements OnInit {
       const { Data, Succeeded, ErrorMessage } = await this.artworksService.getArtworkById(artworkId);
       if (Succeeded) {
         this.artwork = Data;
+        this.artworkForm.patchValue({
+          name: this.artwork.Name,
+          description: this.artwork.Description,
+          technique: this.artwork.Technique,
+          year: this.artwork.Year,
+          price: this.artwork.Price,
+          quantity: this.artwork.Quantity,
+          type: this.artwork.Type,
+          cycle: this.artwork.Id
+        });
         return Data;
       } else {
         this.toastrService.error(ErrorMessage);

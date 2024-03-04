@@ -1,6 +1,12 @@
 <nav class="navbar bg-body-tertiary" aria-label="Vanja Vasic">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/home">Vanja Vasic</a>
+        <div class="nav-item me-2 cart-icon" *ngIf="!isLoginOrRegisterPage">
+            <a class="nav-link" routerLink="/cart">
+                <i class="bi bi-cart"></i>
+                <span class="badge bg-danger cart-badge" *ngIf="cartItemCount > 0">{{cartItemCount}}</span>
+            </a>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight"
             aria-controls="offcanvasNavbarLight" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,16 +25,8 @@
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/artworks">Artworks</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Cycles
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li *ngFor="let cycle of cycles">
-                                <a class="dropdown-item" [routerLink]="['/cycle-details/', cycle.Id]">{{ cycle.Name }}</a>
-                            </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/cycles">Cycles</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/about">About</a>
