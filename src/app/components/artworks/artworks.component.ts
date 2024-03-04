@@ -65,7 +65,6 @@ export class ArtworksComponent implements OnInit {
 
   addToCart(artwork: Artwork) {
     this.cartService.addToCart(artwork);
-    this.syncArtworkQuantities();
   }
 
   loadCartItems() {
