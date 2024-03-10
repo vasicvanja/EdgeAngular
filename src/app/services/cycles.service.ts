@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { EncodeService } from './encode.service';
 import { Cycle } from '../models/cycle';
 import { environment } from '../../environments/environment';
 import { CreateCycle } from '../models/create-cycle';
@@ -13,7 +12,7 @@ export class CyclesService {
 
   private baseUrl: string;
 
-  constructor(private http: HttpClient, private encodeService: EncodeService) {
+  constructor(private http: HttpClient) {
     this.baseUrl = environment.baseUrl;
   }
 

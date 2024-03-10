@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CreateCycle } from '../../models/create-cycle';
 import { CyclesService } from '../../services/cycles.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ import { ArtworksService } from '../../services/artworks.service';
   templateUrl: './cycle-create.component.html',
   styleUrl: './cycle-create.component.scss'
 })
-export class CycleCreateComponent implements OnInit {
+export class CycleCreateComponent {
 
   cycle: CreateCycle = new CreateCycle;
   cycleId: any;
@@ -25,10 +25,6 @@ export class CycleCreateComponent implements OnInit {
     private toastrService: ToastrService,
     private router: Router) {
 
-  }
-
-  ngOnInit(): void {
-    // this.getAllArtworks();
   }
 
   async createCycle() {
@@ -46,20 +42,4 @@ export class CycleCreateComponent implements OnInit {
       console.error(error);
     }
   }
-
-  // async getAllArtworks() {
-  //   try {
-  //     const { Data, Succeeded, ErrorMessage } = await this.artworksService.getAllArtworks();
-  //     if (Succeeded) {
-  //       this.artworks = Data
-  //       return Data;
-  //     }
-  //     else {
-  //       this.toastrService.error(ErrorMessage);
-  //     }
-  //   }
-  //   catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 }
