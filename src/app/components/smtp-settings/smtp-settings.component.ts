@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
 import { SmtpSettings } from '../../models/smtp-settings';
 import { SmtpSettingsService } from '../../services/smtp-settings.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResponseMessages } from '../../const/response-messages';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'smtp-settings',
   templateUrl: './smtp-settings.component.html',
-  styleUrls: ['./smtp-settings.component.scss']
+  styleUrl: './smtp-settings.component.scss'
 })
 export class SmtpSettingsComponent implements OnInit {
 
@@ -22,13 +22,13 @@ export class SmtpSettingsComponent implements OnInit {
     private smtpSettingsService: SmtpSettingsService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder) {
-    this.smtpSettingsForm = this.formBuilder.group({
-      host: ['', [Validators.required]],
-      port: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      senderEmail: ['', Validators.required],
-      senderName: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      this.smtpSettingsForm = this.formBuilder.group({
+      host: [''],
+      port: ['', Validators.pattern('^[0-9]*$')],
+      senderEmail: [''],
+      senderName: [''],
+      username: [''],
+      password: [''],
       authentication: [false],
       enableSsl: [false],
       enableSmtpSettings: [false]
@@ -47,8 +47,8 @@ export class SmtpSettingsComponent implements OnInit {
         this.enableSmtpSettings = this.smtpSettings.EnableSmtpSettings;
         this.enableAuthentication = this.smtpSettings.Authentication;
         this.enableSsl = this.smtpSettings.EnableSsl;
-
         this.smtpSettingsForm.patchValue({
+          id: this.smtpSettings.Id,
           host: this.smtpSettings.Host,
           port: this.smtpSettings.Port,
           senderEmail: this.smtpSettings.SenderEmail,
