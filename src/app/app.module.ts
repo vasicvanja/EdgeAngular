@@ -29,6 +29,8 @@ import { ContactComponent } from "./components/contact/contact.component";
 import { AboutComponent } from "./components/about/about.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { CartService } from "./services/cart.service";
+import { SmtpSettingsComponent } from "./components/smtp-settings/smtp-settings.component";
+import { SmtpSettingsService } from "./services/smtp-settings.service";
 
 @NgModule({
     declarations: [
@@ -49,7 +51,8 @@ import { CartService } from "./services/cart.service";
         FooterComponent,
         ContactComponent,
         AboutComponent,
-        CartComponent
+        CartComponent,
+        SmtpSettingsComponent
     ],
     imports: [
         BrowserModule,
@@ -70,7 +73,8 @@ import { CartService } from "./services/cart.service";
         ArtworksService,
         CyclesService,
         AuthService,
-        CartService
+        CartService,
+        SmtpSettingsService
     ],
     bootstrap: [
         AppComponent

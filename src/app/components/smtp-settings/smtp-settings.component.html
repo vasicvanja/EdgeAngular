@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h2>SMTP Settings</h2>
+            <form #smtpSettingsForm="ngForm" (ngSubmit)="updateSmtpSettings()" class="py-3">
+                <div class="mb-3">
+                    <label for="host" class="form-label">Host:</label>
+                    <input type="text" id="host" [(ngModel)]="smtpSettings.Host" name="host" class="form-control"
+                        [disabled]="!enableSmtpSettings" required #host="ngModel"
+                        [ngClass]="{ 'is-invalid': smtpSettingsForm.submitted && host.invalid }">
+                    <div *ngIf="smtpSettingsForm.submitted && host.invalid" class="invalid-feedback">
+                        Host is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="port" class="form-label">Port:</label>
+                    <input type="number" id="port" [(ngModel)]="smtpSettings.Port" name="port" class="form-control"
+                        [disabled]="!enableSmtpSettings" required pattern="[0-9]*" #port="ngModel"
+                        [ngClass]="{ 'is-invalid': smtpSettingsForm.submitted && port.invalid }">
+                    <div *ngIf="smtpSettingsForm.submitted && port.invalid" class="invalid-feedback">
+                        Port is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="senderEmail" class="form-label">Sender Email:</label>
+                    <input type="text" id="senderEmail" [(ngModel)]="smtpSettings.SenderEmail" name="senderEmail"
+                        class="form-control" [disabled]="!enableSmtpSettings" required #senderEmail="ngModel"
+                        [ngClass]="{ 'is-invalid': smtpSettingsForm.submitted && senderEmail.invalid }">
+                    <div *ngIf="smtpSettingsForm.submitted && senderEmail.invalid" class="invalid-feedback">
+                        Sender Email is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="senderName" class="form-label">Sender Name:</label>
+                    <input type="text" id="senderName" [(ngModel)]="smtpSettings.SenderName" name="senderName"
+                        class="form-control" [disabled]="!enableSmtpSettings" required #senderName="ngModel"
+                        [ngClass]="{ 'is-invalid': smtpSettingsForm.submitted && senderName.invalid }">
+                    <div *ngIf="smtpSettingsForm.submitted && senderName.invalid" class="invalid-feedback">
+                        Sender Name is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" id="username" [(ngModel)]="smtpSettings.Username" name="username"
+                        class="form-control" [disabled]="!enableSmtpSettings || !enableAuthentication"
+                        [required]="enableSmtpSettings && enableAuthentication" #username="ngModel"
+                        [ngClass]="{ 'is-invalid': smtpSettingsForm.submitted && username.invalid }">
+                    <div *ngIf="smtpSettingsForm.submitted && username.invalid" class="invalid-feedback">
+                        Username is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" id="password" [(ngModel)]="smtpSettings.Password" name="password"
+                        class="form-control" [disabled]="!enableSmtpSettings || !enableAuthentication"
+                        [required]="enableSmtpSettings && enableAuthentication" #password="ngModel"
+                        [ngClass]="{ 'is-invalid': smtpSettingsForm.submitted && password.invalid }">
+                    <div *ngIf="smtpSettingsForm.submitted && password.invalid" class="invalid-feedback">
+                        Password is required
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" id="authentication" [(ngModel)]="smtpSettings.Authentication"
+                        name="authentication" class="form-check-input" (change)="toggleAuthentication()">
+                    <label for="authentication" class="form-check-label">Authentication</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" id="enableSsl" [(ngModel)]="smtpSettings.EnableSsl" name="enableSsl"
+                        class="form-check-input">
+                    <label for="enableSsl" class="form-check-label">Enable SSL</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" id="enableSmtpSettings" [(ngModel)]="smtpSettings.EnableSmtpSettings"
+                        name="enableSmtpSettings" class="form-check-input" (change)="toggleSmtpSettings()">
+                    <label for="enableSmtpSettings" class="form-check-label">Enable SMTP Settings</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Update SMTP Setting</button>
+            </form>
+        </div>
+    </div>
+</div>

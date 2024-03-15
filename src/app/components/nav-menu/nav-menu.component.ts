@@ -15,6 +15,7 @@ export class NavMenuComponent {
   cycles: Cycle[] = [];
   cartItemCount: number = 0;
   isLoginOrRegisterPage!: boolean;
+  loggedInUsername: string | null = null;
 
   constructor(
     private authService: AuthService,
@@ -30,6 +31,7 @@ export class NavMenuComponent {
   async ngOnInit() {
     this.authService.isUserLoggedIn$().subscribe((isLoggedIn: boolean) => {
       this.userLoggedIn = isLoggedIn;
+      this.loggedInUsername = this.authService.getUsername();
 
       this.cartService.getCartItemsCount$().subscribe((count: number) => {
         this.cartItemCount = count;

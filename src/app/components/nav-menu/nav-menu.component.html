@@ -1,6 +1,6 @@
-<nav class="navbar bg-body-tertiary" aria-label="Vanja Vasic">
+<nav class="navbar bg-body-tertiary" aria-label="Edge">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/home">Vanja Vasic</a>
+        <a class="navbar-brand" routerLink="/home">Edge</a>
         <div class="nav-item me-2 cart-icon" *ngIf="!isLoginOrRegisterPage">
             <a class="nav-link" routerLink="/cart">
                 <i class="bi bi-cart"></i>
@@ -14,7 +14,7 @@
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight"
             aria-labelledby="offcanvasNavbarLightLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLightLabel">Vanja Vasic</h5>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLightLabel">{{ loggedInUsername || 'Edge' }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -33,6 +33,17 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Settings
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" routerLink="/smtp-settings">Smtp</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item" *ngIf="userLoggedIn">
                         <logout (logoutCompleted)="onLogOutCompleted()"></logout>

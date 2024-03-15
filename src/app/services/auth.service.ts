@@ -90,5 +90,13 @@ export class AuthService {
   isUserLoggedIn$(): Observable<boolean> {
     return this.loggedInSubject.asObservable();
   }
-  
+
+  getUsername(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+      return tokenPayload ? tokenPayload.unique_name : null;
+    }
+    return null;
+  }
 }
