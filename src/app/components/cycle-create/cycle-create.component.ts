@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ResponseMessages } from '../../const/response-messages';
 import { Artwork } from '../../models/artwork';
-import { ArtworksService } from '../../services/artworks.service';
 
 @Component({
   selector: 'cycle-create',
@@ -21,7 +20,6 @@ export class CycleCreateComponent {
 
   constructor(
     private cyclesService: CyclesService,
-    private artworksService: ArtworksService,
     private toastrService: ToastrService,
     private router: Router) {
 
