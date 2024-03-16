@@ -11,4 +11,5 @@ export const ResponseMessages = {
     Unsuccessfully_removed_from_cart: "Failed to remove the artwork from the shopping cart. Please try again later.",
     Update_smtp_success: "Successfully updated the Smtp Settings.",
     Update_smtp_failure: "Failed to update the Smtp Settings. Please try again later.",
+    Send_contact_message_success: "Successfully sent a message!"
 }

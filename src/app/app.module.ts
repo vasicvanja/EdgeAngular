@@ -31,6 +31,7 @@ import { CartComponent } from "./components/cart/cart.component";
 import { CartService } from "./services/cart.service";
 import { SmtpSettingsComponent } from "./components/smtp-settings/smtp-settings.component";
 import { SmtpSettingsService } from "./services/smtp-settings.service";
+import { ContactMessagesService } from "./services/contact-messages.service";
 
 @NgModule({
     declarations: [
@@ -74,7 +75,8 @@ import { SmtpSettingsService } from "./services/smtp-settings.service";
         CyclesService,
         AuthService,
         CartService,
-        SmtpSettingsService
+        SmtpSettingsService,
+        ContactMessagesService
     ],
     bootstrap: [
         AppComponent
