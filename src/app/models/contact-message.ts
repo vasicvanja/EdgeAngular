@@ -1,12 +1,12 @@
 export class ContactMessage {
-    public Id: number | null;
+    public Id: number;
     public Email: string;
     public Phone: string;
     public Subject: string;
     public Message: string;
 
     constructor(
-        Id: number | null = null, 
+        Id: number, 
         Email: string = "", 
         Phone: string = "", 
         Subject: string = "", 
