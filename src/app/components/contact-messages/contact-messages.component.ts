@@ -12,6 +12,7 @@ import { ResponseMessages } from '../../const/response-messages';
 export class ContactMessagesComponent implements OnInit {
 
   contactMessages: ContactMessage[] = [];
+  emailFilter: string = '';
 
   constructor(
     private contactMessagesService: ContactMessagesService,
@@ -25,7 +26,7 @@ export class ContactMessagesComponent implements OnInit {
 
   async getAllContactMessages() {
     try {
-      const { Data, Succeeded, ErrorMessage } = await this.contactMessagesService.getAllContactMessages(); 
+      const { Data, Succeeded, ErrorMessage } = await this.contactMessagesService.getAllContactMessages();
       if (Succeeded) {
         this.contactMessages = Data;
         return Data;
@@ -50,6 +51,28 @@ export class ContactMessagesComponent implements OnInit {
       }
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async filterContactMessagesByEmail(email: string) {
+    try {
+      const { Data, Succeeded, ErrorMessage } = await this.contactMessagesService.getAllContactMessagesByEmail(email);
+      if (Succeeded) {
+        this.contactMessages = Data;
+        return Data;
+      } else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  filterByEmail() {
+    if (this.emailFilter.trim() !== '') {
+      this.filterContactMessagesByEmail(this.emailFilter.trim());
+    } else {
+      this.getAllContactMessages();
     }
   }
 }

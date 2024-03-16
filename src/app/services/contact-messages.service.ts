@@ -20,7 +20,7 @@ export class ContactMessagesService {
     }
 
     public getAllContactMessagesByEmail = (email: string): any => {
-        return firstValueFrom(this.http.get(this.baseUrl + "/api/ContactMessages/allByEmail/" + email));
+        return firstValueFrom(this.http.get(this.baseUrl + `/api/ContactMessages/allByEmail?email=${email}`, {}));
     }
 
     public getContactMessageById = (id: number): any => {
