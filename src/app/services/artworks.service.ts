@@ -19,7 +19,7 @@ export class ArtworksService {
   public getAllArtworks = (): any => {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/all"));
   }
-  
+
   public getArtworkById = (id: number): any => {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/" + id));
   }

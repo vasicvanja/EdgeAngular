@@ -15,6 +15,7 @@ import { AboutComponent } from "./components/about/about.component";
 import { ContactComponent } from "./components/contact/contact.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { SmtpSettingsComponent } from "./components/smtp-settings/smtp-settings.component";
+import { ContactMessagesComponent } from "./components/contact-messages/contact-messages.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -31,7 +32,8 @@ const routes: Routes = [
     { path: 'cycle-create', component: CycleCreateComponent },
     { path: 'cycle-update/:id', component: CycleUpdateComponent },
     { path: 'cart', component: CartComponent },
-    { path: 'smtp-settings', component: SmtpSettingsComponent }
+    { path: 'smtp-settings', component: SmtpSettingsComponent },
+    { path: 'contact-messages', component: ContactMessagesComponent }
 ];
 
 @NgModule({
