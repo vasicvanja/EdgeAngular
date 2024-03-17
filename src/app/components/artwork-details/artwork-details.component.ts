@@ -72,6 +72,10 @@ export class ArtworkDetailsComponent implements OnInit {
     }
   }
 
+  cancelDelete(): void {
+    // No action needed
+  }
+
   addToCart(artwork: Artwork) {
     this.cartService.addToCart(artwork);
   }

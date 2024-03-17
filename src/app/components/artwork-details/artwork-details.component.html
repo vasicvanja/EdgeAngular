@@ -16,9 +16,16 @@
                     <p class="text-muted">Price: {{ artwork.Price }}</p>
                     <p class="text-muted">Quantity: {{ artwork.Quantity }}</p>
                     <button type="button" [disabled]="artwork.Quantity == 0" (click)="addToCart(artwork)" class="btn btn-primary" id="addToCart">Add to Cart</button>
-                    <button type="button" (click)="deleteArtwork()" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</button>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<app-modal 
+    [title]="'Confirm Delete'" 
+    [message]="'Are you sure you want to delete this artwork?'"
+    (confirm)="deleteArtwork()" 
+    (cancel)="cancelDelete()">>
+</app-modal>
