@@ -11,9 +11,16 @@
           <img class="img-fluid rounded" src="..." alt="Artwork image">
           <h2 class="mt-3">{{ cycle.Name }}</h2>
           <p class="text-muted">Description: {{ cycle.Description }}</p>
-          <button type="button" (click)="deleteCycle()" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</button>
         </div>
       </div>
     </div>
   </div>
 </main>
+
+<app-modal 
+    [title]="'Confirm Delete'" 
+    [message]="'Are you sure you want to delete this cycle?'"
+    (confirm)="deleteCycle()" 
+    (cancel)="cancelDelete()">>
+</app-modal>

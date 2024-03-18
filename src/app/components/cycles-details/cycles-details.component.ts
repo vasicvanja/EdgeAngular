@@ -65,4 +65,8 @@ export class CyclesDetailsComponent implements OnInit {
       console.error(error);
     }
   }
+
+  cancelDelete(): void {
+    // No action needed
+  }
 }

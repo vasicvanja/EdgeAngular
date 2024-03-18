@@ -33,6 +33,7 @@ import { SmtpSettingsComponent } from "./components/smtp-settings/smtp-settings.
 import { SmtpSettingsService } from "./services/smtp-settings.service";
 import { ContactMessagesService } from "./services/contact-messages.service";
 import { ContactMessagesComponent } from "./components/contact-messages/contact-messages.component";
+import { ModalComponent } from "./components/modal/modal.component";
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import { ContactMessagesComponent } from "./components/contact-messages/contact-
         AboutComponent,
         CartComponent,
         SmtpSettingsComponent,
-        ContactMessagesComponent
+        ContactMessagesComponent,
+        ModalComponent
     ],
     imports: [
         BrowserModule,

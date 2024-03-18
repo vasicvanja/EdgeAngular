@@ -13,6 +13,7 @@ export class ContactMessagesComponent implements OnInit {
 
   contactMessages: ContactMessage[] = [];
   emailFilter: string = '';
+  selectedMessageId: number | null = null;
 
   constructor(
     private contactMessagesService: ContactMessagesService,
@@ -38,19 +39,26 @@ export class ContactMessagesComponent implements OnInit {
     }
   }
 
-  async deleteContactMessage(id: number) {
-    try {
-      var contactMessage = await this.contactMessagesService.getContactMessageById(id);
-      const { Data, Succeeded, ErrorMessage } = await this.contactMessagesService.deleteContactMessage(id);
-      if (Succeeded) {
-        this.toastrService.success(ResponseMessages.Successfully_deleted_message(contactMessage.Data.Email));
-        this.contactMessages = this.contactMessages.filter(message => message.Id !== id);
-        return Data;
-      } else {
-        this.toastrService.error(ErrorMessage);
+  async deleteContactMessage() {
+    if (this.selectedMessageId != null) {
+      try {
+        var contactMessage = await this.contactMessagesService.getContactMessageById(this.selectedMessageId);
+        const { Data, Succeeded, ErrorMessage } = await this.contactMessagesService.deleteContactMessage(this.selectedMessageId);
+        if (Succeeded) {
+          this.toastrService.success(ResponseMessages.Successfully_deleted_message(contactMessage.Data.Email));
+          this.contactMessages = this.contactMessages.filter(message => message.Id !== this.selectedMessageId);
+          this.selectedMessageId = null;
+          return Data;
+        } else {
+          this.toastrService.error(ErrorMessage);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+    }
+    else {
+      this.toastrService.error(ResponseMessages.Invalid_id("Contact Message"));
+      return;
     }
   }
 
@@ -74,5 +82,13 @@ export class ContactMessagesComponent implements OnInit {
     } else {
       this.getAllContactMessages();
     }
+  }
+
+  getMessageId(id: number) {
+    this.selectedMessageId = id;
+  }
+
+  cancelDelete(): void {
+    // No action needed
   }
 }
