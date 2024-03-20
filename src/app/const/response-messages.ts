@@ -13,5 +13,6 @@ export const ResponseMessages = {
     Update_smtp_failure: "Failed to update the Smtp Settings. Please try again later.",
     Send_contact_message_success: "Successfully sent a message!",
     Successfully_deleted_message: (email: string) => `Successfully removed the message from ${email}.`,
-    Invalid_id: (objectName: string) => `Invalid ${objectName} Id`
+    Invalid_id: (objectName: string) => `Invalid ${objectName} Id`,
+    Reply_sent_successfully:(email: string) => `Successfully sent a message to ${email}!`
 }

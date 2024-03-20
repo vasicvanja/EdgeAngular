@@ -16,21 +16,39 @@
             <div *ngFor="let message of contactMessages" class="card mb-4 shadow-sm">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h5 class="m-0 font-weight-bold text-primary">Subject: {{ message.Subject }}</h5>
-                    <button (click)="getMessageId(message.Id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</button>
+                    <div>
+                        <button (click)="openReplyModal(message)" type="button" class="btn btn-primary reply-btn" data-bs-toggle="modal"
+                            data-bs-target="#replyModal">Reply</button>
+                        <button (click)="getMessageId(message.Id)" type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#popUpModal">Delete</button>
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="card-text"><strong>Email:</strong> {{ message.Email }}</p>
                     <p class="card-text"><strong>Phone:</strong> {{ message.Phone }}</p>
-                    <p class="card-text"><strong>Message:</strong> {{ message.Message }}</p>
+                    <p class="card-text">
+                        <strong>Message:</strong>
+                        <br/><br/>
+                        <span [innerHTML]="formatMessage(message.Message)"></span>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<app-modal 
+<modal 
     [title]="'Confirm Delete'" 
     [message]="'Are you sure you want to delete this contact message?'"
     (confirm)="deleteContactMessage()" 
-    (cancel)="cancelDelete()">>
-</app-modal>
+    (cancel)="cancel()">>
+</modal>
+
+<reply-modal 
+    [title]="'Reply to Message'" 
+    [senderEmail]="selectedMessage?.Email"
+    [subject]="selectedMessage?.Subject"
+    [recievedMessage]="selectedMessage?.Message"
+    (reply)="sendReply()" 
+    (cancel)="cancel()">
+</reply-modal>

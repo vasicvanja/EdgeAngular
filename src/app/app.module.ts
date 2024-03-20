@@ -34,6 +34,8 @@ import { SmtpSettingsService } from "./services/smtp-settings.service";
 import { ContactMessagesService } from "./services/contact-messages.service";
 import { ContactMessagesComponent } from "./components/contact-messages/contact-messages.component";
 import { ModalComponent } from "./components/modal/modal.component";
+import { EmailService } from "./services/email.service";
+import { ReplyModalComponent } from "./components/reply-modal/reply-modal.component";
 
 @NgModule({
     declarations: [
@@ -57,7 +59,8 @@ import { ModalComponent } from "./components/modal/modal.component";
         CartComponent,
         SmtpSettingsComponent,
         ContactMessagesComponent,
-        ModalComponent
+        ModalComponent,
+        ReplyModalComponent
     ],
     imports: [
         BrowserModule,
@@ -80,7 +83,8 @@ import { ModalComponent } from "./components/modal/modal.component";
         AuthService,
         CartService,
         SmtpSettingsService,
-        ContactMessagesService
+        ContactMessagesService,
+        EmailService
     ],
     bootstrap: [
         AppComponent
