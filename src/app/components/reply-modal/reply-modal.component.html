@@ -5,17 +5,21 @@
                 <h5 class="modal-title" id="replyModalLabel">{{ title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onCancel()"></button>
             </div>
-            <div class="modal-body">
-                <p><strong>From:</strong> {{ senderEmail }}</p>
-                <p><strong>Subject:</strong> {{ subject }}</p>
-                <p class="message-text"><strong>Message:</strong> {{ recievedMessage }}</p>
+            <form class="modal-body" #replyForm="ngForm">
+                <p class="card-text"><strong>From:</strong> {{ senderEmail }}</p>
+                <p class="card-text"><strong>Subject:</strong> {{ subject }}</p>
+                <p class="card-text">
+                    <strong>Message:</strong>
+                    <br/><br/>
+                    <span [innerHTML]="formatMessage(recievedMessage)"></span>
+                </p>
                 <hr>
                 <label for="replyMessage">Your Reply:</label>
-                <textarea id="replyMessage" [(ngModel)]="replyMessage" class="form-control" rows="5"></textarea>
-            </div>
+                <textarea id="replyMessage" [(ngModel)]="replyMessage" class="form-control" rows="10" name="replyMessage" required></textarea>
+            </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onCancel()">Cancel</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onReply()">Reply</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onReply()" [disabled]="!replyForm.valid">Reply</button>
             </div>
         </div>
     </div>

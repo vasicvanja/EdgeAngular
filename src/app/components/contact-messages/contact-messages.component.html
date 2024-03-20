@@ -26,7 +26,11 @@
                 <div class="card-body">
                     <p class="card-text"><strong>Email:</strong> {{ message.Email }}</p>
                     <p class="card-text"><strong>Phone:</strong> {{ message.Phone }}</p>
-                    <p class="card-text"><strong>Message:</strong> {{ message.Message }}</p>
+                    <p class="card-text">
+                        <strong>Message:</strong>
+                        <br/><br/>
+                        <span [innerHTML]="formatMessage(message.Message)"></span>
+                    </p>
                 </div>
             </div>
         </div>

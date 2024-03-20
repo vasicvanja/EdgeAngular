@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'reply-modal',
@@ -16,11 +17,23 @@ export class ReplyModalComponent {
   @Output() reply = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 
+  @ViewChild('replyForm') replyForm!: NgForm;
+
   onReply() {
-    this.reply.emit();
+    if (this.replyForm.valid) {
+      this.reply.emit();
+    }
   }
 
   onCancel() {
     this.cancel.emit();
+  }
+
+  formatMessage(message: string): string {
+    if (message) {
+      return message.replace(/\n/g, '<br>');
+    } else {
+      return '';
+    }
   }
 }

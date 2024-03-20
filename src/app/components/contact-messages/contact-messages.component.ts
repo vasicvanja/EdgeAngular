@@ -54,6 +54,7 @@ export class ContactMessagesComponent implements OnInit {
         if (Succeeded) {
           this.toastrService.success(ResponseMessages.Successfully_deleted_message(contactMessage.Data.Email));
           this.contactMessages = this.contactMessages.filter(message => message.Id !== this.selectedMessageId);
+          this.selectedMessageId = null;
           return Data;
         } else {
           this.toastrService.error(ErrorMessage);
@@ -61,7 +62,6 @@ export class ContactMessagesComponent implements OnInit {
       } catch (error) {
         console.error(error);
       }
-      this.selectedMessageId = null;
     } else {
       this.toastrService.error(ResponseMessages.Invalid_id("Contact Message"));
       return;
@@ -77,7 +77,9 @@ export class ContactMessagesComponent implements OnInit {
     try {
       const { Data, Succeeded, ErrorMessage } = await this.emailService.sendEmail(emailMessage);
       if (Succeeded) {
-        this.toastrService.success(ResponseMessages.Send_contact_message_success);
+        this.toastrService.success(ResponseMessages.Reply_sent_successfully(this.selectedMessage.Email));
+        this.replyModalComponent.replyMessage = '';
+        this.selectedMessage = null;
         return Data;
       } else {
         this.toastrService.error(ErrorMessage);
@@ -85,10 +87,7 @@ export class ContactMessagesComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
-    this.replyModalComponent.replyMessage = '';
-    this.selectedMessage = null;
   }
-
 
   async filterContactMessagesByEmail(email: string) {
     try {
@@ -122,5 +121,9 @@ export class ContactMessagesComponent implements OnInit {
 
   cancel(): void {
     // No action needed
+  }
+
+  formatMessage(message: string): string {
+    return message.replace(/\n/g, '<br>');
   }
 }
