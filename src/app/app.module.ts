@@ -36,6 +36,7 @@ import { ContactMessagesComponent } from "./components/contact-messages/contact-
 import { ModalComponent } from "./components/modal/modal.component";
 import { EmailService } from "./services/email.service";
 import { ReplyModalComponent } from "./components/reply-modal/reply-modal.component";
+import { ThemeService } from "./services/theme.service";
 
 @NgModule({
     declarations: [
@@ -84,7 +85,8 @@ import { ReplyModalComponent } from "./components/reply-modal/reply-modal.compon
         CartService,
         SmtpSettingsService,
         ContactMessagesService,
-        EmailService
+        EmailService,
+        ThemeService
     ],
     bootstrap: [
         AppComponent
