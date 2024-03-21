@@ -3,6 +3,7 @@ import { Cycle } from '../../models/cycle';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { ThemeService } from '../../services/theme.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class NavMenuComponent {
   constructor(
     private authService: AuthService,
     private cartService: CartService,
-    private router: Router) {
+    private router: Router,
+    public themeService: ThemeService) {
       this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.isLoginOrRegisterPage = ['/login', '/register'].includes(this.router.url);
@@ -43,4 +45,7 @@ export class NavMenuComponent {
     this.authService.logout();
   }
 
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
 }

@@ -2,7 +2,7 @@
     font-size: 1.8em;
     font-weight: bold;
     position: absolute;
-    right: 50px;
+    right: 100px;
     padding-right: 50px;
 }
 
@@ -11,6 +11,10 @@
     top: 0;
     right: 0;
     margin-right: 25px;
-    transform: translate(20%, -5%);
+    transform: translate(-20%, 5%);
     font-size: 0.40em;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }

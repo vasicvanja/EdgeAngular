@@ -3,10 +3,14 @@
         <a class="navbar-brand" routerLink="/home">Edge</a>
         <div class="nav-item me-2 cart-icon" *ngIf="!isLoginOrRegisterPage">
             <a class="nav-link" routerLink="/cart">
-                <i class="bi bi-cart"></i>
+                <i class="bi bi-cart3"></i>
                 <span class="badge bg-danger cart-badge" *ngIf="cartItemCount > 0">{{cartItemCount}}</span>
             </a>
         </div>
+        <!-- Add the theme toggle button here -->
+        <button class="btn btn-primary me-2 theme-toggle" (click)="toggleTheme()" style="position: absolute; right: 80px;">
+            <i [ngClass]="{'bi bi-moon-stars-fill': themeService.isDark(), 'bi bi-sun-fill': !themeService.isDark()}"></i>
+        </button>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight"
             aria-controls="offcanvasNavbarLight" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
