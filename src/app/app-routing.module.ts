@@ -16,6 +16,8 @@ import { ContactComponent } from "./components/contact/contact.component";
 import { CartComponent } from "./components/cart/cart.component";
 import { SmtpSettingsComponent } from "./components/smtp-settings/smtp-settings.component";
 import { ContactMessagesComponent } from "./components/contact-messages/contact-messages.component";
+import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
+import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -33,7 +35,9 @@ const routes: Routes = [
     { path: 'cycle-update/:id', component: CycleUpdateComponent },
     { path: 'cart', component: CartComponent },
     { path: 'smtp-settings', component: SmtpSettingsComponent },
-    { path: 'contact-messages', component: ContactMessagesComponent }
+    { path: 'contact-messages', component: ContactMessagesComponent },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
+    { path: 'reset-password', component: ResetPasswordComponent }
 ];
 
 @NgModule({

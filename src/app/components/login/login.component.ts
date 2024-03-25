@@ -60,5 +60,4 @@ export class LoginComponent implements OnInit {
       alert("Your form is invalid!");
     }
   }
-
 }

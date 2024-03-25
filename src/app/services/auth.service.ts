@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Register } from '../models/register';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom, map } from 'rxjs';
 import { Login } from '../models/login';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { ResetPassword } from '../models/reset-password';
 
 @Injectable({
   providedIn: 'root'
@@ -98,5 +99,13 @@ export class AuthService {
       return tokenPayload ? tokenPayload.unique_name : null;
     }
     return null;
+  }
+
+  public forgotPassword = (email: string): any => {
+    return firstValueFrom(this.http.post(this.baseUrl + `/api/Authentication/forgotPassword?email=${email}`, {}));
+  }
+
+  public resetPassword = (resetPassword: ResetPassword): any => {
+    return firstValueFrom(this.http.post(this.baseUrl + '/api/Authentication/resetPassword', resetPassword));
   }
 }
