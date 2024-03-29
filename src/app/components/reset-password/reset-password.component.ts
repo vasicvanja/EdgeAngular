@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { PASSWORD_REGEX } from '../../const/regex-validators';
 import { ResetPassword } from '../../models/reset-password';
 import { ToastrService } from 'ngx-toastr';
 import { ResponseMessages } from '../../const/response-messages';
@@ -30,7 +29,7 @@ export class ResetPasswordComponent implements OnInit {
     this.resetPasswordForm = this.formBuilder.group({
       newPassword: ['', Validators.required],
       confirmPassword: ['', Validators.required]
-    });
+    }, { validator: this.comparePasswords() });
   }
 
   async onResetPassword() {
@@ -54,5 +53,13 @@ export class ResetPasswordComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  comparePasswords(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const newPassword = control.get('newPassword')?.value;
+      const confirmPassword = control.get('confirmPassword')?.value;
+      return newPassword === confirmPassword ? null : { 'passwordMismatch': true };
+    };
   }
 }
