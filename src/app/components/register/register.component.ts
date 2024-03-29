@@ -6,8 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { Register } from '../../models/register';
 import ValidateForm from '../../helpers/validateForm';
 import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { ResponseMessages } from '../../const/response-messages';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'register',
@@ -45,8 +44,8 @@ export class RegisterComponent implements OnInit {
         .pipe(
           catchError((error) => {
             console.error('An error occurred:', error);
-            this.toastrService.error(ResponseMessages.Sing_up_failure);
-            return of(null);
+            this.toastrService.error(error.error.ErrorMessage);
+            return throwError(error);
           })
         )
         .subscribe({
@@ -65,5 +64,4 @@ export class RegisterComponent implements OnInit {
       alert("Your form is invalid!")
     }
   }
-
 }

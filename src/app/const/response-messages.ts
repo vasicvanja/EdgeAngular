@@ -14,5 +14,8 @@ export const ResponseMessages = {
     Send_contact_message_success: "Successfully sent a message!",
     Successfully_deleted_message: (email: string) => `Successfully removed the message from ${email}.`,
     Invalid_id: (objectName: string) => `Invalid ${objectName} Id`,
-    Reply_sent_successfully:(email: string) => `Successfully sent a message to ${email}!`
+    Reply_sent_successfully:(email: string) => `Successfully sent a message to ${email}!`,
+    Forgot_password_failure: "An error occurred while sending the forgot password email. Please try again later.",
+    Forgot_password_success: "The email for password reset is successfully sent!",
+    Password_successful_reset: "Password successfully changed!"
 }

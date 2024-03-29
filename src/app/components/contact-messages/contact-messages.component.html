@@ -17,7 +17,7 @@
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h5 class="m-0 font-weight-bold text-primary">Subject: {{ message.Subject }}</h5>
                     <div>
-                        <button (click)="openReplyModal(message)" type="button" class="btn btn-primary reply-btn" data-bs-toggle="modal"
+                        <button (click)="openReplyModal(message)" [disabled]="!enableSmtpSettings" type="button" class="btn btn-primary reply-btn" data-bs-toggle="modal"
                             data-bs-target="#replyModal">Reply</button>
                         <button (click)="getMessageId(message.Id)" type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#popUpModal">Delete</button>

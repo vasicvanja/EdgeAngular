@@ -37,6 +37,8 @@ import { ModalComponent } from "./components/modal/modal.component";
 import { EmailService } from "./services/email.service";
 import { ReplyModalComponent } from "./components/reply-modal/reply-modal.component";
 import { ThemeService } from "./services/theme.service";
+import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
+import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 
 @NgModule({
     declarations: [
@@ -61,7 +63,9 @@ import { ThemeService } from "./services/theme.service";
         SmtpSettingsComponent,
         ContactMessagesComponent,
         ModalComponent,
-        ReplyModalComponent
+        ReplyModalComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent
     ],
     imports: [
         BrowserModule,
