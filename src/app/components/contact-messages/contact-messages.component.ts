@@ -6,6 +6,7 @@ import { ResponseMessages } from '../../const/response-messages';
 import { EmailService } from '../../services/email.service';
 import { ReplyModalComponent } from '../reply-modal/reply-modal.component';
 import { EmailMessage } from '../../models/email-message';
+import { SmtpSettingsService } from '../../services/smtp-settings.service';
 
 @Component({
   selector: 'contact-messages',
@@ -18,18 +19,21 @@ export class ContactMessagesComponent implements OnInit {
   emailFilter: string = '';
   selectedMessageId: number | null = null;
   selectedMessage: ContactMessage | any;
+  enableSmtpSettings!: boolean;
 
   @ViewChild(ReplyModalComponent) replyModalComponent!: ReplyModalComponent;
 
   constructor(
     private contactMessagesService: ContactMessagesService,
     private toastrService: ToastrService,
-    private emailService: EmailService) {
+    private emailService: EmailService,
+    private smtpSettingsService: SmtpSettingsService) {
 
   }
 
   async ngOnInit() {
     await this.getAllContactMessages();
+    this.checkSmtpSettings();
   }
 
   async getAllContactMessages() {
@@ -125,5 +129,10 @@ export class ContactMessagesComponent implements OnInit {
 
   formatMessage(message: string): string {
     return message.replace(/\n/g, '<br>');
+  }
+
+  async checkSmtpSettings() {
+    const smtpSettings = await this.smtpSettingsService.getSmtpSettings();
+    this.enableSmtpSettings = smtpSettings.Data.EnableSmtpSettings;
   }
 }
