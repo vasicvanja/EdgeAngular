@@ -33,7 +33,7 @@ export class ContactMessagesComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllContactMessages();
-    this.checkSmtpSettings();
+    await this.checkSmtpSettings();
   }
 
   async getAllContactMessages() {

@@ -34,12 +34,12 @@ export class CartService {
     // It uses the map operator to transform the Observable of cart items into an Observable of the 
     // count of items. The length property of the array is used to calculate the total number of items. 
     // This method can be subscribed to for getting updates whenever the number of items in the cart changes.
-    // This can be particularly useful for updating UI elements that display the number of items in the cart.
+    // This can be particularly useful for updating UI elements that display the number of items in the cart.s
     getCartItemsCount$() {
         return this.cartItems.asObservable().pipe(
-            map(items => items.length)
+            map(items => items.reduce((count, item) => count + item.Quantity, 0))
         );
-    }
+    }    
 
     // This method adds an artwork to the cart. It first gets the current cart items, 
     // then pushes the new artwork to this array, and finally updates the cartItems 
