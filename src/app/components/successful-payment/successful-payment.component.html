@@ -7,6 +7,18 @@
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <p>Your payment was successful. Thank you for your purchase!</p>
+            <h2>Purchased Artworks:</h2>
+            <div *ngFor="let item of purchasedItems" class="card mb-4 shadow-sm">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <img [src]="item.ImageData" alt="{{ item.Name }}" class="img-fluid">
+                    <div>
+                        <h5 class="m-0 font-weight-bold text-primary">{{ item.Name }}</h5>
+                        <p style="margin-bottom: 0px; margin-top: 16px;">Total Price: {{ item.Price * item.Quantity }}$</p>
+                        <p class="text-muted" style="font-size: 0.8em; opacity: 0.7;">{{ item.Price }}$ each</p>
+                        <p>Quantity: {{ item.Quantity }}</p>
+                    </div>
+                </div>
+            </div>
             <a routerLink="/home" class="btn btn-primary">Return to Home</a>
         </div>
     </div>
