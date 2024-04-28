@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { ArtworksService } from "./services/artworks.service";
 import { CyclesService } from "./services/cycles.service";
-import { EncodeService } from "./services/encode.service";
 import { ArtworksComponent } from "./components/artworks/artworks.component";
 import { CyclesComponent } from "./components/cycles/cycles.component";
 import { ToastrModule } from "ngx-toastr";
@@ -86,7 +85,6 @@ import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/
         }),
     ],
     providers: [
-        EncodeService,
         ArtworksService,
         CyclesService,
         AuthService,
