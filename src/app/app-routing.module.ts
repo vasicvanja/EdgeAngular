@@ -18,6 +18,8 @@ import { SmtpSettingsComponent } from "./components/smtp-settings/smtp-settings.
 import { ContactMessagesComponent } from "./components/contact-messages/contact-messages.component";
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
+import { SuccessfulPaymentComponent } from "./components/successful-payment/successful-payment.component";
+import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/unsuccessful-payment.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -37,7 +39,9 @@ const routes: Routes = [
     { path: 'smtp-settings', component: SmtpSettingsComponent },
     { path: 'contact-messages', component: ContactMessagesComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'reset-password', component: ResetPasswordComponent }
+    { path: 'reset-password', component: ResetPasswordComponent },
+    { path: 'successful-payment', component: SuccessfulPaymentComponent },
+    { path: 'unsuccessful-payment', component: UnsuccessfulPaymentComponent }
 ];
 
 @NgModule({

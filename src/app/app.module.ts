@@ -39,6 +39,8 @@ import { ReplyModalComponent } from "./components/reply-modal/reply-modal.compon
 import { ThemeService } from "./services/theme.service";
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
+import { SuccessfulPaymentComponent } from "./components/successful-payment/successful-payment.component";
+import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/unsuccessful-payment.component";
 
 @NgModule({
     declarations: [
@@ -65,7 +67,9 @@ import { ResetPasswordComponent } from "./components/reset-password/reset-passwo
         ModalComponent,
         ReplyModalComponent,
         ForgotPasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        SuccessfulPaymentComponent,
+        UnsuccessfulPaymentComponent
     ],
     imports: [
         BrowserModule,
