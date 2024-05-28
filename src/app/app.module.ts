@@ -40,6 +40,7 @@ import { ForgotPasswordComponent } from "./components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 import { SuccessfulPaymentComponent } from "./components/successful-payment/successful-payment.component";
 import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/unsuccessful-payment.component";
+import { StripeService } from "./services/stripe.service";
 
 @NgModule({
     declarations: [
@@ -92,7 +93,8 @@ import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/
         SmtpSettingsService,
         ContactMessagesService,
         EmailService,
-        ThemeService
+        ThemeService,
+        StripeService
     ],
     bootstrap: [
         AppComponent

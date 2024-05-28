@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../environments/environment';
 import { ResponseMessages } from '../../const/response-messages';
+import { StripeService } from '../../services/stripe.service';
 
 @Component({
   selector: 'cart',
@@ -15,7 +16,7 @@ export class CartComponent implements OnInit {
   cartItems: Artwork[] = [];
   totalPrice: number = 0;
 
-  constructor(private cartService: CartService, private toastrService: ToastrService) { }
+  constructor(private stripeService: StripeService, private cartService: CartService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.cartService.getCartItems$().subscribe(items => {
@@ -33,7 +34,7 @@ export class CartComponent implements OnInit {
 
   async createCheckoutSession() {
     try {
-      const { Data, Succeeded, ErrorMessage } = await this.cartService.createCheckoutSession(this.cartItems);
+      const { Data, Succeeded, ErrorMessage } = await this.stripeService.createCheckoutSession(this.cartItems);
       if (Succeeded) {
         if (Data) {
           const stripe = await loadStripe(environment.publicKey);

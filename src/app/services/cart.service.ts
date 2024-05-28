@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Artwork } from '../models/artwork';
 import { ToastrService } from 'ngx-toastr';
 import { ResponseMessages } from '../const/response-messages';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -13,10 +11,8 @@ import { environment } from '../../environments/environment';
 export class CartService {
     private cartItems = new BehaviorSubject<Artwork[]>([]);
     private lastPurchasedItems = new BehaviorSubject<Artwork[]>([]);
-    private baseUrl: string;
 
-    constructor(private http: HttpClient, private toastrService: ToastrService) {
-        this.baseUrl = environment.baseUrl;
+    constructor(private toastrService: ToastrService) {
         this.loadCartItems();
     }
 
@@ -139,11 +135,5 @@ export class CartService {
                 }
             }
         }
-    }
-
-    // This method sends a POST request to the server to create a Stripe checkout session
-    // the given artworks. It returns a Promise that resolves to the response from the server.
-    public createCheckoutSession = (artworks: Artwork[]): any => {
-        return firstValueFrom(this.http.post(this.baseUrl + "/api/Stripe/createCheckoutSession", artworks));
     }
 }
