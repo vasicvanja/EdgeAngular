@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { ArtworksService } from "./services/artworks.service";
 import { CyclesService } from "./services/cycles.service";
-import { EncodeService } from "./services/encode.service";
 import { ArtworksComponent } from "./components/artworks/artworks.component";
 import { CyclesComponent } from "./components/cycles/cycles.component";
 import { ToastrModule } from "ngx-toastr";
@@ -39,6 +38,9 @@ import { ReplyModalComponent } from "./components/reply-modal/reply-modal.compon
 import { ThemeService } from "./services/theme.service";
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
+import { SuccessfulPaymentComponent } from "./components/successful-payment/successful-payment.component";
+import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/unsuccessful-payment.component";
+import { StripeService } from "./services/stripe.service";
 
 @NgModule({
     declarations: [
@@ -65,7 +67,9 @@ import { ResetPasswordComponent } from "./components/reset-password/reset-passwo
         ModalComponent,
         ReplyModalComponent,
         ForgotPasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        SuccessfulPaymentComponent,
+        UnsuccessfulPaymentComponent
     ],
     imports: [
         BrowserModule,
@@ -82,7 +86,6 @@ import { ResetPasswordComponent } from "./components/reset-password/reset-passwo
         }),
     ],
     providers: [
-        EncodeService,
         ArtworksService,
         CyclesService,
         AuthService,
@@ -90,7 +93,8 @@ import { ResetPasswordComponent } from "./components/reset-password/reset-passwo
         SmtpSettingsService,
         ContactMessagesService,
         EmailService,
-        ThemeService
+        ThemeService,
+        StripeService
     ],
     bootstrap: [
         AppComponent

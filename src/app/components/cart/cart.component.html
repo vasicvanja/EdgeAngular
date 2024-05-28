@@ -8,16 +8,16 @@
         <div class="col-2">
             <img [src]="item.ImageData" alt="{{ item.Name }}" class="img-fluid">
         </div>
-        <div class="col-2">
+        <div class="col-2 text-center">
             <h6>{{ item.Name }}</h6>
         </div>
-        <div class="col-2">
+        <div class="col-2 text-center">
             <h6>{{ item.Description }}</h6>
         </div>
-        <div class="col-2">
-            <h6>Price: {{ item.Price }}</h6>
+        <div class="col-2 text-center">
+            <h6>Price: {{ item.Price }}$</h6>
         </div>
-        <div class="col-2">
+        <div class="col-2 text-center">
             <h6>Quantity: {{ item.Quantity }}</h6>
         </div>
         <div class="col-2 text-end">
@@ -26,8 +26,9 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <h2 class="text-end">Total Price: {{ totalPrice }}</h2>
+            <h2 class="text-end">Total Price: {{ totalPrice }}$</h2>
         </div>
+        <button class="btn btn-success" [disabled]="cartItems.length == 0" (click)="createCheckoutSession()" >Buy all</button>
     </div>
 </div>
 
