@@ -86,4 +86,24 @@ export class CycleUpdateComponent implements OnInit {
       console.error(error);
     }
   }
+
+  async deleteCycle() {
+    try {
+      const { Data, Succeeded, ErrorMessage } = await this.cyclesService.deleteCycle(this.cycleId);
+      if (Succeeded) {
+        this.toastrService.success(ResponseMessages.Delete_success("cycle", this.cycle.Name));
+        this.router.navigate(['/cycles']);
+        return Data;
+      }
+      else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  cancelDelete(): void {
+    // No action needed
+  }
 }
