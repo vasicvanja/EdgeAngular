@@ -20,6 +20,13 @@
                         Description is required
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label for="imageData" class="form-label">Thumbnail:</label>
+                    <input class="form-control" type="file" id="imageData" (change)="onFileChange($event)">
+                </div>
+                <div *ngIf="cycle.ImageData" class="mb-3">
+                    <img [src]="'data:image/png;base64,' + cycle.ImageData" alt="{{cycle.Name}}" class="img-thumbnail" width="200">
+                </div>
                 <button type="submit" class="btn btn-primary">Update Cycle</button>
             </form>
         </div>

@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Cycle } from '../../models/cycle';
 import { ResponseMessages } from '../../const/response-messages';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Artwork } from '../../models/artwork';
+import { ArtworksService } from '../../services/artworks.service';
 
 @Component({
   selector: 'cycles-details',
@@ -16,6 +18,7 @@ export class CyclesDetailsComponent implements OnInit {
   cycleId: any;
 
   constructor(
+    private artworksService: ArtworksService,
     private cyclesService: CyclesService,
     private toastrService: ToastrService,
     private route: ActivatedRoute,
@@ -58,7 +61,7 @@ export class CyclesDetailsComponent implements OnInit {
         this.router.navigate(['/cycles']);
         return Data;
       }
-      else {  
+      else {
         this.toastrService.error(ErrorMessage);
       }
     } catch (error) {
@@ -68,5 +71,26 @@ export class CyclesDetailsComponent implements OnInit {
 
   cancelDelete(): void {
     // No action needed
+  }
+
+  openArtworkDetails(artwork: Artwork) {
+    this.router.navigate(['/artwork-details', artwork.Id]);
+  }
+
+  async removeFromCycle(artwork: Artwork) {
+    try {
+      artwork.CycleId = null; // Set the CycleId to null to remove it from the cycle
+      const { Succeeded, ErrorMessage } = await this.artworksService.updateArtwork(artwork);
+      if (Succeeded) {
+        this.cycle.Artworks = this.cycle.Artworks.filter(a => a.Id !== artwork.Id); // Update the local cycle object
+        this.toastrService.success(ResponseMessages.Remove_artwork_from_cycle(artwork.Name, this.cycle.Name));
+        this.router.navigate(['cycle-details', this.cycle.Id]);
+      }
+      else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

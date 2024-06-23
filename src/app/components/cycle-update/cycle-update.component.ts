@@ -41,6 +41,17 @@ export class CycleUpdateComponent implements OnInit {
     });
   }
 
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.cycle.ImageData = e.target.result.split(',')[1]; // Get the base64 part
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   async updateCycle() {
     if (this.cycleForm.invalid) {
       return;
