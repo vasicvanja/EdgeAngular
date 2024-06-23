@@ -37,7 +37,7 @@
                 <div class="mb-3">
                     <label for="message" class="form-label">Message:</label>
                     <textarea id="message" [(ngModel)]="contactMessage.Message" name="message" class="form-control" required
-                        #message="ngModel" [ngClass]="{ 'is-invalid': contactForm.submitted && message.invalid }"></textarea>
+                        #message="ngModel" [ngClass]="{ 'is-invalid': contactForm.submitted && message.invalid }" style="height: 300px;"></textarea>
                     <div *ngIf="contactForm.submitted && message.invalid" class="invalid-feedback">
                         Message is required
                     </div>
