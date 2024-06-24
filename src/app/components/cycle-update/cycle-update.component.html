@@ -20,8 +20,23 @@
                         Description is required
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label for="imageData" class="form-label">Thumbnail:</label>
+                    <input class="form-control" type="file" id="imageData" (change)="onFileChange($event)">
+                </div>
+                <div *ngIf="cycle.ImageData" class="mb-3">
+                    <img [src]="'data:image/png;base64,' + cycle.ImageData" alt="{{cycle.Name}}" class="img-thumbnail" width="200">
+                </div>
                 <button type="submit" class="btn btn-primary">Update Cycle</button>
+                <button type="button" class="btn btn-danger delete-item" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</button>
             </form>
         </div>
     </div>
 </div>
+
+<modal 
+    [title]="'Confirm Delete'" 
+    [message]="'Are you sure you want to delete this cycle?'"
+    (confirm)="deleteCycle()" 
+    (cancel)="cancelDelete()">
+</modal>

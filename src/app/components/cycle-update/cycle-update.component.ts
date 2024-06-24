@@ -41,6 +41,17 @@ export class CycleUpdateComponent implements OnInit {
     });
   }
 
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.cycle.ImageData = e.target.result.split(',')[1]; // Get the base64 part
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   async updateCycle() {
     if (this.cycleForm.invalid) {
       return;
@@ -74,5 +85,25 @@ export class CycleUpdateComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async deleteCycle() {
+    try {
+      const { Data, Succeeded, ErrorMessage } = await this.cyclesService.deleteCycle(this.cycleId);
+      if (Succeeded) {
+        this.toastrService.success(ResponseMessages.Delete_success("cycle", this.cycle.Name));
+        this.router.navigate(['/cycles']);
+        return Data;
+      }
+      else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  cancelDelete(): void {
+    // No action needed
   }
 }

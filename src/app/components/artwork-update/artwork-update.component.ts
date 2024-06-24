@@ -52,6 +52,17 @@ export class ArtworkUpdateComponent implements OnInit {
     });
   }
 
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.artwork.ImageData = e.target.result.split(',')[1]; // Get the base64 part
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   async getArtworkDetails(artworkId: number) {
     try {
       const { Data, Succeeded, ErrorMessage } = await this.artworksService.getArtworkById(artworkId);
@@ -111,5 +122,25 @@ export class ArtworkUpdateComponent implements OnInit {
     catch (error) {
       console.error(error);
     }
+  }
+
+  async deleteArtwork() {
+    try {
+      const { Data, Succeeded, ErrorMessage } = await this.artworksService.deleteArtwork(this.artworkId);
+      if (Succeeded) {
+        this.toastrService.success(ResponseMessages.Delete_success("artwork", this.artwork.Name));
+        this.router.navigate(['/artworks']);
+        return Data;
+      }
+      else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  cancelDelete(): void {
+    // No action needed
   }
 }
