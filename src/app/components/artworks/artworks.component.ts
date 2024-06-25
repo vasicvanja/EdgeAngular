@@ -15,6 +15,8 @@ export class ArtworksComponent implements OnInit {
   artworks: Artwork[] = [];
   cartItems: Artwork[] = [];
   initialQuantities: { [id: number]: number } = {};
+  displayedArtworks: Artwork[] = [];
+  itemsPerPage: number = 10;
 
   constructor(
     private artworksService: ArtworksService,
@@ -26,6 +28,7 @@ export class ArtworksComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllArtworks();
+    this.onPageChanged(1);
     this.loadCartItems();
   }
 
@@ -86,5 +89,11 @@ export class ArtworksComponent implements OnInit {
         }
       }
     });
+  }
+
+  onPageChanged(page: number) {
+    const start = (page - 1) * this.itemsPerPage;
+    const end = (start + this.itemsPerPage);
+    this.displayedArtworks = [...this.artworks.slice(start, end)];
   }
 }

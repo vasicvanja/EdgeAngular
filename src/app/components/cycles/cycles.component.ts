@@ -12,6 +12,8 @@ import { Cycle } from '../../models/cycle';
 export class CyclesComponent implements OnInit {
 
   cycles: Cycle[] = [];
+  displayedCycles: Cycle[] = [];
+  itemsPerPage: number = 10;
 
   constructor(
     private cyclesService: CyclesService,
@@ -22,6 +24,7 @@ export class CyclesComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllCycles();
+    this.onPageChanged(1);
   }
 
   async getAllCycles() {
@@ -50,5 +53,11 @@ export class CyclesComponent implements OnInit {
 
   openCycleUpdate(cycle: Cycle) {
     this.router.navigate(['/cycle-update', cycle.Id]);
+  }
+
+  onPageChanged(page: number) {
+    const start = (page - 1) * this.itemsPerPage;
+    const end = (start + this.itemsPerPage);
+    this.displayedCycles = [...this.cycles.slice(start, end)];
   }
 }
