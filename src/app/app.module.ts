@@ -41,6 +41,7 @@ import { ResetPasswordComponent } from "./components/reset-password/reset-passwo
 import { SuccessfulPaymentComponent } from "./components/successful-payment/successful-payment.component";
 import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/unsuccessful-payment.component";
 import { StripeService } from "./services/stripe.service";
+import { PagerComponent } from "./components/pager/pager.component";
 
 @NgModule({
     declarations: [
@@ -69,7 +70,8 @@ import { StripeService } from "./services/stripe.service";
         ForgotPasswordComponent,
         ResetPasswordComponent,
         SuccessfulPaymentComponent,
-        UnsuccessfulPaymentComponent
+        UnsuccessfulPaymentComponent,
+        PagerComponent
     ],
     imports: [
         BrowserModule,
