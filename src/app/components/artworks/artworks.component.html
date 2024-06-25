@@ -39,6 +39,6 @@
             </div>
         </div>
         <br/>
-        <pager [totalItems]="artworks.length" (pageChanged)="onPageChanged($event)"></pager>
+        <pager [totalItems]="artworks.length" [itemsPerPage]="itemsPerPage" (pageChanged)="onPageChanged($event)"></pager>
     </div>
 </main>

@@ -20,6 +20,8 @@ export class ContactMessagesComponent implements OnInit {
   selectedMessageId: number | null = null;
   selectedMessage: ContactMessage | any;
   enableSmtpSettings!: boolean;
+  displayedContactMessages: ContactMessage[] = [];
+  itemsPerPage: number = 5;
 
   @ViewChild(ReplyModalComponent) replyModalComponent!: ReplyModalComponent;
 
@@ -34,6 +36,7 @@ export class ContactMessagesComponent implements OnInit {
   async ngOnInit() {
     await this.getAllContactMessages();
     await this.checkSmtpSettings();
+    this.onPageChanged(1);
   }
 
   async getAllContactMessages() {
@@ -134,5 +137,11 @@ export class ContactMessagesComponent implements OnInit {
   async checkSmtpSettings() {
     const smtpSettings = await this.smtpSettingsService.getSmtpSettings();
     this.enableSmtpSettings = smtpSettings.Data.EnableSmtpSettings;
+  }
+
+  onPageChanged(page: number) {
+    const start = (page - 1) * this.itemsPerPage;
+    const end = (start + this.itemsPerPage);
+    this.displayedContactMessages = [...this.contactMessages.slice(start, end)];
   }
 }

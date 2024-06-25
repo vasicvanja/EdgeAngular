@@ -38,6 +38,6 @@
             </div>
         </div>
         <br/>
-        <pager [totalItems]="cycles.length" (pageChanged)="onPageChanged($event)"></pager>
+        <pager [totalItems]="cycles.length" [itemsPerPage]="itemsPerPage" (pageChanged)="onPageChanged($event)"></pager>
     </div>
 </main>
