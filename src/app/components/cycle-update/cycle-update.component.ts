@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseMessages } from '../../const/response-messages';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ArtworksService } from '../../services/artworks.service';
+import { Artwork } from '../../models/artwork';
 
 @Component({
   selector: 'cycle-update',
@@ -16,8 +18,10 @@ export class CycleUpdateComponent implements OnInit {
   cycle!: Cycle;
   cycleId: any;
   cycleForm: FormGroup;
+  artworks!: Artwork[];
 
   constructor(
+    private artworksService: ArtworksService,
     private cyclesService: CyclesService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder,
@@ -35,8 +39,9 @@ export class CycleUpdateComponent implements OnInit {
       if (idParam !== null) {
         this.cycleId = +idParam;
         await this.getCycleDetails(this.cycleId);
+        await this.getAllUnassociatedArtworks();
       } else {
-        console.error('Artwork ID not provided in route parameters.');
+        console.error('Artwork Id not provided in route parameters.');
       }
     });
   }
@@ -105,5 +110,18 @@ export class CycleUpdateComponent implements OnInit {
 
   cancelDelete(): void {
     // No action needed
+  }
+
+  async getAllUnassociatedArtworks() {
+    try {
+      const { Data, Succeeded, ErrorMessage } = await this.artworksService.getAllUnassociatedArtworks();
+      if (Succeeded) {
+        this.artworks = Data;
+      } else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

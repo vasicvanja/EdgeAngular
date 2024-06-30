@@ -1,7 +1,7 @@
 import { ArtworkType } from "./artwork-type";
 
 export class Artwork {
-    public Id: number | null;
+    public Id: number;
     public Name: string;
     public Description: string;
     public Technique: string;
@@ -13,7 +13,7 @@ export class Artwork {
     public CycleId: number | null;
 
     constructor(
-        Id: number | null = null,
+        Id: number,
         Name: string = "",
         Description: string = "",
         Technique: string = "",
