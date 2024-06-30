@@ -20,6 +20,10 @@ export class ArtworksService {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/all"));
   }
 
+  public getAllUnassociatedArtworks = (): any => {
+    return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/all-unassociated"));
+  }
+
   public getArtworkById = (id: number): any => {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/" + id));
   }
