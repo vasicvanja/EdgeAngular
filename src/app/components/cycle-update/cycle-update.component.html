@@ -21,6 +21,12 @@
                     </div>
                 </div>
                 <div class="mb-3">
+                    <label for="artworks" class="form-label">Select Artworks:</label>
+                    <select class="form-control" multiple [(ngModel)]="cycle.ArtworkIds" name="artworks">
+                        <option *ngFor="let artwork of artworks" [value]="artwork.Id">{{ artwork.Name }}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="imageData" class="form-label">Thumbnail:</label>
                     <input class="form-control" type="file" id="imageData" (change)="onFileChange($event)">
                 </div>
