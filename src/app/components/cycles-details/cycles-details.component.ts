@@ -6,6 +6,7 @@ import { ResponseMessages } from '../../const/response-messages';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Artwork } from '../../models/artwork';
 import { ArtworksService } from '../../services/artworks.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'cycles-details',
@@ -16,11 +17,14 @@ export class CyclesDetailsComponent implements OnInit {
 
   cycle!: Cycle;
   cycleId: any;
+  isAdmin: boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(
     private artworksService: ArtworksService,
     private cyclesService: CyclesService,
     private toastrService: ToastrService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router) {
 
@@ -37,6 +41,14 @@ export class CyclesDetailsComponent implements OnInit {
         console.error('Cycle ID not provided in route parameters.');
       }
     });
+
+    this.authService.isUserAdmin$().subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
+    });
+
+    this.authService.isUserLoggedIn$().subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   async getCycleDetails(cycleId: number) {
@@ -51,26 +63,6 @@ export class CyclesDetailsComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  async deleteCycle() {
-    try {
-      const { Data, Succeeded, ErrorMessage } = await this.cyclesService.deleteCycle(this.cycleId);
-      if (Succeeded) {
-        this.toastrService.success(ResponseMessages.Delete_success("cycle", this.cycle.Name));
-        this.router.navigate(['/cycles']);
-        return Data;
-      }
-      else {
-        this.toastrService.error(ErrorMessage);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  cancelDelete(): void {
-    // No action needed
   }
 
   openArtworkDetails(artwork: Artwork) {

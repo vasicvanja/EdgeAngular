@@ -3,6 +3,7 @@ import { CyclesService } from '../../services/cycles.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Cycle } from '../../models/cycle';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'cycles',
@@ -14,10 +15,13 @@ export class CyclesComponent implements OnInit {
   cycles: Cycle[] = [];
   displayedCycles: Cycle[] = [];
   itemsPerPage: number = 10;
+  isAdmin: boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(
     private cyclesService: CyclesService,
     private toastrService: ToastrService,
+    private authService: AuthService,
     private router: Router) {
 
   }
@@ -25,6 +29,14 @@ export class CyclesComponent implements OnInit {
   async ngOnInit() {
     await this.getAllCycles();
     this.onPageChanged(1);
+
+    this.authService.isUserAdmin$().subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
+    });
+
+    this.authService.isUserLoggedIn$().subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   async getAllCycles() {

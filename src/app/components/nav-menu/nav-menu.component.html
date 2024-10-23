@@ -39,7 +39,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                            aria-expanded="false" *ngIf="isAdmin && isLoggedIn">
                             Settings
                         </a>
                         <ul class="dropdown-menu">
@@ -51,10 +51,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" *ngIf="userLoggedIn">
+                    <li class="nav-item" *ngIf="isLoggedIn">
                         <logout (logoutCompleted)="onLogOutCompleted()"></logout>
                     </li>
-                    <li class="nav-item" *ngIf="!userLoggedIn">
+                    <li class="nav-item" *ngIf="!isLoggedIn">
                         <a class="nav-link" routerLink="/login">Login</a>
                     </li>
                 </ul>

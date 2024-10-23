@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'artworks',
@@ -17,11 +18,14 @@ export class ArtworksComponent implements OnInit {
   initialQuantities: { [id: number]: number } = {};
   displayedArtworks: Artwork[] = [];
   itemsPerPage: number = 10;
+  isAdmin: boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(
     private artworksService: ArtworksService,
     private toastrService: ToastrService,
     private cartService: CartService,
+    private authService: AuthService,
     private router: Router) {
 
   }
@@ -30,6 +34,14 @@ export class ArtworksComponent implements OnInit {
     await this.getAllArtworks();
     this.onPageChanged(1);
     this.loadCartItems();
+
+    this.authService.isUserAdmin$().subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
+    });
+
+    this.authService.isUserLoggedIn$().subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   async getAllArtworks() {
