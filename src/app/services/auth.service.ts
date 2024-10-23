@@ -6,6 +6,7 @@ import { Login } from '../models/login';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { ResetPassword } from '../models/reset-password';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
 
   private baseUrl: string;
   private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isLoggedIn());
+  private isAdminSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isUserAdmin());
 
   constructor(private http: HttpClient, private router: Router) {
     this.baseUrl = environment.baseUrl;
@@ -39,6 +41,7 @@ export class AuthService {
       map((response: any) => {
         localStorage.removeItem('token');
         this.loggedInSubject.next(false);
+        this.isAdminSubject.next(false);
         return response;
       })
     );
@@ -99,6 +102,49 @@ export class AuthService {
       return tokenPayload ? tokenPayload.unique_name : null;
     }
     return null;
+  }
+
+  getUserRole(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.role || null;
+    }
+    return null;
+  }
+
+  isUserAdmin(): boolean {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // Ensure that 'next' is not called on an undefined subject
+      if (this.isAdminSubject) {
+        this.isAdminSubject.next(false);
+      }
+      return false;
+    }
+
+    try {
+      const decodedToken: any = jwtDecode(token);
+      const isAdmin = decodedToken.role === "Admin";
+
+      if (this.isAdminSubject) {
+        this.isAdminSubject.next(isAdmin);
+      }
+      return isAdmin;
+    }
+    catch (error) {
+      console.error('Error decoding token:', error);
+
+      if (this.isAdminSubject) {
+        this.isAdminSubject.next(false);
+      }
+
+      return false;
+    }
+  }
+
+  isUserAdmin$(): Observable<boolean> {
+    return this.isAdminSubject.asObservable();
   }
 
   public forgotPassword = (email: string): any => {
