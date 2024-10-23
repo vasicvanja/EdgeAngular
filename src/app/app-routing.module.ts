@@ -20,6 +20,8 @@ import { ForgotPasswordComponent } from "./components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 import { SuccessfulPaymentComponent } from "./components/successful-payment/successful-payment.component";
 import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/unsuccessful-payment.component";
+import { AuthGuard } from "./guards/auth.guard";
+import { AdminGuard } from "./guards/admin.guard";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -29,12 +31,12 @@ const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
-    { path: 'artwork-create', component: ArtworkCreateComponent },
-    { path: 'artwork-update/:id', component: ArtworkUpdateComponent },
+    { path: 'artwork-create', component: ArtworkCreateComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: 'artwork-update/:id', component: ArtworkUpdateComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'cycles', component: CyclesComponent },
     { path: 'cycle-details/:id', component: CyclesDetailsComponent },
-    { path: 'cycle-create', component: CycleCreateComponent },
-    { path: 'cycle-update/:id', component: CycleUpdateComponent },
+    { path: 'cycle-create', component: CycleCreateComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: 'cycle-update/:id', component: CycleUpdateComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'cart', component: CartComponent },
     { path: 'smtp-settings', component: SmtpSettingsComponent },
     { path: 'contact-messages', component: ContactMessagesComponent },
