@@ -30,6 +30,7 @@ export class AuthService {
       map((response: any) => {
         localStorage.setItem('token', response.Data);
         this.loggedInSubject.next(true);
+        this.isAdminSubject.next(this.isUserAdmin());
         this.router.navigate(['home']);
         return response;
       })
