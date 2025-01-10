@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'reply-modal',
-  templateUrl: './reply-modal.component.html',
-  styleUrl: './reply-modal.component.scss'
+    selector: 'reply-modal',
+    templateUrl: './reply-modal.component.html',
+    styleUrl: './reply-modal.component.scss',
+    standalone: true,
+    imports: [FormsModule]
 })
 export class ReplyModalComponent {
   

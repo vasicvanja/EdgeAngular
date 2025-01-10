@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ResetPassword } from '../../models/reset-password';
 import { ToastrService } from 'ngx-toastr';
 import { ResponseMessages } from '../../const/response-messages';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.scss'
+    selector: 'reset-password',
+    templateUrl: './reset-password.component.html',
+    styleUrl: './reset-password.component.scss',
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
 })
 export class ResetPasswordComponent implements OnInit {
 

@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'pager',
-  templateUrl: './pager.component.html',
-  styleUrl: './pager.component.scss'
+    selector: 'pager',
+    templateUrl: './pager.component.html',
+    styleUrl: './pager.component.scss',
+    standalone: true,
+    imports: [NgFor]
 })
 export class PagerComponent {
 

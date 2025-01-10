@@ -6,11 +6,15 @@ import { Router } from '@angular/router';
 import { ResponseMessages } from '../../const/response-messages';
 import { Artwork } from '../../models/artwork';
 import { ArtworksService } from '../../services/artworks.service';
+import { NgClass, NgIf, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'cycle-create',
-  templateUrl: './cycle-create.component.html',
-  styleUrl: './cycle-create.component.scss'
+    selector: 'cycle-create',
+    templateUrl: './cycle-create.component.html',
+    styleUrl: './cycle-create.component.scss',
+    standalone: true,
+    imports: [FormsModule, NgClass, NgIf, NgFor]
 })
 export class CycleCreateComponent implements OnInit {
 

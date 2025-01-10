@@ -3,12 +3,15 @@ import { ToastrService } from 'ngx-toastr';
 import { ResponseMessages } from '../../const/response-messages';
 import { ContactMessagesService } from '../../services/contact-messages.service';
 import { CreateContactMessage } from '../../models/create-contact-message';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'contact',
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+    selector: 'contact',
+    templateUrl: './contact.component.html',
+    styleUrl: './contact.component.scss',
+    standalone: true,
+    imports: [FormsModule, NgClass, NgIf]
 })
 export class ContactComponent {
 

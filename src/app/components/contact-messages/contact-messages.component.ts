@@ -7,11 +7,17 @@ import { EmailService } from '../../services/email.service';
 import { ReplyModalComponent } from '../reply-modal/reply-modal.component';
 import { EmailMessage } from '../../models/email-message';
 import { SmtpSettingsService } from '../../services/smtp-settings.service';
+import { ModalComponent } from '../modal/modal.component';
+import { PagerComponent } from '../pager/pager.component';
+import { NgIf, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'contact-messages',
   templateUrl: './contact-messages.component.html',
-  styleUrl: './contact-messages.component.scss'
+  styleUrl: './contact-messages.component.scss',
+  standalone: true,
+  imports: [FormsModule, NgIf, NgFor, PagerComponent, ModalComponent, ReplyModalComponent]
 })
 export class ContactMessagesComponent implements OnInit {
 
@@ -101,6 +107,7 @@ export class ContactMessagesComponent implements OnInit {
       const { Data, Succeeded, ErrorMessage } = await this.contactMessagesService.getAllContactMessagesByEmail(email);
       if (Succeeded) {
         this.contactMessages = Data;
+        this.onPageChanged(1); // Update displayed messages to show the first page of the filtered results
         return Data;
       } else {
         this.toastrService.error(ErrorMessage);
@@ -111,10 +118,10 @@ export class ContactMessagesComponent implements OnInit {
   }
 
   filterByEmail() {
-    if (this.emailFilter.trim() !== '') {
-      this.filterContactMessagesByEmail(this.emailFilter.trim());
+    if (this.emailFilter.trim() === '') {
+      this.onPageChanged(1); // Reset display without re-fetching
     } else {
-      this.getAllContactMessages();
+      this.filterContactMessagesByEmail(this.emailFilter.trim());
     }
   }
 

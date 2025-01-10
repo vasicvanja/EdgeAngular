@@ -7,11 +7,15 @@ import { ArtworkType } from '../../models/artwork-type';
 import { CreateArtwork } from '../../models/create-artwork';
 import { Cycle } from '../../models/cycle';
 import { CyclesService } from '../../services/cycles.service';
+import { NgClass, NgIf, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'artwork-create',
-  templateUrl: './artwork-create.component.html',
-  styleUrl: './artwork-create.component.scss'
+    selector: 'artwork-create',
+    templateUrl: './artwork-create.component.html',
+    styleUrl: './artwork-create.component.scss',
+    standalone: true,
+    imports: [FormsModule, NgClass, NgIf, NgFor]
 })
 export class ArtworkCreateComponent implements OnInit {
 

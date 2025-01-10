@@ -4,14 +4,18 @@ import { CyclesService } from '../../services/cycles.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseMessages } from '../../const/response-messages';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { ArtworksService } from '../../services/artworks.service';
 import { Artwork } from '../../models/artwork';
+import { ModalComponent } from '../modal/modal.component';
+import { NgIf, NgClass, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'cycle-update',
-  templateUrl: './cycle-update.component.html',
-  styleUrl: './cycle-update.component.scss'
+    selector: 'cycle-update',
+    templateUrl: './cycle-update.component.html',
+    styleUrl: './cycle-update.component.scss',
+    standalone: true,
+    imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent]
 })
 export class CycleUpdateComponent implements OnInit {
 
