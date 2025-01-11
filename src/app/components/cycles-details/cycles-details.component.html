@@ -23,7 +23,6 @@
                   <p class="card-text">Year: {{ artwork.Year }}</p>
                   <p class="card-text">Type: {{ artwork.Type }}</p>
                   <button class="btn btn-primary" (click)="openArtworkDetails(artwork)">View Details</button>
-                  <button class="btn btn-danger mt-2" (click)="removeFromCycle(artwork)" *ngIf="isAdmin && isLoggedIn">Remove from Cycle</button>
                 </div>
               </div>
             </div>

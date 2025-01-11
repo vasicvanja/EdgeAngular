@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { Artwork } from '../models/artwork';
 import { environment } from '../../environments/environment';
 import { CreateArtwork } from '../models/create-artwork';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ArtworksService {
 
   private baseUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.baseUrl = environment.baseUrl;
   }
 
@@ -29,14 +30,14 @@ export class ArtworksService {
   }
 
   public createArtwork = (artwork: CreateArtwork): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/create", artwork));
+    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/create", artwork, this.authService.getHttpOptions()));
   }
 
   public updateArtwork = (artwork: Artwork): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/update", artwork));
+    return firstValueFrom(this.http.post(this.baseUrl + "/api/Artworks/update", artwork, this.authService.getHttpOptions()));
   }
 
   public deleteArtwork = (id: number): any => {
-    return firstValueFrom(this.http.post(this.baseUrl + `/api/Artworks/delete?id=${id}`, {}));
+    return firstValueFrom(this.http.post(this.baseUrl + `/api/Artworks/delete?id=${id}`, {}, this.authService.getHttpOptions()));
   }
 }
