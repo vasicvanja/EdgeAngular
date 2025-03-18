@@ -7,11 +7,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Artwork } from '../../models/artwork';
 import { ArtworksService } from '../../services/artworks.service';
 import { AuthService } from '../../services/auth.service';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'cycles-details',
-  templateUrl: './cycles-details.component.html',
-  styleUrl: './cycles-details.component.scss'
+    selector: 'cycles-details',
+    templateUrl: './cycles-details.component.html',
+    styleUrl: './cycles-details.component.scss',
+    standalone: true,
+    imports: [NgIf, NgFor]
 })
 export class CyclesDetailsComponent implements OnInit {
 

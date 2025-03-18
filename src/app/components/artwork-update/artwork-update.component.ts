@@ -7,12 +7,16 @@ import { ResponseMessages } from '../../const/response-messages';
 import { ArtworkType } from '../../models/artwork-type';
 import { CyclesService } from '../../services/cycles.service';
 import { Cycle } from '../../models/cycle';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { ModalComponent } from '../modal/modal.component';
+import { NgIf, NgClass, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'artwork-update',
-  templateUrl: './artwork-update.component.html',
-  styleUrl: './artwork-update.component.scss'
+    selector: 'artwork-update',
+    templateUrl: './artwork-update.component.html',
+    styleUrl: './artwork-update.component.scss',
+    standalone: true,
+    imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent]
 })
 export class ArtworkUpdateComponent implements OnInit {
 
@@ -31,7 +35,6 @@ export class ArtworkUpdateComponent implements OnInit {
     private router: Router) {
       this.artworkForm = this.formBuilder.group({
         name: ['', Validators.required],
-        description: ['', Validators.required],
         technique: ['', Validators.required],
         year: ['', Validators.required],
         price: ['', Validators.required],

@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'pager',
-  templateUrl: './pager.component.html',
-  styleUrl: './pager.component.scss'
+    selector: 'pager',
+    templateUrl: './pager.component.html',
+    styleUrl: './pager.component.scss',
+    standalone: true,
+    imports: [NgFor]
 })
 export class PagerComponent {
 
@@ -21,7 +24,6 @@ export class PagerComponent {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.pageChanged.emit(this.currentPage);
-      console.log("previousPage: ", this.currentPage);
     }
   }
 
@@ -29,7 +31,6 @@ export class PagerComponent {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.pageChanged.emit(this.currentPage);
-      console.log("nextPage: ", this.currentPage);
     }
   }
 
@@ -37,7 +38,6 @@ export class PagerComponent {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.pageChanged.emit(this.currentPage);
-      console.log("setPage: ", this.currentPage);
     }
   }
 }

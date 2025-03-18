@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Register } from '../models/register';
-import { BehaviorSubject, Observable, firstValueFrom, map } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, firstValueFrom, map, throwError } from 'rxjs';
 import { Login } from '../models/login';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -14,33 +14,40 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
 
   private baseUrl: string;
-  private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isLoggedIn());
-  private isAdminSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isUserAdmin());
+  private loggedInSubject: BehaviorSubject<boolean>;
+  private isAdminSubject: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient, private router: Router) {
     this.baseUrl = environment.baseUrl;
+    this.loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+    this.isAdminSubject = new BehaviorSubject<boolean>(this.isUserAdmin());
   }
 
   register(registerObj: Register): Observable<Register> {
-    return this.http.post<Register>(`${this.baseUrl}/api/Authentication/Register`, registerObj, this.getHttpOptions());
+    return this.http.post<Register>(`${this.baseUrl}/api/Authentication/Register`, registerObj, this.getHttpOptions())
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   login(loginObj: Login): Observable<any> {
-    return this.http.post<Login>(`${this.baseUrl}/api/Authentication/Login`, loginObj).pipe(
-      map((response: any) => {
-        localStorage.setItem('token', response.Data);
-        this.loggedInSubject.next(true);
-        this.isAdminSubject.next(this.isUserAdmin());
-        this.router.navigate(['home']);
-        return response;
-      })
-    );
+    return this.http.post<Login>(`${this.baseUrl}/api/Authentication/Login`, loginObj)
+      .pipe(
+        map((response: any) => {
+          this.storeToken(response.Data);
+          this.loggedInSubject.next(true);
+          this.isAdminSubject.next(this.isUserAdmin());
+          this.router.navigate(['home']);
+          return response;
+        }),
+        catchError(this.handleError)
+      );
   }
 
   logout(): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/api/Authentication/Logout`, '').pipe(
       map((response: any) => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('authToken');
         this.loggedInSubject.next(false);
         this.isAdminSubject.next(false);
         return response;
@@ -49,55 +56,20 @@ export class AuthService {
   }
 
   getHttpOptions() {
-    var token = localStorage.getItem('token');
-    let httpOptions;
+    const token = localStorage.getItem('authToken');
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
     if (token) {
-      httpOptions = {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token
-        })
-      };
-      return httpOptions;
+      headers = headers.set('Authorization', 'Bearer ' + token);
     }
-    return httpOptions;
-  }
 
-  getTokenExpiration(token: string): Date | null {
-    try {
-      const tokenPayload = JSON.parse(atob(token.split('.')[1]));
-      if (tokenPayload && tokenPayload.exp) {
-        return new Date(tokenPayload.exp * 1000);
-      }
-    }
-    catch (error) {
-      console.error('Failed to parse token payload: ', error);
-    }
-    return null;
-  }
-
-  isLoggedIn(): boolean {
-    var token = localStorage.getItem('token');
-    let isTokenValid = false;
-    if (token) {
-      const expiration = this.getTokenExpiration(token);
-      if (expiration && expiration < new Date()) {
-        localStorage.removeItem('token');
-        return isTokenValid = false;
-      }
-      else {
-        return isTokenValid = true;
-      }
-    }
-    return isTokenValid;
-  }
-
-  isUserLoggedIn$(): Observable<boolean> {
-    return this.loggedInSubject.asObservable();
+    return { headers };
   }
 
   getUsername(): string | null {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
     if (token) {
       const tokenPayload = JSON.parse(atob(token.split('.')[1]));
       return tokenPayload ? tokenPayload.unique_name : null;
@@ -105,54 +77,53 @@ export class AuthService {
     return null;
   }
 
-  getUserRole(): string | null {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken: any = jwtDecode(token);
-      return decodedToken.role || null;
-    }
-    return null;
-  }
-
-  isUserAdmin(): boolean {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      // Ensure that 'next' is not called on an undefined subject
-      if (this.isAdminSubject) {
-        this.isAdminSubject.next(false);
-      }
-      return false;
-    }
-
-    try {
-      const decodedToken: any = jwtDecode(token);
-      const isAdmin = decodedToken.role === "Admin";
-
-      if (this.isAdminSubject) {
-        this.isAdminSubject.next(isAdmin);
-      }
-      return isAdmin;
-    }
-    catch (error) {
-      console.error('Error decoding token:', error);
-
-      if (this.isAdminSubject) {
-        this.isAdminSubject.next(false);
-      }
-
-      return false;
-    }
-  }
-
   isUserAdmin$(): Observable<boolean> {
     return this.isAdminSubject.asObservable();
   }
 
-  public forgotPassword = (email: string): any => {
+  isUserLoggedIn$(): Observable<boolean> {
+    return this.loggedInSubject.asObservable();
+  }
+
+  forgotPassword = (email: string): any => {
     return firstValueFrom(this.http.post(this.baseUrl + `/api/Authentication/forgotPassword?email=${email}`, {}));
   }
 
-  public resetPassword = (resetPassword: ResetPassword): any => {
+  resetPassword = (resetPassword: ResetPassword): any => {
     return firstValueFrom(this.http.post(this.baseUrl + '/api/Authentication/resetPassword', resetPassword));
+  }
+
+  /** Private Methods **/
+
+  private isUserAdmin(): boolean {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        const isAdmin = decodedToken.role === 'Admin';
+        return isAdmin;
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return false;
+      }
+    }
+    return false;
+  }
+
+  private isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
+  private getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  private storeToken(token: string) {
+    localStorage.setItem('authToken', token);
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred', error);
+    return throwError(() => new Error(error.message || 'Server error'));
   }
 }

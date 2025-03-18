@@ -22,7 +22,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
                 <div *ngFor="let artwork of displayedArtworks" class="col">
                     <div class="card shadow-sm">
-                        <img [src]="'data:image/png;base64,' + artwork.ImageData" class="card-img-top" width="100%" height="225" alt="{{artwork.Name}}">
+                        <img [src]="'data:image/png;base64,' + artwork.ImageData" loading="lazy" class="card-img-top" width="100%" height="225" alt="{{artwork.Name}}">
                         <div class="card-body">
                             <span><b>{{ artwork.Name }}</b></span>
                             <p class="card-text">{{ artwork.Description }}</p>

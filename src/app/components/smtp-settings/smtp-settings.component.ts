@@ -1,14 +1,17 @@
 import { SmtpSettings } from '../../models/smtp-settings';
 import { SmtpSettingsService } from '../../services/smtp-settings.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { ResponseMessages } from '../../const/response-messages';
 import { Component, OnInit } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'smtp-settings',
-  templateUrl: './smtp-settings.component.html',
-  styleUrl: './smtp-settings.component.scss'
+    selector: 'smtp-settings',
+    templateUrl: './smtp-settings.component.html',
+    styleUrl: './smtp-settings.component.scss',
+    standalone: true,
+    imports: [FormsModule, NgClass, NgIf]
 })
 export class SmtpSettingsComponent implements OnInit {
 

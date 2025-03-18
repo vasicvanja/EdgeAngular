@@ -4,11 +4,15 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Cycle } from '../../models/cycle';
 import { AuthService } from '../../services/auth.service';
+import { PagerComponent } from '../pager/pager.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'cycles',
-  templateUrl: './cycles.component.html',
-  styleUrl: './cycles.component.scss'
+    selector: 'cycles',
+    templateUrl: './cycles.component.html',
+    styleUrl: './cycles.component.scss',
+    standalone: true,
+    imports: [NgIf, NgFor, PagerComponent]
 })
 export class CyclesComponent implements OnInit {
 

@@ -17,13 +17,12 @@
           <div class="row">
             <div *ngFor="let artwork of cycle.Artworks" class="col-md-4 mb-4">
               <div class="card h-100">
-                <img class="card-img-top" [src]="'data:image/png;base64,' + artwork.ImageData" alt="{{ artwork.Name }}">
+                <img class="card-img-top" loading="lazy" [src]="'data:image/png;base64,' + artwork.ImageData" alt="{{ artwork.Name }}">
                 <div class="card-body">
                   <h5 class="card-title">{{ artwork.Name }}</h5>
                   <p class="card-text">Year: {{ artwork.Year }}</p>
                   <p class="card-text">Type: {{ artwork.Type }}</p>
                   <button class="btn btn-primary" (click)="openArtworkDetails(artwork)">View Details</button>
-                  <button class="btn btn-danger mt-2" (click)="removeFromCycle(artwork)" *ngIf="isAdmin && isLoggedIn">Remove from Cycle</button>
                 </div>
               </div>
             </div>

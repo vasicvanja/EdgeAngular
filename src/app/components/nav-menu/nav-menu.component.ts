@@ -2,14 +2,18 @@ import { Component } from '@angular/core';
 import { Cycle } from '../../models/cycle';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
+import { LogoutComponent } from '../logout/logout.component';
+import { NgIf, NgClass } from '@angular/common';
 
 
 @Component({
-  selector: 'nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.scss']
+    selector: 'nav-menu',
+    templateUrl: './nav-menu.component.html',
+    styleUrls: ['./nav-menu.component.scss'],
+    standalone: true,
+    imports: [RouterLink, NgIf, NgClass, LogoutComponent]
 })
 export class NavMenuComponent {
   cycles: Cycle[] = [];

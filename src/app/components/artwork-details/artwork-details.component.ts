@@ -3,13 +3,15 @@ import { ArtworksService } from '../../services/artworks.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
-import { ResponseMessages } from '../../const/response-messages';
 import { CartService } from '../../services/cart.service';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'artwork-details',
-  templateUrl: './artwork-details.component.html',
-  styleUrl: './artwork-details.component.scss'
+    selector: 'artwork-details',
+    templateUrl: './artwork-details.component.html',
+    styleUrl: './artwork-details.component.scss',
+    standalone: true,
+    imports: [NgIf]
 })
 export class ArtworkDetailsComponent implements OnInit {
 
