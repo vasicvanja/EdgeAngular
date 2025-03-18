@@ -8,7 +8,6 @@ import { NgFor } from '@angular/common';
     selector: 'successful-payment',
     templateUrl: './successful-payment.component.html',
     styleUrl: './successful-payment.component.scss',
-    standalone: true,
     imports: [NgFor, RouterLink]
 })
 export class SuccessfulPaymentComponent implements OnInit {

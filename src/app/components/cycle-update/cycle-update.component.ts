@@ -14,7 +14,6 @@ import { NgIf, NgClass, NgFor } from '@angular/common';
     selector: 'cycle-update',
     templateUrl: './cycle-update.component.html',
     styleUrl: './cycle-update.component.scss',
-    standalone: true,
     imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent]
 })
 export class CycleUpdateComponent implements OnInit {

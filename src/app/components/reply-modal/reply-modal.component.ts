@@ -5,7 +5,6 @@ import { NgForm, FormsModule } from '@angular/forms';
     selector: 'reply-modal',
     templateUrl: './reply-modal.component.html',
     styleUrl: './reply-modal.component.scss',
-    standalone: true,
     imports: [FormsModule]
 })
 export class ReplyModalComponent {

@@ -13,7 +13,6 @@ import { NgIf } from '@angular/common';
     selector: 'login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    standalone: true,
     imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
 })
 export class LoginComponent implements OnInit {

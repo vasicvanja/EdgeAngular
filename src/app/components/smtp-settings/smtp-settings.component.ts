@@ -10,7 +10,6 @@ import { NgClass, NgIf } from '@angular/common';
     selector: 'smtp-settings',
     templateUrl: './smtp-settings.component.html',
     styleUrl: './smtp-settings.component.scss',
-    standalone: true,
     imports: [FormsModule, NgClass, NgIf]
 })
 export class SmtpSettingsComponent implements OnInit {

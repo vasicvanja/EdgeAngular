@@ -13,7 +13,6 @@ import { NgIf } from '@angular/common';
     selector: 'register',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss'],
-    standalone: true,
     imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
 })
 export class RegisterComponent implements OnInit {

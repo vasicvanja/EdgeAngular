@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
     selector: 'artwork-create',
     templateUrl: './artwork-create.component.html',
     styleUrl: './artwork-create.component.scss',
-    standalone: true,
     imports: [FormsModule, NgClass, NgIf, NgFor]
 })
 export class ArtworkCreateComponent implements OnInit {

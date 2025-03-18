@@ -12,7 +12,6 @@ import { NgIf, NgFor } from '@angular/common';
     selector: 'artworks',
     templateUrl: './artworks.component.html',
     styleUrl: './artworks.component.scss',
-    standalone: true,
     imports: [NgIf, NgFor, PagerComponent]
 })
 export class ArtworksComponent implements OnInit {

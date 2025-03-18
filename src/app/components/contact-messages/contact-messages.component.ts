@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'contact-messages',
   templateUrl: './contact-messages.component.html',
   styleUrl: './contact-messages.component.scss',
-  standalone: true,
   imports: [FormsModule, NgIf, NgFor, PagerComponent, ModalComponent, ReplyModalComponent]
 })
 export class ContactMessagesComponent implements OnInit {
