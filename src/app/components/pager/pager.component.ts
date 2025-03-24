@@ -5,7 +5,6 @@ import { NgFor } from '@angular/common';
     selector: 'pager',
     templateUrl: './pager.component.html',
     styleUrl: './pager.component.scss',
-    standalone: true,
     imports: [NgFor]
 })
 export class PagerComponent {

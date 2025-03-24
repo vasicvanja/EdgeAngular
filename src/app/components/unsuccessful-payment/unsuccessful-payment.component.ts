@@ -5,7 +5,6 @@ import { RouterLink } from '@angular/router';
     selector: 'unsuccessful-payment',
     templateUrl: './unsuccessful-payment.component.html',
     styleUrl: './unsuccessful-payment.component.scss',
-    standalone: true,
     imports: [RouterLink]
 })
 export class UnsuccessfulPaymentComponent {

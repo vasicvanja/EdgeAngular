@@ -12,7 +12,6 @@ import { NgIf, NgClass } from '@angular/common';
     selector: 'nav-menu',
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.scss'],
-    standalone: true,
     imports: [RouterLink, NgIf, NgClass, LogoutComponent]
 })
 export class NavMenuComponent {

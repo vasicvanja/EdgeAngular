@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h2>Create New User</h2>
+            <form #userForm="ngForm" (ngSubmit)="createUser()" class="py-3">
+
+                <!-- Username Field -->
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Username:</label>
+                    <input type="text" id="userName" [(ngModel)]="user.UserName" name="userName" class="form-control"
+                        required #userName="ngModel"
+                        [ngClass]="{ 'is-invalid': userForm.submitted && userName.invalid }">
+                    <div *ngIf="userForm.submitted && userName.invalid" class="invalid-feedback">
+                        Username is required
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" [(ngModel)]="user.Email" name="email" class="form-control" required
+                        #email="ngModel" [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }">
+                    <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
+                        Valid email is required
+                    </div>
+                </div>
+
+                <!-- Phone Number Field -->
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number:</label>
+                    <input type="text" id="phoneNumber" [(ngModel)]="user.PhoneNumber" name="phoneNumber"
+                        class="form-control" required #phoneNumber="ngModel"
+                        [ngClass]="{ 'is-invalid': userForm.submitted && phoneNumber.invalid }">
+                    <div *ngIf="userForm.submitted && phoneNumber.invalid" class="invalid-feedback">
+                        Phone number is required
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" id="password" [(ngModel)]="user.Password" name="password"
+                        class="form-control" required #password="ngModel"
+                        [ngClass]="{ 'is-invalid': userForm.submitted && password.invalid }">
+                    <div *ngIf="userForm.submitted && password.invalid" class="invalid-feedback">
+                        Password is required
+                    </div>
+                </div>
+
+                <!-- Role Field -->
+                <div class="mb-3">
+                    <label for="role" class="form-label">Role:</label>
+                    <select id="role" [(ngModel)]="user.Role" name="role" class="form-control" required #role="ngModel"
+                        [ngClass]="{ 'is-invalid': userForm.submitted && role.invalid }">
+                        <option *ngFor="let role of roles" [value]="role.Name">{{ role.Name }}</option>
+                    </select>
+                    <div *ngIf="userForm.submitted && role.invalid" class="invalid-feedback">
+                        Role is required
+                    </div>
+                </div>
+
+                <!-- Enabled Checkbox -->
+                <div class="mb-3">
+                    <label for="enabled" class="form-label">Enabled </label>
+                    <input type="checkbox" id="enabled" [(ngModel)]="user.Enabled" name="enabled"
+                        class="form-check-input">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create User</button>
+            </form>
+        </div>
+    </div>
+</div>

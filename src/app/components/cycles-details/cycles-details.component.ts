@@ -13,7 +13,6 @@ import { NgIf, NgFor } from '@angular/common';
     selector: 'cycles-details',
     templateUrl: './cycles-details.component.html',
     styleUrl: './cycles-details.component.scss',
-    standalone: true,
     imports: [NgIf, NgFor]
 })
 export class CyclesDetailsComponent implements OnInit {

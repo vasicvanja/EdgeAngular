@@ -7,7 +7,6 @@ import { AuthService } from '../../services/auth.service';
     selector: 'logout',
     templateUrl: './logout.component.html',
     styleUrls: ['./logout.component.scss'],
-    standalone: true,
     imports: [RouterLink]
 })
 export class LogoutComponent {

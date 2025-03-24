@@ -4,7 +4,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     selector: 'modal',
     templateUrl: './modal.component.html',
     styleUrl: './modal.component.scss',
-    standalone: true
 })
 export class ModalComponent {
   @Input() title = '';

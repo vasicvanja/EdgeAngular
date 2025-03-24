@@ -11,7 +11,6 @@ import { NgIf, NgFor } from '@angular/common';
     selector: 'cycles',
     templateUrl: './cycles.component.html',
     styleUrl: './cycles.component.scss',
-    standalone: true,
     imports: [NgIf, NgFor, PagerComponent]
 })
 export class CyclesComponent implements OnInit {

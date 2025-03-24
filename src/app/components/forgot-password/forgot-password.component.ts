@@ -10,7 +10,6 @@ import { NgIf } from '@angular/common';
     selector: 'forgot-password',
     templateUrl: './forgot-password.component.html',
     styleUrl: './forgot-password.component.scss',
-    standalone: true,
     imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
 })
 export class ForgotPasswordComponent implements OnInit {

@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
     selector: 'cycle-create',
     templateUrl: './cycle-create.component.html',
     styleUrl: './cycle-create.component.scss',
-    standalone: true,
     imports: [FormsModule, NgClass, NgIf, NgFor]
 })
 export class CycleCreateComponent implements OnInit {

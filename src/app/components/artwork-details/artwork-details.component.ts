@@ -10,7 +10,6 @@ import { NgIf } from '@angular/common';
     selector: 'artwork-details',
     templateUrl: './artwork-details.component.html',
     styleUrl: './artwork-details.component.scss',
-    standalone: true,
     imports: [NgIf]
 })
 export class ArtworkDetailsComponent implements OnInit {

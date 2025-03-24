@@ -10,7 +10,6 @@ import { NgClass, NgIf } from '@angular/common';
     selector: 'contact',
     templateUrl: './contact.component.html',
     styleUrl: './contact.component.scss',
-    standalone: true,
     imports: [FormsModule, NgClass, NgIf]
 })
 export class ContactComponent {

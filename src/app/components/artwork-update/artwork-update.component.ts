@@ -15,7 +15,6 @@ import { NgIf, NgClass, NgFor } from '@angular/common';
     selector: 'artwork-update',
     templateUrl: './artwork-update.component.html',
     styleUrl: './artwork-update.component.scss',
-    standalone: true,
     imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent]
 })
 export class ArtworkUpdateComponent implements OnInit {

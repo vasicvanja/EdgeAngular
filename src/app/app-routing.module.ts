@@ -22,6 +22,8 @@ import { SuccessfulPaymentComponent } from "./components/successful-payment/succ
 import { UnsuccessfulPaymentComponent } from "./components/unsuccessful-payment/unsuccessful-payment.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminGuard } from "./guards/admin.guard";
+import { UsersComponent } from "./components/users/users.component";
+import { UserCreateComponent } from "./components/user-create/user-create.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -29,6 +31,8 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
+    { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: 'user-create', component: UserCreateComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent, canActivate: [AuthGuard, AdminGuard] },
