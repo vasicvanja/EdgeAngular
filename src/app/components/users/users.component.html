@@ -34,6 +34,7 @@
                             <li (click)="enableDisableUser(user.Id, !user.Enabled)">
                                 {{ user.Enabled ? 'Deactivate' : 'Activate' }}
                             </li>
+                            <li>Order History</li>
                             <li (click)="openDeleteModal(user.Id, user.UserName)" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</li>
                         </ul>
                     </div>
