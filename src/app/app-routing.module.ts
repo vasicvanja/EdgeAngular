@@ -26,6 +26,7 @@ import { UsersComponent } from "./components/users/users.component";
 import { UserCreateComponent } from "./components/user-create/user-create.component";
 
 const routes: Routes = [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'home', component: HomeComponent },
