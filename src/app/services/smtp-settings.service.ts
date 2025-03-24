@@ -17,7 +17,7 @@ export class SmtpSettingsService {
     }
 
     public getSmtpSettings = (): any => {
-        return firstValueFrom(this.http.get(this.baseUrl + "/api/SmtpSettings/getSmtpSettings"));
+        return firstValueFrom(this.http.get(this.baseUrl + "/api/SmtpSettings/getSmtpSettings", this.authService.getHttpOptions()));
       }
 
     public updateSmtpSettings = (smtpSettings: SmtpSettings): any => {

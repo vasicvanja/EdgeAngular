@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    align-items: center;
+    flex-direction: column;
 }
 
 .users-table {
@@ -68,4 +70,8 @@ th {
 /* Ensure it doesn't get cut off at table edges */
 .users-table {
     overflow: visible;
+}
+
+.users-container {
+    padding-top: 20px; /* Adjust this value for some spacing */
 }

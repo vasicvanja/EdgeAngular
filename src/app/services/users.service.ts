@@ -31,6 +31,10 @@ export class UsersService {
         return firstValueFrom(this.http.post(this.baseUrl + "/api/Users/update", user, this.authService.getHttpOptions()));
     }
 
+    public enableDisableUser = (id: number, enabled: boolean): any => {
+        return firstValueFrom(this.http.post(this.baseUrl + `/api/Users/${id}/enableDisableUser?enabled=${enabled}`, {}, this.authService.getHttpOptions()));
+    }
+
     public deleteUser = (id: number): any => {
         return firstValueFrom(this.http.post(this.baseUrl + `/api/Users/delete?id=${id}`, {}, this.authService.getHttpOptions()));
     }

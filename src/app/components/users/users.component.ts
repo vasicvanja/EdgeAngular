@@ -39,12 +39,7 @@ export class UsersComponent implements OnInit {
 
     this.authService.isUserLoggedIn$().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
-    });
-
-    // Close context menu when clicking outside
-    // document.addEventListener('click', () => {
-    //   this.activeMenuUserId = null;
-    // });
+    }); 
   }
 
   async getAllUsers() {
@@ -61,10 +56,6 @@ export class UsersComponent implements OnInit {
     catch (error) {
       console.error(error);
     }
-  }
-
-  openUserDetails(user: User) {
-    this.router.navigate(['/user-details', user.Id]);
   }
 
   openUserCreate() {
@@ -104,6 +95,27 @@ export class UsersComponent implements OnInit {
         this.selectedUserId = null;
         this.selectedUserName = '';
       }
+    }
+  }
+
+  async enableDisableUser(id: number, enabled: boolean) {
+    try {
+      const { Succeeded, ErrorMessage } = await this.usersService.enableDisableUser(id, enabled);
+      if (Succeeded) {
+        if (enabled) {
+          this.toastrService.success(ResponseMessages.Successfully_activate_user);
+        }
+        else {
+          this.toastrService.success(ResponseMessages.Successfully_deactivate_user);
+        }
+        await this.getAllUsers();
+      }
+      else {
+        this.toastrService.error(ErrorMessage);
+      }
+    }
+    catch (error) {
+      console.error(error);
     }
   }
 

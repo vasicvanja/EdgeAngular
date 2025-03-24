@@ -1,4 +1,13 @@
 <div class="users-container">
+    <!-- Wrapper for button to align it to the right above the table -->
+    <div class="d-flex justify-content-end mb-3">
+        <button type="button" *ngIf="isAdmin && isLoggedIn" (click)="openUserCreate()" class="btn btn-primary btn-sm">
+            <i class="bi bi-person-plus"></i>
+            Add User
+        </button>
+    </div>
+    
+    <!-- Users table -->
     <table class="users-table table">
         <thead>
             <tr>
@@ -6,6 +15,7 @@
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Role</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -14,16 +24,17 @@
                 <td>{{ user.UserName }}</td>
                 <td>{{ user.Email }}</td>
                 <td>{{ user.PhoneNumber }}</td>
-                <td>{{ user.Role }}</td>
+                <td>{{ user.Role }}</td> 
+                <td>{{ user.Enabled ? 'Active' : 'Deactivated'}}</td>
                 <td>
                     <div class="context-menu">
                         <button (click)="toggleContextMenu(user.Id, $event)" class="menu-btn">⋮</button>
                         <ul *ngIf="activeMenuUserId === user.Id" class="menu-options">
-                            <li (click)="openUserDetails(user)">Open</li>
-                            <li (click)="openDeleteModal(user.Id, user.UserName)" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</li>
-                            <li>
-                                {{ user ? 'Deactivate' : 'Activate' }}
+                            <li (click)="openUserUpdate(user)">Edit</li>
+                            <li (click)="enableDisableUser(user.Id, !user.Enabled)">
+                                {{ user.Enabled ? 'Deactivate' : 'Activate' }}
                             </li>
+                            <li (click)="openDeleteModal(user.Id, user.UserName)" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</li>
                         </ul>
                     </div>
                 </td>
@@ -31,6 +42,13 @@
         </tbody>
     </table>
 </div>
+
+<modal 
+    [title]="'Confirm Delete'" 
+    [message]="'Are you sure you want to delete this user?'"
+    (confirm)="deleteUser()" 
+    (cancel)="cancelDelete()">
+</modal>
 
 <modal 
     [title]="'Confirm Delete'" 

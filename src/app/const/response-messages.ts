@@ -19,5 +19,7 @@ export const ResponseMessages = {
     Forgot_password_success: "The email for password reset is successfully sent!",
     Password_successful_reset: "Password successfully changed!",
     StripeCheckoutRedirectError:"An error occurred while redirecting to checkout.",
-    Remove_artwork_from_cycle: (artworkName: string, cycleName: string) => `Successfully removed artwork ${artworkName} from cycle ${cycleName}.`
+    Remove_artwork_from_cycle: (artworkName: string, cycleName: string) => `Successfully removed artwork ${artworkName} from cycle ${cycleName}.`,
+    Successfully_activate_user: "Successfully activated the user .",
+    Successfully_deactivate_user: "Successfully deactivated the user.",
 }
