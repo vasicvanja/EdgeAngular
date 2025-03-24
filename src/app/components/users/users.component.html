@@ -1,1 +1,40 @@
-<p>users works!</p>
+<div class="users-container">
+    <table class="users-table table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.UserName }}</td>
+                <td>{{ user.Email }}</td>
+                <td>{{ user.PhoneNumber }}</td>
+                <td>{{ user.Role }}</td>
+                <td>
+                    <div class="context-menu">
+                        <button (click)="toggleContextMenu(user.Id, $event)" class="menu-btn">⋮</button>
+                        <ul *ngIf="activeMenuUserId === user.Id" class="menu-options">
+                            <li (click)="openUserDetails(user)">Open</li>
+                            <li (click)="openDeleteModal(user.Id, user.UserName)" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</li>
+                            <li>
+                                {{ user ? 'Deactivate' : 'Activate' }}
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<modal 
+    [title]="'Confirm Delete'" 
+    [message]="'Are you sure you want to delete this user?'"
+    (confirm)="deleteUser()" 
+    (cancel)="cancelDelete()">
+</modal>
