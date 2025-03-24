@@ -15,6 +15,8 @@ import { CartService } from './app/services/cart.service';
 import { AuthService } from './app/services/auth.service';
 import { CyclesService } from './app/services/cycles.service';
 import { ArtworksService } from './app/services/artworks.service';
+import { UsersService } from './app/services/users.service';
+import { RolesService } from './app/services/roles.service';
 
 bootstrapApplication(AppComponent, {
     providers: [
@@ -33,6 +35,8 @@ bootstrapApplication(AppComponent, {
         EmailService,
         ThemeService,
         StripeService,
+        UsersService,
+        RolesService,
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations()
     ]
