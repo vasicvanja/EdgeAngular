@@ -11,10 +11,10 @@ import { ModalComponent } from '../modal/modal.component';
 import { NgIf, NgClass, NgFor } from '@angular/common';
 
 @Component({
-    selector: 'cycle-update',
-    templateUrl: './cycle-update.component.html',
-    styleUrl: './cycle-update.component.scss',
-    imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent]
+  selector: 'cycle-update',
+  templateUrl: './cycle-update.component.html',
+  styleUrl: './cycle-update.component.scss',
+  imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent]
 })
 export class CycleUpdateComponent implements OnInit {
 
@@ -30,10 +30,10 @@ export class CycleUpdateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) {
-      this.cycleForm = this.formBuilder.group({
-        name: ['', Validators.required],
-        description: ['', Validators.required]
-      });
+    this.cycleForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required]
+    });
   }
 
   async ngOnInit() {

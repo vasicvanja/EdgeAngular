@@ -20,8 +20,8 @@ export class UsersComponent implements OnInit {
   itemsPerPage: number = 10;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
-  activeMenuUserId: number | null = null; // Track which menu is open
-  selectedUserId: number | null = null;
+  activeMenuUserId: string | null = null; // Track which menu is open
+  selectedUserId: string | null = null;
   selectedUserName: string = '';
 
   constructor(
@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['/user-update', user.Id]);
   }
 
-  toggleContextMenu(userId: number, event: MouseEvent) {
+  toggleContextMenu(userId: string, event: MouseEvent) {
     event.stopPropagation();
     this.activeMenuUserId = this.activeMenuUserId === userId ? null : userId;
   }
@@ -98,7 +98,7 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  async enableDisableUser(id: number, enabled: boolean) {
+  async enableDisableUser(id: string, enabled: boolean) {
     try {
       const { Succeeded, ErrorMessage } = await this.usersService.enableDisableUser(id, enabled);
       if (Succeeded) {
@@ -123,7 +123,7 @@ export class UsersComponent implements OnInit {
     // No action needed
   }
 
-  openDeleteModal(userId: number, userName: string) {
+  openDeleteModal(userId: string, userName: string) {
     this.selectedUserId = userId;
     this.selectedUserName = userName;
   }
