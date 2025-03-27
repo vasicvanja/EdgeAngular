@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 import { Role } from '../../models/role';
 import { UsersService } from '../../services/users.service';
@@ -36,13 +36,12 @@ export class UserUpdateComponent implements OnInit {
       userName: ['', Validators.required],
       email: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      enabled: [true, Validators.required],
+      enabled: ['', Validators.required],
       role: ['', Validators.required]
     });
   }
 
-  ngOnInit(): void {
-    // Get user ID from the route and fetch data
+  async ngOnInit() {
     this.route.paramMap.subscribe(async params => {
       const idParam = params.get('id');
       if (idParam !== null) {
@@ -50,17 +49,16 @@ export class UserUpdateComponent implements OnInit {
         await this.getAllRoles();
         await this.getUserDetails(this.userId);
       } else {
-        console.error('User ID not provided in route parameters.');
+        console.error('User Id not provided in route parameters.');
       }
     });
   }
 
-  async getUserDetails(userId: string): Promise<void> {
+  async getUserDetails(userId: string) {
     try {
       const { Data, Succeeded, ErrorMessage } = await this.usersService.getUserById(userId);
       if (Succeeded) {
         this.user = Data;
-        console.log(this.user);
         this.userForm.patchValue({
           userName: this.user.UserName,
           email: this.user.Email,
