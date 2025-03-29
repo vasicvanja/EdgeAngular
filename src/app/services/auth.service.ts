@@ -39,8 +39,7 @@ export class AuthService {
           this.isAdminSubject.next(this.isUserAdmin());
           this.router.navigate(['home']);
           return response;
-        }),
-        catchError(this.handleError)
+        })
       );
   }
 

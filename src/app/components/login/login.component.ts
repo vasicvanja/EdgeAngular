@@ -42,27 +42,18 @@ export class LoginComponent implements OnInit {
         Password: this.loginForm.get('password')?.value
       };
 
-      this.authService.login(loginObj)
-        .pipe(
-          catchError((error) => {
-            console.error('An error occurred:', error);
-            const errorMessage = error?.error?.ErrorMessage || 'An unknown error occurred';
-            this.toastrService.error(errorMessage, 'Login Failed');
-            return throwError(() => new Error(errorMessage));
-          })
-        )
-        .subscribe({
-          next: (res) => {
-            this.toastrService.success('Login successful!', 'Success');
-            this.loginForm.reset();
-            this.router.navigate(['/home']);
-          },
-          error: (err) => {
-            console.error('Error during login:', err);
-            const errorMessage = err?.error?.ErrorMessage || 'An unknown error occurred';
-            this.toastrService.error(errorMessage, 'Login Failed');
-          }
-        });
+      this.authService.login(loginObj).subscribe({
+        next: (res) => {
+          this.toastrService.success('Login successful!', 'Success');
+          this.loginForm.reset();
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.error('Error during login:', err);
+          const errorMessage = err?.error?.ErrorMessage || 'An unknown error occurred';
+          this.toastrService.error(errorMessage, 'Login Failed');
+        }
+      });
     } else {
       ValidateForm.validateAllFormFields(this.loginForm);
       this.toastrService.error('Please fill in all required fields.', 'Form Invalid');
