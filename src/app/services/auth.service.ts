@@ -24,10 +24,7 @@ export class AuthService {
   }
 
   register(registerObj: Register): Observable<Register> {
-    return this.http.post<Register>(`${this.baseUrl}/api/Authentication/Register`, registerObj, this.getHttpOptions())
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.post<Register>(`${this.baseUrl}/api/Authentication/Register`, registerObj, this.getHttpOptions());
   }
 
   login(loginObj: Login): Observable<any> {

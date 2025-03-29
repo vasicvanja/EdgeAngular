@@ -5,8 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { Register } from '../../models/register';
 import ValidateForm from '../../helpers/validateForm';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -43,13 +41,6 @@ export class RegisterComponent implements OnInit {
       };
 
       this.authService.register(registerObj)
-        .pipe(
-          catchError((error) => {
-            console.error('An error occurred:', error);
-            this.toastrService.error(error.error.ErrorMessage);
-            return throwError(error);
-          })
-        )
         .subscribe({
           next: (res: any) => {
             this.toastrService.success(res.ErrorMessage);
@@ -57,7 +48,7 @@ export class RegisterComponent implements OnInit {
             this.router.navigate(['login']);
           },
           error: (err) => {
-            this.toastrService.error(err?.error.ErrorMessage);
+            this.toastrService.error(err?.error.ErrorMessage, 'Registration Failed');
           }
         })
     }
