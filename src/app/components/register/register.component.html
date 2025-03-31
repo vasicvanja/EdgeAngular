@@ -35,11 +35,19 @@
                             *Password is required.
                         </div>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="phoneNumber" formControlName="phoneNumber"
+                            placeholder="Phone number">
+                        <label for="password">Phone number</label>
+                        <div *ngIf="registerForm.controls['phoneNumber'].dirty && registerForm.hasError('required', 'phoneNumber')"
+                            class="text-danger">
+                            *Phone number is required.
+                        </div>
+                    </div>
                     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" (click)="onRegister()"
                         [disabled]="registerForm.invalid" type="submit">Sign up</button>
-                    <small class="text-body-secondary">Already have an account? <a id="forget" routerLink="/login">Sign
-                            in</a></small>
-                    <hr class="my-4">
+                    <small class="text-body-secondary">Already have an account? <a id="forget" routerLink="/login">Sign in</a></small>
+                    <!-- <hr class="my-4">
                     <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
                     <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="button">
                         <i class="bi bi-twitter"></i>
@@ -52,7 +60,7 @@
                     <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="button">
                         <i class="bi bi-github"></i>
                         Sign up with GitHub
-                    </button>
+                    </button> -->
                 </form>
             </div>
         </div>
