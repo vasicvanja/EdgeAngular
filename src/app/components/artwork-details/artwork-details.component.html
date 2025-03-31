@@ -2,14 +2,12 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
-                <div class="text-center mb-5">
-                    <h1 class="fw-bold">{{ artwork.Name }}</h1>
-                    <p class="lead">{{ artwork.Description }}</p>
-                </div>
                 <div *ngIf="artwork" class="card shadow-lg border-0">
                     <img class="img-fluid rounded-top" [src]="'data:image/png;base64,' + artwork.ImageData"
                         alt="{{ artwork.Name }}" style="object-fit: cover;">
                     <div class="card-body">
+                        <h2 class="card-title text-center">{{ artwork.Name }}</h2>
+                        <p class="text-muted">{{ artwork.Description }}</p>
                         <hr>
                         <div class="row justify-content-center text-center">
                             <div class="col-md-6">
