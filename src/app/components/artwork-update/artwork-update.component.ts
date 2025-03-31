@@ -7,15 +7,15 @@ import { ResponseMessages } from '../../const/response-messages';
 import { ArtworkType } from '../../models/artwork-type';
 import { CyclesService } from '../../services/cycles.service';
 import { Cycle } from '../../models/cycle';
-import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
 import { NgIf, NgClass, NgFor } from '@angular/common';
 
 @Component({
-    selector: 'artwork-update',
-    templateUrl: './artwork-update.component.html',
-    styleUrl: './artwork-update.component.scss',
-    imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent]
+  selector: 'artwork-update',
+  templateUrl: './artwork-update.component.html',
+  styleUrl: './artwork-update.component.scss',
+  imports: [NgIf, FormsModule, NgClass, NgFor, ModalComponent, ReactiveFormsModule]
 })
 export class ArtworkUpdateComponent implements OnInit {
 
@@ -24,6 +24,7 @@ export class ArtworkUpdateComponent implements OnInit {
   artworkTypes: string[] = Object.keys(ArtworkType).filter(key => isNaN(Number(key)));
   cycles: Cycle[] = [];
   artworkForm: FormGroup;
+  submitted = false; // Flag to track form submission
 
   constructor(
     private artworksService: ArtworksService,
@@ -32,13 +33,18 @@ export class ArtworkUpdateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) {
-      this.artworkForm = this.formBuilder.group({
-        name: ['', Validators.required],
-        technique: ['', Validators.required],
-        year: ['', Validators.required],
-        price: ['', Validators.required],
-        type: ['', Validators.required]
-      });
+    // Initialize the form group with validators
+    this.artworkForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      technique: ['', Validators.required],
+      year: ['', Validators.required],
+      price: ['', Validators.required],
+      quantity: ['', Validators.required],
+      imageData: [null],
+      type: ['', Validators.required],
+      cycleId: ['', Validators.required]
+    });
   }
 
   async ngOnInit() {
@@ -54,9 +60,20 @@ export class ArtworkUpdateComponent implements OnInit {
     });
   }
 
-  onFileChange(event: any) {
+  onFileChange(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+
+      // Validate file type and size
+      if (!file.type.startsWith('image/')) {
+        this.toastrService.error(ResponseMessages.Only_image_files_are_allowed);
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        this.toastrService.error(ResponseMessages.File_size_exceeds_limit);
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.artwork.ImageData = e.target.result.split(',')[1]; // Get the base64 part
@@ -77,8 +94,9 @@ export class ArtworkUpdateComponent implements OnInit {
           year: this.artwork.Year,
           price: this.artwork.Price,
           quantity: this.artwork.Quantity,
+          imageData: this.artwork.ImageData,
           type: this.artwork.Type,
-          cycle: this.artwork.Id
+          cycleId: this.artwork.CycleId
         });
         return Data;
       } else {
@@ -90,13 +108,18 @@ export class ArtworkUpdateComponent implements OnInit {
   }
 
   async updateArtwork() {
+    this.submitted = true; // Mark form as submitted
     if (this.artworkForm.invalid) {
       return;
     }
     try {
-      const { Succeeded, ErrorMessage } = await this.artworksService.updateArtwork(this.artwork);
+      // Prepare updated artwork data
+      const updatedArtwork = this.getUpdatedArtworkData();
+      const { Succeeded, ErrorMessage } = await this.artworksService.updateArtwork(updatedArtwork);
       if (Succeeded) {
-        this.toastrService.success(ResponseMessages.Update_success("Artwork", this.artwork.Name));
+        this.toastrService.success(ResponseMessages.Update_success("Artwork", updatedArtwork.Name));
+        this.artworkForm.reset(); // Reset form on success
+        this.submitted = false; // Reset submission flag
         this.router.navigate(['/artworks']);
       } else {
         this.toastrService.error(ErrorMessage);
@@ -104,6 +127,20 @@ export class ArtworkUpdateComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  private getUpdatedArtworkData(): Artwork {
+    return {
+      ...this.artwork,
+      Name: this.artworkForm.controls['name'].value,
+      Description: this.artworkForm.controls['description'].value,
+      Technique: this.artworkForm.controls['technique'].value,
+      Year: this.artworkForm.controls['year'].value,
+      Price: this.artworkForm.controls['price'].value,
+      Quantity: this.artworkForm.controls['quantity'].value,
+      Type: this.artworkForm.controls['type'].value,
+      CycleId: this.artworkForm.controls['cycleId'].value
+    };
   }
 
   getArtworkTypeValue(typeName: string): ArtworkType {

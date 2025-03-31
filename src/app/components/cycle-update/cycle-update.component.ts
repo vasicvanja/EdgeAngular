@@ -84,7 +84,7 @@ export class CycleUpdateComponent implements OnInit {
       const updatedCycle = this.getUpdatedCycleData();
       const { Succeeded, ErrorMessage } = await this.cyclesService.updateCycle(updatedCycle);
       if (Succeeded) {
-        this.toastrService.success(ResponseMessages.Update_success("Cycle", this.cycle.Name));
+        this.toastrService.success(ResponseMessages.Update_success("Cycle", updatedCycle.Name));
         this.cycleForm.reset(); // Reset the form after successful update
         this.submitted = false; // Reset the submitted flag
         this.router.navigate(['/cycles']);

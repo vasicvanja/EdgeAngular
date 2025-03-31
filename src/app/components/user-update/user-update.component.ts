@@ -17,6 +17,7 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./user-update.component.scss']
 })
 export class UserUpdateComponent implements OnInit {
+  
   userForm: FormGroup;
   user!: User;
   roles!: Role[];
