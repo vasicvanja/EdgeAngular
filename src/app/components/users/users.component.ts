@@ -128,4 +128,7 @@ export class UsersComponent implements OnInit {
     this.selectedUserId = userId;
     this.selectedUserName = userName;
   }
+
+  viewOrderHistory(userId: string) {
+  }
 }

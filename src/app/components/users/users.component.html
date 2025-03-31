@@ -30,12 +30,19 @@
                     <div class="context-menu">
                         <button (click)="toggleContextMenu(user.Id, $event)" class="menu-btn">⋮</button>
                         <ul *ngIf="activeMenuUserId === user.Id" class="menu-options">
-                            <li (click)="openUserUpdate(user)">Edit</li>
+                            <li (click)="openUserUpdate(user)">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </li>
                             <li (click)="enableDisableUser(user.Id, !user.Enabled)">
+                                <i class="bi bi-toggle-{{ user.Enabled ? 'off' : 'on' }}"></i> 
                                 {{ user.Enabled ? 'Deactivate' : 'Activate' }}
                             </li>
-                            <li>Order History</li>
-                            <li (click)="openDeleteModal(user.Id, user.UserName)" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</li>
+                            <li (click)="viewOrderHistory(user.Id)">
+                                <i class="bi bi-clock-history"></i> Order History
+                            </li>
+                            <li (click)="openDeleteModal(user.Id, user.UserName)" data-bs-toggle="modal" data-bs-target="#popUpModal">
+                                <i class="bi bi-trash text-danger"></i> Delete
+                            </li>
                         </ul>
                     </div>
                 </td>
@@ -43,13 +50,6 @@
         </tbody>
     </table>
 </div>
-
-<modal 
-    [title]="'Confirm Delete'" 
-    [message]="'Are you sure you want to delete this user?'"
-    (confirm)="deleteUser()" 
-    (cancel)="cancelDelete()">
-</modal>
 
 <modal 
     [title]="'Confirm Delete'" 
