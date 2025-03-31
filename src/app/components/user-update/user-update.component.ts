@@ -74,7 +74,7 @@ export class UserUpdateComponent implements OnInit {
     }
   }
 
-  async getAllRoles(): Promise<void> {
+  async getAllRoles() {
     try {
       const { Data, Succeeded, ErrorMessage } = await this.rolesService.getAllRoles();
       if (Succeeded) {
@@ -88,7 +88,7 @@ export class UserUpdateComponent implements OnInit {
     }
   }
 
-  async updateUser(): Promise<void> {
+  async updateUser() {
     this.submitted = true; // Mark form as submitted
     if (this.userForm.invalid) {
       return;
@@ -110,7 +110,7 @@ export class UserUpdateComponent implements OnInit {
     }
   }
 
-  async deleteUser(): Promise<void> {
+  async deleteUser() {
     try {
       const { Succeeded, ErrorMessage } = await this.usersService.deleteUser(this.userId);
       if (Succeeded) {
