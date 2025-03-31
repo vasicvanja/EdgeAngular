@@ -24,8 +24,10 @@ import { AuthGuard } from "./guards/auth.guard";
 import { AdminGuard } from "./guards/admin.guard";
 import { UsersComponent } from "./components/users/users.component";
 import { UserCreateComponent } from "./components/user-create/user-create.component";
+import { UserUpdateComponent } from "./components/user-update/user-update.component";
 
 const routes: Routes = [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'home', component: HomeComponent },
@@ -33,6 +35,7 @@ const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'user-create', component: UserCreateComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent, canActivate: [AuthGuard, AdminGuard] },

@@ -1,32 +1,44 @@
 <main>
-  <div class="container">
+  <div class="container py-5">
     <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="py-5 text-center">
-          <h1 class="fw-light">Cycle Details</h1>
-          <p class="lead text-body-secondary">Here you can see more information about the selected cycle and delete it if you want.</p>
-        </div>
-        <div *ngIf="cycle">
-          <img class="img-fluid rounded" [src]="'data:image/png;base64,' + cycle.ImageData" class="bd-placeholder-img card-img-top" alt="{{cycle.Name}}">
-          <h2 class="mt-3">{{ cycle.Name }}</h2>
-          <p class="text-muted">Description: {{ cycle.Description }}</p>
+      <div class="col-md-10 col-lg-8">
+
+        <!-- Cycle Details -->
+        <div *ngIf="cycle" class="card shadow-lg border-0">
+          <img class="img-fluid rounded-top" [src]="'data:image/png;base64,' + cycle.ImageData" alt="{{ cycle.Name }}"
+            style="max-height: 400px; object-fit: cover;">
+          <div class="card-body">
+            <h2 class="card-title text-center">{{ cycle.Name }}</h2>
+            <hr>
+            <p class="text-muted">{{ cycle.Description }}</p>
+          </div>
         </div>
 
-        <div *ngIf="cycle && cycle.Artworks.length > 0">
-          <h3 class="mt-5">Artworks</h3>
+        <!-- Artworks Section -->
+        <div *ngIf="cycle && cycle.Artworks.length > 0" class="mt-5">
           <div class="row">
-            <div *ngFor="let artwork of cycle.Artworks" class="col-md-4 mb-4">
-              <div class="card h-100">
-                <img class="card-img-top" loading="lazy" [src]="'data:image/png;base64,' + artwork.ImageData" alt="{{ artwork.Name }}">
+            <div *ngFor="let artwork of cycle.Artworks" class="col-md-6 col-lg-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img class="card-img-top" loading="lazy" [src]="'data:image/png;base64,' + artwork.ImageData"
+                  alt="{{ artwork.Name }}" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
-                  <h5 class="card-title">{{ artwork.Name }}</h5>
-                  <p class="card-text">Year: {{ artwork.Year }}</p>
-                  <p class="card-text">Type: {{ artwork.Type }}</p>
-                  <button class="btn btn-primary" (click)="openArtworkDetails(artwork)">View Details</button>
+                  <h5 class="card-title text-primary">{{ artwork.Name }}</h5>
+                  <p class="card-text"><strong>Year:</strong> {{ artwork.Year }}</p>
+                  <p class="card-text"><strong>Type:</strong> {{ artwork.Type }}</p>
+                  <div class="text-center">
+                    <button class="btn btn-primary btn-sm" (click)="openArtworkDetails(artwork)">
+                      View Details
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- No Artworks Message -->
+        <div *ngIf="cycle && cycle.Artworks.length === 0" class="text-center mt-5">
+          <p class="text-muted">No artworks are associated with this cycle.</p>
         </div>
       </div>
     </div>

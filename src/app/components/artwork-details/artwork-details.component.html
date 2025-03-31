@@ -1,21 +1,31 @@
 <main>
-    <div class="container">
+    <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="py-5 text-center">
-                    <h1 class="fw-light">Artwork Details</h1>
-                    <p class="lead text-body-secondary">Here you can see more information about the selected artwork and
-                        delete it if you want.</p>
-                </div>
-                <div *ngIf="artwork">
-                    <img class="img-fluid rounded" [src]="'data:image/png;base64,' + artwork.ImageData" class="bd-placeholder-img card-img-top" alt="{{artwork.Name}}">
-                    <h2 class="mt-3">{{ artwork.Name }}</h2>
-                    <p class="text-muted">Description: {{ artwork.Description }}</p>
-                    <p class="text-muted">Technique: {{ artwork.Technique }}</p>
-                    <p class="text-muted">Year: {{ artwork.Year }}</p>
-                    <p class="text-muted">Price: {{ artwork.Price }}$</p>
-                    <p class="text-muted">Quantity: {{ artwork.Quantity }}</p>
-                    <button type="button" [disabled]="artwork.Quantity == 0" (click)="addToCart(artwork)" class="btn btn-primary" id="addToCart">Add to Cart</button>
+            <div class="col-md-10 col-lg-8">
+                <div *ngIf="artwork" class="card shadow-lg border-0">
+                    <img class="img-fluid rounded-top" [src]="'data:image/png;base64,' + artwork.ImageData"
+                        alt="{{ artwork.Name }}" style="object-fit: cover;">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{{ artwork.Name }}</h2>
+                        <p class="text-muted">{{ artwork.Description }}</p>
+                        <hr>
+                        <div class="row justify-content-center text-center">
+                            <div class="col-md-6">
+                                <p><strong>Technique:</strong> {{ artwork.Technique }}</p>
+                                <p><strong>Year:</strong> {{ artwork.Year }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Price:</strong> ${{ artwork.Price }}</p>
+                                <p><strong>Quantity:</strong> {{ artwork.Quantity }}</p>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="button" [disabled]="artwork.Quantity == 0" (click)="addToCart(artwork)"
+                                class="btn btn-primary px-4" id="addToCart">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -2,30 +2,36 @@
     <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h2>Update Cycle</h2>
-            <form #cycleForm="ngForm" (ngSubmit)="updateCycle()" class="py-3 needs-validation">
+            <form [formGroup]="cycleForm" (ngSubmit)="updateCycle()" class="py-3 needs-validation">
+                <!-- Name -->
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" [(ngModel)]="cycle.Name" name="name" class="form-control" required
-                        #name="ngModel" [ngClass]="{ 'is-invalid': cycleForm.submitted && name.invalid }">
-                    <div *ngIf="cycleForm.submitted && name.invalid" class="invalid-feedback">
+                    <input type="text" id="name" formControlName="name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && cycleForm.controls['name'].invalid }">
+                    <div *ngIf="submitted && cycleForm.controls['name'].invalid" class="invalid-feedback">
                         Name is required
                     </div>
                 </div>
+
+                <!-- Description -->
                 <div class="mb-3">
                     <label for="description" class="form-label">Description:</label>
-                    <textarea id="description" [(ngModel)]="cycle.Description" name="description" class="form-control"
-                        required #description="ngModel"
-                        [ngClass]="{ 'is-invalid': cycleForm.submitted && description.invalid }"></textarea>
-                    <div *ngIf="cycleForm.submitted && description.invalid" class="invalid-feedback">
+                    <textarea id="description" formControlName="description" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && cycleForm.controls['description'].invalid }"></textarea>
+                    <div *ngIf="submitted && cycleForm.controls['description'].invalid" class="invalid-feedback">
                         Description is required
                     </div>
                 </div>
+
+                <!-- Select Artworks -->
                 <div class="mb-3">
                     <label for="artworks" class="form-label">Select Artworks:</label>
-                    <select class="form-control" multiple [(ngModel)]="cycle.ArtworkIds" name="artworks">
-                        <option *ngFor="let artwork of artworks" [value]="artwork.Id">{{ artwork.Name }}</option>
+                    <select id="selectArtworks" formControlName="selectArtworks" class="form-control" multiple>
+                        <option *ngFor="let artwork of selectArtworks" [value]="artwork.Id">{{ artwork.Name }}</option>
                     </select>
                 </div>
+
+                <!-- Image Data -->
                 <div class="mb-3">
                     <label for="imageData" class="form-label">Thumbnail:</label>
                     <input class="form-control" type="file" id="imageData" (change)="onFileChange($event)">
@@ -33,16 +39,23 @@
                 <div *ngIf="cycle.ImageData" class="mb-3">
                     <img [src]="'data:image/png;base64,' + cycle.ImageData" alt="{{cycle.Name}}" class="img-thumbnail" width="200">
                 </div>
-                <button type="submit" class="btn btn-primary">Update Cycle</button>
-                <button type="button" class="btn btn-danger delete-item" data-bs-toggle="modal" data-bs-target="#popUpModal">Delete</button>
+
+                <!-- Submit and Delete Buttons -->
+                <button type="submit" class="btn btn-primary" [disabled]="!cycleForm.dirty">
+                    Update Cycle
+                </button>
+                <button type="button" class="btn btn-danger delete-item" data-bs-toggle="modal" data-bs-target="#popUpModal">
+                    Delete
+                </button>
             </form>
         </div>
     </div>
 </div>
 
+<!-- Modal for Delete Confirmation -->
 <modal 
     [title]="'Confirm Delete'" 
-    [message]="'Are you sure you want to delete this cycle?'"
-    (confirm)="deleteCycle()" 
+    [message]="'Are you sure you want to delete this cycle?'" 
+    (confirm)="deleteCycle()"
     (cancel)="cancelDelete()">
 </modal>

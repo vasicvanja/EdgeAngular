@@ -4,16 +4,15 @@ import { ToastrService } from 'ngx-toastr';
 import { Login } from '../../models/login';
 import { AuthService } from '../../services/auth.service';
 import ValidateForm from '../../helpers/validateForm';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
+  selector: 'login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink]
 })
 export class LoginComponent implements OnInit {
 
@@ -22,7 +21,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private toastrService: ToastrService) {
+    private toastrService: ToastrService,
+    private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -37,29 +38,21 @@ export class LoginComponent implements OnInit {
       const loginObj: Login = {
         Username: this.loginForm.get('username')?.value,
         Password: this.loginForm.get('password')?.value
-      }
+      };
 
-      this.authService.login(loginObj)
-        .pipe(
-          catchError((error) => {
-            console.error('An error occurred:', error);
-            this.toastrService.error(error.error.ErrorMessage);
-            return throwError(error);
-          })
-        )
-        .subscribe({
-          next: (res) => {
-            this.toastrService.success(res.ErrorMessage);
-            this.loginForm.reset();
-          },
-          error: (err) => {
-            this.toastrService.error(err?.error.ErrorMessage);
-          }
-        })
-    }
-    else {
+      this.authService.login(loginObj).subscribe({
+        next: (res) => {
+          this.toastrService.success(res.ErrorMessage);
+          this.loginForm.reset();
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          this.toastrService.error(err?.error?.ErrorMessage, 'Login Failed');
+        }
+      });
+    } else {
       ValidateForm.validateAllFormFields(this.loginForm);
-      alert("Your form is invalid!");
+      this.toastrService.error('Please fill in all required fields.', 'Form Invalid');
     }
   }
 }
