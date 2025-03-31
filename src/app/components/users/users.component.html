@@ -1,4 +1,7 @@
 <div class="users-container">
+    <!-- Title -->
+    <h2 class="text-center" id="usersTitle">Manage Users</h2>
+
     <!-- Wrapper for button to align it to the right above the table -->
     <div class="d-flex justify-content-end mb-3">
         <button type="button" *ngIf="isAdmin && isLoggedIn" (click)="openUserCreate()" class="btn btn-primary btn-sm">
@@ -6,7 +9,7 @@
             Add User
         </button>
     </div>
-    
+
     <!-- Users table -->
     <table class="users-table table">
         <thead>
@@ -25,7 +28,7 @@
                 <td>{{ user.Email }}</td>
                 <td>{{ user.PhoneNumber }}</td>
                 <td>{{ user.Role }}</td> 
-                <td>{{ user.Enabled ? 'Active' : 'Deactivated'}}</td>
+                <td>{{ user.Enabled ? 'Active' : 'Deactivated' }}</td>
                 <td>
                     <div class="context-menu">
                         <button (click)="toggleContextMenu(user.Id, $event)" class="menu-btn">⋮</button>
