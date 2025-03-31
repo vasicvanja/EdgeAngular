@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtworksService } from '../../services/artworks.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
 import { CartService } from '../../services/cart.service';
