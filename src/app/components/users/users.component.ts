@@ -1,18 +1,19 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ModalComponent } from '../modal/modal.component';
 import { ResponseMessages } from '../../const/response-messages';
 
 @Component({
   selector: 'app-users',
-  imports: [NgFor, NgIf, ModalComponent],
+  imports: [NgFor, NgIf, NgClass, ModalComponent],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrl: './users.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent implements OnInit {
 

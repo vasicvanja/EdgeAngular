@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users" [ngClass]="{ 'disabled-user': !user.Enabled }">
                 <td>{{ user.UserName }}</td>
                 <td>{{ user.Email }}</td>
                 <td>{{ user.PhoneNumber }}</td>
