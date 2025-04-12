@@ -37,7 +37,7 @@ const routes: Routes = [
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'user-create', component: UserCreateComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard, AdminGuard] },
-    { path: 'order-history:/id', component: OrderHistoryComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: 'order-history/:id', component: OrderHistoryComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent, canActivate: [AuthGuard, AdminGuard] },

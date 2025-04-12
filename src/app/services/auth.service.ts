@@ -117,9 +117,4 @@ export class AuthService {
   private storeToken(token: string) {
     localStorage.setItem('authToken', token);
   }
-
-  private handleError(error: any) {
-    console.error('An error occurred', error);
-    return throwError(() => new Error(error.message || 'Server error'));
-  }
 }

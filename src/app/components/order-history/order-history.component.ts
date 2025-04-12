@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'order-history',
@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './order-history.component.html',
   styleUrl: './order-history.component.scss'
 })
-export class OrderHistoryComponent {
+export class OrderHistoryComponent implements OnInit {
+  
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
 }
