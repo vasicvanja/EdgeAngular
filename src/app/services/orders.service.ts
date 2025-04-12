@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
 import { environment } from "../../environments/environment";
 import { Order } from "../models/order";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -16,14 +17,14 @@ export class OrdersService {
     }
 
     public getOrderById = (id: string): any => {
-        return this.http.get(this.baseUrl + "/api/Orders/" + id, this.authService.getHttpOptions());
+        return firstValueFrom(this.http.get(this.baseUrl + "/api/Orders/" + id, this.authService.getHttpOptions()));
     }
 
     public getAllOrdersByUserId = (userId: string): any => {
-        return this.http.get(this.baseUrl + "/api/Orders/all/" + userId, this.authService.getHttpOptions());
+        return firstValueFrom(this.http.get(this.baseUrl + "/api/Orders/all/" + userId, this.authService.getHttpOptions()));
     }
 
     public createOrder = (order: Order): any => {
-        return this.http.post(this.baseUrl + "/api/Orders/create", order, this.authService.getHttpOptions());
+        return firstValueFrom(this.http.post(this.baseUrl + "/api/Orders/create", order, this.authService.getHttpOptions()));
     }
 }
