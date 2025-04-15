@@ -59,7 +59,4 @@ export class UserDetailsComponent implements OnInit {
     this.router.navigate(['/user-update', userId]);
   }
 
-  openResetPassword() {
-    
-  }
 }

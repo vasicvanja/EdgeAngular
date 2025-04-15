@@ -129,6 +129,10 @@ export class UserUpdateComponent implements OnInit {
     // No action needed
   }
 
+  openResetPassword() {
+    
+  }
+
   private getUpdatedUserData(): User {
     return {
       ...this.user,
