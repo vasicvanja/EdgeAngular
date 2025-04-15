@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../services/orders.service';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../services/auth.service';
 import { Order } from '../../models/order';
 import { ActivatedRoute } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
@@ -21,7 +20,6 @@ export class OrderHistoryComponent implements OnInit {
   constructor(
     private ordersService: OrdersService,
     private toastrService: ToastrService,
-    private authService: AuthService,
     private route: ActivatedRoute) { }
 
   async ngOnInit() {

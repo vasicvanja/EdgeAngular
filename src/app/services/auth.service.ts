@@ -73,6 +73,15 @@ export class AuthService {
     return null;
   }
 
+  getUserId(): string | null {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+      return tokenPayload ? tokenPayload.sub : null;
+    }
+    return null;
+  }
+
   isUserAdmin$(): Observable<boolean> {
     return this.isAdminSubject.asObservable();
   }
