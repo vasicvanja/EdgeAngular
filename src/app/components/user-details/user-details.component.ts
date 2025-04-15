@@ -3,10 +3,11 @@ import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../models/user';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'user-details',
-  imports: [],
+  imports: [NgClass, NgIf],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss'
 })
