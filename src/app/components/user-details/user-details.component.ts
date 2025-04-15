@@ -54,4 +54,12 @@ export class UserDetailsComponent implements OnInit {
   viewOrderHistory(userId: string) {
     this.router.navigate(['/order-history', userId]);
   }
+
+  openUserUpdate(userId: string) {
+    this.router.navigate(['/user-update', userId]);
+  }
+
+  openResetPassword() {
+    
+  }
 }

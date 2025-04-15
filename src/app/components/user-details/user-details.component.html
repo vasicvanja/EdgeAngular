@@ -13,8 +13,10 @@
         <p><strong>Role:</strong> {{ user.Role }}</p>
     </div>
 
-    <div class="text-center mt-4">
+    <div class="user-actions mt-4">
         <button class="btn btn-primary" (click)="viewOrderHistory(user.Id)">View Order History</button>
+        <button class="btn btn-secondary separate-item" (click)="openUserUpdate(user.Id)">Edit User</button>
+        <button class="btn btn-warning separate-item" (click)="openResetPassword()">Reset Password</button>
     </div>
 </div>
 
