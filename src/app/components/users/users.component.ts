@@ -130,5 +130,6 @@ export class UsersComponent implements OnInit {
   }
 
   viewOrderHistory(userId: string) {
+    this.router.navigate(['/order-history', userId]);
   }
 }

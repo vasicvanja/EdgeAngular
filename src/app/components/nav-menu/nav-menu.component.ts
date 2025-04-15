@@ -56,4 +56,8 @@ export class NavMenuComponent {
   toggleTheme() {
     this.themeService.toggleTheme();
   }
+
+  openUserDetails() {
+    this.router.navigate(['/user-details', this.authService.getUserId()]);
+  }
 }

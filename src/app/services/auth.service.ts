@@ -73,6 +73,15 @@ export class AuthService {
     return null;
   }
 
+  getUserId(): string | null {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+      return tokenPayload ? tokenPayload.sub : null;
+    }
+    return null;
+  }
+
   isUserAdmin$(): Observable<boolean> {
     return this.isAdminSubject.asObservable();
   }
@@ -116,10 +125,5 @@ export class AuthService {
 
   private storeToken(token: string) {
     localStorage.setItem('authToken', token);
-  }
-
-  private handleError(error: any) {
-    console.error('An error occurred', error);
-    return throwError(() => new Error(error.message || 'Server error'));
   }
 }

@@ -17,6 +17,7 @@ import { CyclesService } from './app/services/cycles.service';
 import { ArtworksService } from './app/services/artworks.service';
 import { UsersService } from './app/services/users.service';
 import { RolesService } from './app/services/roles.service';
+import { OrdersService } from './app/services/orders.service';
 
 bootstrapApplication(AppComponent, {
     providers: [
@@ -37,6 +38,7 @@ bootstrapApplication(AppComponent, {
         StripeService,
         UsersService,
         RolesService,
+        OrdersService,
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations()
     ]

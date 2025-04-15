@@ -25,6 +25,8 @@ import { AdminGuard } from "./guards/admin.guard";
 import { UsersComponent } from "./components/users/users.component";
 import { UserCreateComponent } from "./components/user-create/user-create.component";
 import { UserUpdateComponent } from "./components/user-update/user-update.component";
+import { OrderHistoryComponent } from "./components/order-history/order-history.component";
+import { UserDetailsComponent } from "./components/user-details/user-details.component";
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -36,6 +38,8 @@ const routes: Routes = [
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'user-create', component: UserCreateComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: 'user-details/:id', component: UserDetailsComponent, canActivate: [AuthGuard]},
+    { path: 'order-history/:id', component: OrderHistoryComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
     { path: 'artwork-create', component: ArtworkCreateComponent, canActivate: [AuthGuard, AdminGuard] },

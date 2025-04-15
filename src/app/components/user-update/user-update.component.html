@@ -56,7 +56,8 @@
 
                 <!-- Submit and Delete Buttons -->
                 <button type="submit" class="btn btn-primary">Update User</button>
-                <button type="button" class="btn btn-danger delete-item" data-bs-toggle="modal" data-bs-target="#popUpModal">
+                <button class="btn btn-warning separate-item" (click)="openResetPassword()">Reset Password</button>
+                <button type="button" class="btn btn-danger separate-item" data-bs-toggle="modal" data-bs-target="#popUpModal">
                     Delete
                 </button>
             </form>
