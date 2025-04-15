@@ -17,7 +17,7 @@ export class StripeService {
     }
 
     // This method sends a POST request to the server to create a Stripe checkout session
-    // with  the given artworks. It returns a Promise that resolves to the response from the server.
+    // with the given artworks. It returns a Promise that resolves to the response from the server.
     public createCheckoutSession = (artworks: Artwork[]): any => {
         return firstValueFrom(this.http.post(this.baseUrl + "/api/Stripe/createCheckoutSession", artworks, this.authService.getHttpOptions()));
     }
