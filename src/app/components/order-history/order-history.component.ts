@@ -4,10 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { Order } from '../../models/order';
 import { ActivatedRoute } from '@angular/router';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'order-history',
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './order-history.component.html',
   styleUrl: './order-history.component.scss'
 })
@@ -38,8 +39,6 @@ export class OrderHistoryComponent implements OnInit {
 
   async getallOrdersByUserId(userId: string) {
     try {
-      const response = await this.ordersService.getAllOrdersByUserId(userId);
-      console.log(response);
       const { Data, Succeeded, ErrorMessage } = await this.ordersService.getAllOrdersByUserId(userId);
       if (Succeeded) {
         this.orders = Data;

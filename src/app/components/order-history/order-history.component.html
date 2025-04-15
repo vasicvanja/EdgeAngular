@@ -1,1 +1,45 @@
-<p>order-history works!</p>
+<div class="users-container">
+    <h2 class="text-center" id="usersTitle">Order History</h2>
+
+    <table class="users-table table table-striped">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Order Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- No orders message -->
+            <tr *ngIf="orders.length === 0">
+                <td colspan="6" class="text-center text-muted">No orders</td>
+            </tr>
+
+            <!-- Orders data -->
+            <tr *ngFor="let order of orders">
+                <td>{{ order.Amount }}$</td>
+                <td>{{ order.Status }}</td>
+                <td>{{ order.Description || '—' }}</td>
+                <td>{{ order.CreatedAt }}</td>
+                <td>{{ order.ReceiptUrl }}</td>
+                <td>
+                    <div *ngIf="order.OrderItems?.length; else noItems">
+                        <ul class="order-items-list">
+                            <li *ngFor="let item of order.OrderItems">
+                                <strong>Name:</strong> {{ item.ArtworkName }} |
+                                <strong>Quantity:</strong> {{ item.Quantity }} |
+                                <strong>Price:</strong> {{ item.Price }}$
+                            </li>
+                        </ul>
+                    </div>
+                    <ng-template #noItems>
+                        <span>No items</span>
+                    </ng-template>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
