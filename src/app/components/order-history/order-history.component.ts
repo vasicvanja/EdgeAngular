@@ -3,11 +3,11 @@ import { OrdersService } from '../../services/orders.service';
 import { ToastrService } from 'ngx-toastr';
 import { Order } from '../../models/order';
 import { ActivatedRoute } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'order-history',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, CurrencyPipe],
   templateUrl: './order-history.component.html',
   styleUrl: './order-history.component.scss'
 })

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Artwork } from '../../models/artwork';
 import { RouterLink } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { CurrencyPipe, NgFor } from '@angular/common';
 
 @Component({
     selector: 'successful-payment',
     templateUrl: './successful-payment.component.html',
     styleUrl: './successful-payment.component.scss',
-    imports: [NgFor, RouterLink]
+    imports: [NgFor, RouterLink, CurrencyPipe]
 })
 export class SuccessfulPaymentComponent implements OnInit {
 

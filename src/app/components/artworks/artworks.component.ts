@@ -6,7 +6,7 @@ import { Artwork } from '../../models/artwork';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
 import { PagerComponent } from '../pager/pager.component';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 import { ArtworkFilter } from '../../models/artwork-filter';
 import { FormsModule } from '@angular/forms';
 import { CyclesService } from '../../services/cycles.service';
@@ -17,7 +17,7 @@ import { ArtworkType } from '../../models/artwork-type';
   selector: 'artworks',
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.scss',
-  imports: [NgIf, NgFor, PagerComponent, FormsModule]
+  imports: [NgIf, NgFor, PagerComponent, FormsModule, CurrencyPipe]
 })
 export class ArtworksComponent implements OnInit {
 

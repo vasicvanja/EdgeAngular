@@ -15,7 +15,7 @@
                                 <p><strong>Year:</strong> {{ artwork.Year }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Price:</strong> ${{ artwork.Price }}</p>
+                                <p><strong>Price:</strong> {{ artwork.Price | currency }}</p>
                                 <p><strong>Quantity:</strong> {{ artwork.Quantity }}</p>
                             </div>
                         </div>

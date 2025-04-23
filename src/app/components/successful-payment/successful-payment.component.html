@@ -13,8 +13,8 @@
                     <img [src]="item.ImageData" alt="{{ item.Name }}" class="img-fluid">
                     <div>
                         <h5 class="m-0 font-weight-bold text-primary">{{ item.Name }}</h5>
-                        <p style="margin-bottom: 0px; margin-top: 16px;">Total Price: {{ item.Price * item.Quantity }}$</p>
-                        <p class="text-muted" style="font-size: 0.8em; opacity: 0.7;">{{ item.Price }}$ each</p>
+                        <p style="margin-bottom: 0px; margin-top: 16px;">Total Price: {{ item.Price * item.Quantity | currency }}</p>
+                        <p class="text-muted" style="font-size: 0.8em; opacity: 0.7;">{{ item.Price | currency }} each</p>
                         <p>Quantity: {{ item.Quantity }}</p>
                     </div>
                 </div>

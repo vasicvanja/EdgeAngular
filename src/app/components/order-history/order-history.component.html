@@ -31,7 +31,7 @@
                             <li *ngFor="let item of order.OrderItems">
                                 <strong>Name:</strong> {{ item.ArtworkName }} |
                                 <strong>Quantity:</strong> {{ item.Quantity }} |
-                                <strong>Price:</strong> {{ item.Price }}$
+                                <strong>Price:</strong> {{ item.Price | currency }}
                             </li>
                         </ul>
                     </div>
