@@ -19,10 +19,10 @@ export class SuccessfulPaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartService.clearCart();
     this.cartService.getLastPurchasedItems$().subscribe(items => {
       this.purchasedItems = items;
     });
+    this.cartService.clearCart();
   }
 
 }
