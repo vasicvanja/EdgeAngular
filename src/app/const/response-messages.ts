@@ -20,7 +20,7 @@ export const ResponseMessages = {
     Password_successful_reset: "Password successfully changed!",
     StripeCheckoutRedirectError:"An error occurred while redirecting to checkout.",
     Remove_artwork_from_cycle: (artworkName: string, cycleName: string) => `Successfully removed artwork ${artworkName} from cycle ${cycleName}.`,
-    Successfully_activate_user: "Successfully activated the user .",
+    Successfully_activate_user: "Successfully activated the user.",
     Successfully_deactivate_user: "Successfully deactivated the user.",
     Only_image_files_are_allowed: "Only image files are allowed.",
     File_size_exceeds_limit: "File size exceeds the 5MB limit."

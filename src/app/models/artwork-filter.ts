@@ -1,7 +1,6 @@
 import { ArtworkType } from "./artwork-type";
 
 export class ArtworkFilter {
-    public Technique: string
     public Type: ArtworkType | null;
     public CycleId: number;
     public MinPrice: number | null;
@@ -9,8 +8,7 @@ export class ArtworkFilter {
     public SortBy: string;
     public SortDirection: string;
 
-    constructor(Technique: string, Type: ArtworkType | null, CycleId: number, MinPrice: number | null, MaxPrice: number | null, SortBy: string, SortDirection: string) {
-        this.Technique = Technique;
+    constructor(Type: ArtworkType | null, CycleId: number, MinPrice: number | null, MaxPrice: number | null, SortBy: string, SortDirection: string) {
         this.Type = Type;
         this.CycleId = CycleId;
         this.MinPrice = MinPrice;

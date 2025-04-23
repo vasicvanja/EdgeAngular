@@ -30,7 +30,7 @@ export class ArtworksComponent implements OnInit {
   itemsPerPage: number = 10;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
-  filter: ArtworkFilter = new ArtworkFilter("", null, 0, null, null, "", "");
+  filter: ArtworkFilter = new ArtworkFilter(null, 0, null, null, "", "");
 
   constructor(
     private artworksService: ArtworksService,
@@ -111,7 +111,7 @@ export class ArtworksComponent implements OnInit {
   }
 
   clearFilters() {
-    this.filter = new ArtworkFilter("", null, 0, null, null, "", "");
+    this.filter = new ArtworkFilter(null, 0, null, null, "", "");
     this.applyFilters();
   }
 
