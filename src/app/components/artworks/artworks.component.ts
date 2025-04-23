@@ -114,6 +114,10 @@ export class ArtworksComponent implements OnInit {
     this.applyFilters();
   }
 
+  getArtworkTypeValue(typeName: string): ArtworkType {
+    return ArtworkType[typeName as keyof typeof ArtworkType];
+  }
+
   openArtworkDetails(artwork: Artwork) {
     this.router.navigate(['/artwork-details', artwork.Id]);
   }
