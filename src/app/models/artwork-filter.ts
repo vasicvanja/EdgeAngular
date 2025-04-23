@@ -9,7 +9,7 @@ export class ArtworkFilter {
     public SortBy: string;
     public SortDirection: string;
 
-    constructor(Technique: string, Type: ArtworkType | null, CycleId: number, MinPrice: number, MaxPrice: number, SortBy: string, SortDirection: string) {
+    constructor(Technique: string, Type: ArtworkType | null, CycleId: number, MinPrice: number | null, MaxPrice: number | null, SortBy: string, SortDirection: string) {
         this.Technique = Technique;
         this.Type = Type;
         this.CycleId = CycleId;

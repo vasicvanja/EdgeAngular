@@ -31,8 +31,8 @@
             <option *ngFor="let cycle of cycles" [value]="cycle.Id">{{ cycle.Name }}</option>
         </select>
     
-        <input type="number" [value]="filter.MinPrice || null" placeholder="Min Price" [(ngModel)]="filter.MinPrice" class="form-control w-auto">
-        <input type="number" [value]="filter.MaxPrice || null" placeholder="Max Price" [(ngModel)]="filter.MaxPrice" class="form-control w-auto">
+        <input type="number" placeholder="Min Price" [(ngModel)]="filter.MinPrice" class="form-control w-auto">
+        <input type="number" placeholder="Max Price" [(ngModel)]="filter.MaxPrice" class="form-control w-auto">
     
         <select [(ngModel)]="filter.SortBy" class="form-select w-auto">
             <option value="" disabled selected>Sort By</option>
