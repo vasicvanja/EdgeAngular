@@ -7,25 +7,34 @@ import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
 import { PagerComponent } from '../pager/pager.component';
 import { NgIf, NgFor } from '@angular/common';
+import { ArtworkFilter } from '../../models/artwork-filter';
+import { FormsModule } from '@angular/forms';
+import { CyclesService } from '../../services/cycles.service';
+import { Cycle } from '../../models/cycle';
+import { ArtworkType } from '../../models/artwork-type';
 
 @Component({
-    selector: 'artworks',
-    templateUrl: './artworks.component.html',
-    styleUrl: './artworks.component.scss',
-    imports: [NgIf, NgFor, PagerComponent]
+  selector: 'artworks',
+  templateUrl: './artworks.component.html',
+  styleUrl: './artworks.component.scss',
+  imports: [NgIf, NgFor, PagerComponent, FormsModule]
 })
 export class ArtworksComponent implements OnInit {
 
   artworks: Artwork[] = [];
+  cycles: Cycle[] = [];
   cartItems: Artwork[] = [];
   initialQuantities: { [id: number]: number } = {};
+  artworkTypes: string[] = Object.keys(ArtworkType).filter(key => isNaN(Number(key)));
   displayedArtworks: Artwork[] = [];
   itemsPerPage: number = 10;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
+  filter: ArtworkFilter = new ArtworkFilter("", null, 0, null, null, "", "");
 
   constructor(
     private artworksService: ArtworksService,
+    private cyclesService: CyclesService,
     private toastrService: ToastrService,
     private cartService: CartService,
     private authService: AuthService,
@@ -35,6 +44,7 @@ export class ArtworksComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllArtworks();
+    await this.getAllCycles();
     this.onPageChanged(1);
     this.loadCartItems();
 
@@ -67,6 +77,46 @@ export class ArtworksComponent implements OnInit {
     catch (error) {
       console.error(error);
     }
+  }
+
+  async getAllCycles() {
+    try {
+      const { Data, Succeeded, ErrorMessage } = await this.cyclesService.getAllCycles();
+      if (Succeeded) {
+        this.cycles = Data;
+        return Data;
+      }
+      else {
+        this.toastrService.error(ErrorMessage);
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
+
+  async applyFilters() {
+    try {
+      console.log(this.filter);
+      const { Data, Succeeded, ErrorMessage } = await this.artworksService.getFilteredArtworks(this.filter);
+      if (Succeeded) {
+        this.artworks = Data;
+        this.onPageChanged(1);
+      } else {
+        this.toastrService.error(ErrorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  clearFilters() {
+    this.filter = new ArtworkFilter("", null, 0, null, null, "", "");
+    this.applyFilters();
+  }
+
+  getArtworkTypeValue(typeName: string): ArtworkType {
+    return ArtworkType[typeName as keyof typeof ArtworkType];
   }
 
   openArtworkDetails(artwork: Artwork) {

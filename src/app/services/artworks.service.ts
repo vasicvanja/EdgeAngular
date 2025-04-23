@@ -5,6 +5,7 @@ import { Artwork } from '../models/artwork';
 import { environment } from '../../environments/environment';
 import { CreateArtwork } from '../models/create-artwork';
 import { AuthService } from './auth.service';
+import { ArtworkFilter } from '../models/artwork-filter';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +22,16 @@ export class ArtworksService {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/all"));
   }
 
+  public getArtworkById = (id: number): any => {
+    return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/" + id));
+  }
+
   public getAllUnassociatedArtworks = (): any => {
     return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/all-unassociated"));
   }
 
-  public getArtworkById = (id: number): any => {
-    return firstValueFrom(this.http.get(this.baseUrl + "/api/Artworks/" + id));
+  public getFilteredArtworks = (filter: ArtworkFilter): any => {
+    return firstValueFrom(this.http.post(this.baseUrl + '/api/Artworks/filter', filter));
   }
 
   public createArtwork = (artwork: CreateArtwork): any => {

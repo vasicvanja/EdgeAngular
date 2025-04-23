@@ -17,6 +17,39 @@
             </div>
         </div>
     </section>
+
+    <div class="mb-3 d-flex flex-wrap gap-3 artworks-filter">
+        <input type="text" placeholder="Technique" [(ngModel)]="filter.Technique" class="form-control w-auto">
+    
+        <select [(ngModel)]="filter.Type" class="form-select w-auto">
+            <option [ngValue]="null" disabled selected>Type</option>
+            <option *ngFor="let type of artworkTypes" [ngValue]="getArtworkTypeValue(type)">{{ type }}</option>
+        </select>
+    
+        <select [(ngModel)]="filter.CycleId" class="form-select w-auto">
+            <option [ngValue]="0" disabled selected>Cycle</option>
+            <option *ngFor="let cycle of cycles" [value]="cycle.Id">{{ cycle.Name }}</option>
+        </select>
+    
+        <input type="number" placeholder="Min Price" [(ngModel)]="filter.MinPrice" class="form-control w-auto">
+        <input type="number" placeholder="Max Price" [(ngModel)]="filter.MaxPrice" class="form-control w-auto">
+    
+        <select [(ngModel)]="filter.SortBy" class="form-select w-auto">
+            <option value="" disabled selected>Sort By</option>
+            <option value="Price">Price</option>
+        </select>
+    
+        <select [(ngModel)]="filter.SortDirection" class="form-select w-auto">
+            <option value="" disabled selected>Sort Direction</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+    
+        <button (click)="applyFilters()" class="btn btn-primary">Apply</button>
+        <button (click)="clearFilters()" class="btn btn-secondary">Clear</button>
+
+    </div>    
+
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
