@@ -6,7 +6,7 @@
     </div>
     <div class="row mb-4" *ngFor="let item of cartItems">
         <div class="col-2">
-            <img [src]="item.ImageData" alt="{{ item.Name }}" class="img-fluid">
+            <img [src]="'data:image/png;base64,' + item.ImageData" alt="{{ item.Name }}" class="img-fluid">
         </div>
         <div class="col-2 text-center">
             <h6>{{ item.Name }}</h6>
