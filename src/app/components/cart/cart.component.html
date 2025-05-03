@@ -13,10 +13,11 @@
                 <span class="item-quantity">Quantity: {{ item.Quantity }}</span>
             </div>
 
-            <button class="btn btn-danger" style="align-self: flex-start" (click)="removeFromCart(item)">Remove from
-                Cart</button>
+            <button class="btn btn-danger" style="align-self: flex-start" (click)="removeFromCart(item)">Remove from Cart</button>
         </div>
     </div>
+
+    <hr/>
 
     <div class="cart-summary">
         <h2>Total: <span class="total-price">{{ totalPrice | currency }}</span></h2>
