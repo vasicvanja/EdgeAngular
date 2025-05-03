@@ -1,7 +1,7 @@
-<div class="container" *ngIf="artwork">
+<div class="container py-5" *ngIf="artwork">
     <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h2>Update Artwork</h2>
+            <h2 class="page-title ">Update Artwork</h2>
             <form [formGroup]="artworkForm" (ngSubmit)="updateArtwork()" class="py-3">
 
                 <!-- Name -->

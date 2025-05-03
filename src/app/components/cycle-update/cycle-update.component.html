@@ -1,7 +1,7 @@
-<div class="container" *ngIf="cycle">
+<div class="container py-5" *ngIf="cycle">
     <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h2>Update Cycle</h2>
+            <h2 class="page-title">Update Cycle</h2>
             <form [formGroup]="cycleForm" (ngSubmit)="updateCycle()" class="py-3 needs-validation">
                 <!-- Name -->
                 <div class="mb-3">
