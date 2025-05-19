@@ -1,5 +1,5 @@
 <div class="users-container">
-    <h2 class="text-center" id="usersTitle">Order History</h2>
+    <h2 class="text-center" id="usersTitle">Order History - {{ userName }}</h2>
 
     <table class="users-table table table-striped">
         <thead>
@@ -8,7 +8,6 @@
                 <th>Status</th>
                 <th>Description</th>
                 <th>Date</th>
-                <th>Customer</th>
                 <th>Order Items</th>
             </tr>
         </thead>
@@ -24,7 +23,6 @@
                 <td>{{ order.Status }}</td>
                 <td>{{ order.Description || '—' }}</td>
                 <td>{{ order.CreatedAt }}</td>
-                <td>{{ order.ReceiptUrl }}</td>
                 <td>
                     <div *ngIf="order.OrderItems?.length; else noItems">
                         <ul class="order-items-list">

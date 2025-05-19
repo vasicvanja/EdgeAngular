@@ -15,6 +15,7 @@ export class OrderHistoryComponent implements OnInit {
 
   orders: Order[] = [];
   userId!: string;
+  userName!: string;
   itemsPerPage: number = 10;
 
   constructor(
@@ -26,11 +27,18 @@ export class OrderHistoryComponent implements OnInit {
 
     this.route.paramMap.subscribe(async params => {
       const idParam = params.get('id');
+      const userNameParam = params.get('userName');
       if (idParam !== null) {
         this.userId = idParam;
         await this.getallOrdersByUserId(this.userId);
       } else {
         console.error('Artwork ID not provided in route parameters.');
+      }
+
+      if (userNameParam !== null) {
+        this.userName = userNameParam;
+      } else {
+        console.error('Username not provided in route parameters.');
       }
     });
   }
@@ -44,7 +52,7 @@ export class OrderHistoryComponent implements OnInit {
       }
       else {
         this.toastrService.error(ErrorMessage);
-      } 
+      }
     } catch (error) {
       console.error(error);
     }
