@@ -129,7 +129,7 @@ export class UsersComponent implements OnInit {
     this.selectedUserName = userName;
   }
 
-  viewOrderHistory(userId: string) {
-    this.router.navigate(['/order-history', userId]);
+  viewOrderHistory(userId: string, userName: string) {
+    this.router.navigate(['/order-history', userId, userName]);
   }
 }

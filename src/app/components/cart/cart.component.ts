@@ -6,13 +6,13 @@ import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../environments/environment';
 import { ResponseMessages } from '../../const/response-messages';
 import { StripeService } from '../../services/stripe.service';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 
 @Component({
     selector: 'cart',
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.scss'],
-    imports: [NgIf, NgFor]
+    imports: [NgIf, NgFor, CurrencyPipe]
 })
 export class CartComponent implements OnInit {
   cartItems: Artwork[] = [];

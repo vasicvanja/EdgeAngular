@@ -4,13 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
 import { CartService } from '../../services/cart.service';
-import { NgIf } from '@angular/common';
+import { CurrencyPipe, NgIf } from '@angular/common';
 
 @Component({
     selector: 'artwork-details',
     templateUrl: './artwork-details.component.html',
     styleUrl: './artwork-details.component.scss',
-    imports: [NgIf]
+    imports: [NgIf, CurrencyPipe]
 })
 export class ArtworkDetailsComponent implements OnInit {
 

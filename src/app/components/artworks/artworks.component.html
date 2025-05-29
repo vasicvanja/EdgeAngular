@@ -19,7 +19,6 @@
     </section>
 
     <div class="mb-3 d-flex flex-wrap gap-3 artworks-filter">
-        <input type="text" placeholder="Technique" [(ngModel)]="filter.Technique" class="form-control w-auto">
     
         <select [(ngModel)]="filter.Type" class="form-select w-auto">
             <option [ngValue]="null" disabled selected>Type</option>
@@ -57,7 +56,10 @@
                     <div class="card shadow-sm">
                         <img [src]="'data:image/png;base64,' + artwork.ImageData" loading="lazy" class="card-img-top" width="100%" height="225" alt="{{artwork.Name}}">
                         <div class="card-body">
-                            <span><b>{{ artwork.Name }}</b></span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span><b>{{ artwork.Name }}</b></span>
+                                <span><b>{{ artwork.Price | currency }}</b></span>
+                            </div>
                             <p class="card-text">{{ artwork.Description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">

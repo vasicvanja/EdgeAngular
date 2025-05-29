@@ -1,7 +1,7 @@
-<div class="container" *ngIf="user">
+<div class="container py-5" *ngIf="user">
     <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h2>Update User</h2>
+            <h2 class="page-title">Update User</h2>
             <form [formGroup]="userForm" (ngSubmit)="updateUser()" class="py-3 needs-validation" novalidate>
                 <!-- Name -->
                 <div class="mb-3">
