@@ -21,7 +21,7 @@
             <tr *ngFor="let order of orders">
                 <td>{{ order.Amount }}$</td>
                 <td>{{ order.Status }}</td>
-                <td>{{ order.Description || '—' }}</td>
+                <td>{{ order.BillingAddress || '—' }}</td>
                 <td>{{ order.CreatedAt }}</td>
                 <td>
                     <div *ngIf="order.OrderItems?.length; else noItems">
