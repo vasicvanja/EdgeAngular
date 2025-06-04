@@ -1,6 +1,6 @@
-<nav class="navbar bg-body-tertiary" aria-label="Edge">
+<nav class="navbar bg-body-tertiary" aria-label="Toni Vasic">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/home">Edge</a>
+        <a class="navbar-brand" routerLink="/home">Toni Vasic</a>
         <div class="nav-item me-2 cart-icon" *ngIf="!isLoginOrRegisterPage">
             <a class="nav-link" routerLink="/cart">
                 <i class="bi bi-cart3"></i>
@@ -17,7 +17,7 @@
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight"
             aria-labelledby="offcanvasNavbarLightLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" style="cursor: pointer;" id="offcanvasNavbarLightLabel" (click)="openUserDetails()">{{ loggedInUsername || 'Edge' }}</h5>
+                <h5 class="offcanvas-title" style="cursor: pointer;" id="offcanvasNavbarLightLabel" (click)="openUserDetails()">{{ loggedInUsername || 'Toni Vasic' }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -59,6 +59,9 @@
                     </li>
                     <li class="nav-item" *ngIf="!isLoggedIn">
                         <a class="nav-link" routerLink="/login">Login</a>
+                    </li>
+                    <li class="nav-item" *ngIf="!isLoggedIn">
+                        <a class="nav-link" routerLink="/register">Register</a>
                     </li>
                 </ul>
             </div>
