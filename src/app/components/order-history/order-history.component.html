@@ -22,7 +22,7 @@
                 <td>{{ order.Amount }}$</td>
                 <td>{{ order.Status }}</td>
                 <td>{{ order.BillingAddress || '—' }}</td>
-                <td>{{ order.CreatedAt }}</td>
+                <td>{{ order.CreatedAt | date:'dd/MM/yyyy' }}</td>
                 <td>
                     <div *ngIf="order.OrderItems?.length; else noItems">
                         <ul class="order-items-list">
