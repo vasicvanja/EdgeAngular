@@ -3,13 +3,23 @@
         <div class="col-lg-6 col-md-8 mx-auto">
             <h2 class="page-title">Update User</h2>
             <form [formGroup]="userForm" (ngSubmit)="updateUser()" class="py-3 needs-validation" novalidate>
-                <!-- Name -->
+                <!-- First Name -->
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" formControlName="userName" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && userForm.controls['userName'].invalid }">
-                    <div *ngIf="submitted && userForm.controls['userName'].invalid" class="invalid-feedback">
-                        Name is required.
+                    <label for="firstName" class="form-label">First Name:</label>
+                    <input type="text" id="firstName" formControlName="firstName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && userForm.controls['firstName'].invalid }">
+                    <div *ngIf="submitted && userForm.controls['firstName'].invalid" class="invalid-feedback">
+                        First Name is required.
+                    </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name:</label>
+                    <input type="text" id="lastName" formControlName="lastName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && userForm.controls['lastName'].invalid }">
+                    <div *ngIf="submitted && userForm.controls['lastName'].invalid" class="invalid-feedback">
+                        Last Name is required.
                     </div>
                 </div>
 

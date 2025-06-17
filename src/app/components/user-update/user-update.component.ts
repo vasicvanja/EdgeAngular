@@ -34,6 +34,8 @@ export class UserUpdateComponent implements OnInit {
   ) {
     // Initialize the form group with validators
     this.userForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       userName: ['', Validators.required],
       email: ['', Validators.required],
       phoneNumber: ['', Validators.required],
@@ -61,6 +63,8 @@ export class UserUpdateComponent implements OnInit {
       if (Succeeded) {
         this.user = Data;
         this.userForm.patchValue({
+          firstName: this.user.FirstName,
+          lastName: this.user.LastName,
           userName: this.user.UserName,
           email: this.user.Email,
           phoneNumber: this.user.PhoneNumber,
@@ -136,6 +140,8 @@ export class UserUpdateComponent implements OnInit {
   private getUpdatedUserData(): User {
     return {
       ...this.user,
+      FirstName: this.userForm.controls['firstName'].value,
+      LastName: this.userForm.controls['lastName'].value,
       UserName: this.userForm.controls['userName'].value,
       Email: this.userForm.controls['email'].value,
       PhoneNumber: this.userForm.controls['phoneNumber'].value,

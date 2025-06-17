@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { Register } from '../../models/register';
 import ValidateForm from '../../helpers/validateForm';
 import { NgIf } from '@angular/common';
+import { first } from 'rxjs';
 
 @Component({
     selector: 'register',
@@ -26,6 +27,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -36,6 +39,8 @@ export class RegisterComponent implements OnInit {
   onRegister() {
     if (this.registerForm.valid) {
       const registerObj: Register = {
+        FirstName: this.registerForm.get('firstName')?.value,
+        LastName: this.registerForm.get('lastName')?.value,
         Username: this.registerForm.get('username')?.value,
         Email: this.registerForm.get('email')?.value,
         Password: this.registerForm.get('password')?.value,
