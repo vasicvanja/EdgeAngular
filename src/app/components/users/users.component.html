@@ -15,6 +15,8 @@
         <thead>
             <tr>
                 <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Role</th>
@@ -24,12 +26,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users" [ngClass]="{ 'disabled-user': !user.Enabled }">
+                <td>{{ user.FirstName }}</td>
+                <td>{{ user.LastName }}</td>
                 <td>{{ user.UserName }}</td>
                 <td>{{ user.Email }}</td>
                 <td>{{ user.PhoneNumber }}</td>
                 <td>{{ user.Role }}</td> 
                 <td>{{ user.Enabled ? 'Active' : 'Deactivated' }}</td>
-                <td>
+                <td class="actions-cell">
                     <div class="context-menu">
                         <button (click)="toggleContextMenu(user.Id, $event)" class="menu-btn">⋮</button>
                         <ul *ngIf="activeMenuUserId === user.Id" class="menu-options">

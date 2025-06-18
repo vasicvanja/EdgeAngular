@@ -4,6 +4,28 @@
             <h2 class="page-title">Create New User</h2>
             <form #userForm="ngForm" (ngSubmit)="createUser()" class="py-3">
 
+                <!-- First Name Field -->
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name:</label>
+                    <input type="text" id="firstName" [(ngModel)]="user.FirstName" name="firstName" class="form-control"
+                        required #firstName="ngModel"
+                        [ngClass]="{ 'is-invalid': userForm.submitted && firstName.invalid }">
+                    <div *ngIf="userForm.submitted && firstName.invalid" class="invalid-feedback">
+                        First Name is required
+                    </div>
+                </div>
+
+                <!-- Last Name Field -->
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name:</label>
+                    <input type="text" id="lastName" [(ngModel)]="user.LastName" name="lastName" class="form-control"
+                        required #lastName="ngModel"
+                        [ngClass]="{ 'is-invalid': userForm.submitted && lastName.invalid }">
+                    <div *ngIf="userForm.submitted && lastName.invalid" class="invalid-feedback">
+                        Last Name is required
+                    </div>
+                </div>
+
                 <!-- Username Field -->
                 <div class="mb-3">
                     <label for="userName" class="form-label">Username:</label>

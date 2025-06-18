@@ -2,6 +2,8 @@
     <h2 class="text-center mb-4">User Details</h2>
 
     <div class="user-info-card">
+        <p><strong>First Name:</strong> {{ user.FirstName }}</p>
+        <p><strong>Last Name:</strong> {{ user.LastName }}</p>
         <p><strong>Username:</strong> {{ user.UserName }}</p>
         <p><strong>Email:</strong> {{ user.Email }}</p>
         <p><strong>Phone:</strong> {{ user.PhoneNumber || '—' }}</p>

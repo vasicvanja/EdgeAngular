@@ -8,7 +8,7 @@
 
 .users-table {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     border-collapse: collapse;
     background: var(--bs-body-bg);
     color: var(--bs-body-color);
@@ -31,6 +31,8 @@ th {
 .context-menu {
     position: relative;
     display: inline-block;
+    text-align: start;
+
 }
 
 .menu-btn {
@@ -43,8 +45,10 @@ th {
 
 .menu-options {
     position: absolute;
-    left: 100%; /* Moves the menu to the right of the button */
-    top: 24px; /* Adjusts spacing below button */
+    left: 100%;
+    /* Moves the menu to the right of the button */
+    top: 24px;
+    /* Adjusts spacing below button */
     background: var(--bs-body-bg);
     color: var(--bs-body-color);
     border: 1px solid var(--bs-border-color);
@@ -52,7 +56,8 @@ th {
     list-style: none;
     padding: 0;
     margin: 0;
-    z-index: 1000; /* Ensures it's above other elements */
+    z-index: 1000;
+    /* Ensures it's above other elements */
     min-width: 120px;
     white-space: nowrap;
 }
@@ -69,23 +74,30 @@ th {
 
 /* Ensure it doesn't get cut off at table edges */
 .users-table {
+    vertical-align: middle;
     overflow: visible;
 }
 
 .users-container {
-    padding-top: 20px; /* Adjust this value for some spacing */
+    padding-top: 20px;
+    /* Adjust this value for some spacing */
 }
 
-.disabled-user > td {
+.disabled-user>td {
     background-color: #e0e0e0 !important;
     color: #5a5a5a !important;
 }
 
-html[data-bs-theme="dark"] .disabled-user > td {
+html[data-bs-theme="dark"] .disabled-user>td {
     background-color: #2e2e2e !important;
     color: #b0b0b0 !important;
 }
 
 #usersTitle {
     padding-bottom: 10px;
+}
+
+.actions-cell {
+    text-align: center;
+    vertical-align: middle;
 }
