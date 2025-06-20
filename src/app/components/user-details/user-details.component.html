@@ -16,8 +16,8 @@
     </div>
 
     <div class="user-actions mt-4">
-        <button class="btn btn-primary" (click)="viewOrderHistory(user.Id)">View Order History</button>
-        <button class="btn btn-secondary separate-item" (click)="openUserUpdate(user.Id)">Edit User</button>
+        <button class="btn btn-primary" (click)="viewOrderHistory(user.Id, user.UserName)">View Order History</button>
+        <button class="btn btn-secondary separate-item" (click)="openUserUpdate(user.Id)" [hidden]="!(isLoggedIn && isAdmin)">Edit User</button>
     </div>
 </div>
 
