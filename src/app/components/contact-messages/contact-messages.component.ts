@@ -67,6 +67,7 @@ export class ContactMessagesComponent implements OnInit {
           this.toastrService.success(ResponseMessages.Successfully_deleted_message(contactMessage.Data.Email));
           this.contactMessages = this.contactMessages.filter(message => message.Id !== this.selectedMessageId);
           this.selectedMessageId = null;
+          this.onPageChanged(1);
           return Data;
         } else {
           this.toastrService.error(ErrorMessage);
