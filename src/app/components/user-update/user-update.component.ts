@@ -84,7 +84,6 @@ export class UserUpdateComponent implements OnInit {
       const { Data, Succeeded, ErrorMessage } = await this.rolesService.getAllRoles();
       if (Succeeded) {
         this.roles = Data;
-        console.log(this.roles);
       } else {
         this.toastrService.error(ErrorMessage);
       }

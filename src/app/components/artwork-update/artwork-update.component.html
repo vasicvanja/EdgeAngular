@@ -34,6 +34,26 @@
                     </div>
                 </div>
 
+                <!-- Width -->
+                <div class="mb-3">
+                    <label for="width" class="form-label">Width:</label>
+                    <input type="number" id="width" formControlName="width" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && artworkForm.controls['width'].invalid }">
+                    <div *ngIf="submitted && artworkForm.controls['width'].invalid" class="invalid-feedback">
+                        Width is required
+                    </div>
+                </div>
+
+                <!-- Height -->
+                <div class="mb-3">
+                    <label for="height" class="form-label">Height:</label>
+                    <input type="number" id="height" formControlName="height" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && artworkForm.controls['height'].invalid }">
+                    <div *ngIf="submitted && artworkForm.controls['height'].invalid" class="invalid-feedback">
+                        Height is required
+                    </div>
+                </div>
+
                 <!-- Year -->
                 <div class="mb-3">
                     <label for="year" class="form-label">Year:</label>

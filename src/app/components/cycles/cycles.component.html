@@ -36,6 +36,9 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center text-muted" *ngIf="displayedCycles.length === 0">
+                <p style="font-style: italic;">No Cycles</p>
+            </div>
         </div>
         <br/>
         <pager [totalItems]="cycles.length" [itemsPerPage]="itemsPerPage" (pageChanged)="onPageChanged($event)"></pager>

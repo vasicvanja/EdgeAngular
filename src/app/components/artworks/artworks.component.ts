@@ -30,7 +30,7 @@ export class ArtworksComponent implements OnInit {
   itemsPerPage: number = 10;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
-  filter: ArtworkFilter = new ArtworkFilter(null, 0, null, null, "", "");
+  filter: ArtworkFilter = new ArtworkFilter(null, 0, null, null, null, null, "", "");
 
   constructor(
     private artworksService: ArtworksService,
@@ -97,7 +97,6 @@ export class ArtworksComponent implements OnInit {
 
   async applyFilters() {
     try {
-      console.log(this.filter);
       const { Data, Succeeded, ErrorMessage } = await this.artworksService.getFilteredArtworks(this.filter);
       if (Succeeded) {
         this.artworks = Data;
@@ -111,7 +110,7 @@ export class ArtworksComponent implements OnInit {
   }
 
   clearFilters() {
-    this.filter = new ArtworkFilter(null, 0, null, null, "", "");
+    this.filter = new ArtworkFilter(null, 0, null, null, null, null, "", "");
     this.applyFilters();
   }
 

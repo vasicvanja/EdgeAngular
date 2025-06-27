@@ -8,12 +8,13 @@ import { Artwork } from '../../models/artwork';
 import { ArtworksService } from '../../services/artworks.service';
 import { AuthService } from '../../services/auth.service';
 import { NgIf, NgFor } from '@angular/common';
+import { ArtworkType } from '../../models/artwork-type';
 
 @Component({
-    selector: 'cycles-details',
-    templateUrl: './cycles-details.component.html',
-    styleUrl: './cycles-details.component.scss',
-    imports: [NgIf, NgFor]
+  selector: 'cycles-details',
+  templateUrl: './cycles-details.component.html',
+  styleUrl: './cycles-details.component.scss',
+  imports: [NgIf, NgFor]
 })
 export class CyclesDetailsComponent implements OnInit {
 
@@ -21,6 +22,7 @@ export class CyclesDetailsComponent implements OnInit {
   cycleId: any;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
+  artworkTypes: string[] = Object.keys(ArtworkType).filter(key => isNaN(Number(key)));
 
   constructor(
     private artworksService: ArtworksService,
@@ -69,6 +71,10 @@ export class CyclesDetailsComponent implements OnInit {
 
   openArtworkDetails(artwork: Artwork) {
     this.router.navigate(['/artwork-details', artwork.Id]);
+  }
+
+  getArtworkType(type: number): string {
+    return ArtworkType[type];
   }
 
   async removeFromCycle(artwork: Artwork) {
