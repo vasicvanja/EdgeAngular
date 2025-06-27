@@ -1,7 +1,7 @@
 <nav class="navbar bg-body-tertiary" aria-label="Toni Vasic">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/home">Toni Vasic</a>
-        <div class="nav-item me-2 cart-icon" *ngIf="!isLoginOrRegisterPage">
+        <div class="nav-item me-2 cart-icon" *ngIf="!hideShoppingCartIcon">
             <a class="nav-link" routerLink="/cart">
                 <i class="bi bi-cart3"></i>
                 <span class="badge bg-danger cart-badge" *ngIf="cartItemCount > 0">{{cartItemCount}}</span>

@@ -17,7 +17,7 @@ import { NgIf, NgClass } from '@angular/common';
 export class NavMenuComponent {
   cycles: Cycle[] = [];
   cartItemCount: number = 0;
-  isLoginOrRegisterPage!: boolean;
+  hideShoppingCartIcon!: boolean;
   loggedInUsername: string | null = null;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
@@ -29,7 +29,7 @@ export class NavMenuComponent {
     private router: Router) {
       this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.isLoginOrRegisterPage = ['/login', '/register'].includes(this.router.url);
+        this.hideShoppingCartIcon = ['/login', '/register', '/forgot-password'].includes(this.router.url);
       }
     });
   }
