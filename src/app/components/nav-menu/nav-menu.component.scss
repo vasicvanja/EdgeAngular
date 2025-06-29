@@ -18,3 +18,9 @@
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
+nav.navbar {
+    position: sticky;
+    z-index: 1050;
+    top: 0;
+}
