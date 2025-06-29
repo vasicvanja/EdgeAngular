@@ -71,7 +71,7 @@ export class ArtworkUpdateComponent implements OnInit {
         this.toastrService.error(ResponseMessages.Only_image_files_are_allowed);
         return;
       }
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+      if (file.size > 10 * 1024 * 1024) { // 10MB limit
         this.toastrService.error(ResponseMessages.File_size_exceeds_limit);
         return;
       }
