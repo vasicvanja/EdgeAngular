@@ -79,6 +79,7 @@ export class ArtworkUpdateComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.artwork.ImageData = e.target.result.split(',')[1]; // Get the base64 part
+        this.artworkForm.markAsDirty();
       };
       reader.readAsDataURL(file);
     }
