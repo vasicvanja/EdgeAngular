@@ -20,7 +20,7 @@
             <div *ngFor="let artwork of cycle.Artworks" class="col-md-6 col-lg-6 mb-6">
               <div class="card h-100 shadow-sm">
                 <img class="card-img-top" loading="lazy" [src]="'data:image/png;base64,' + artwork.ImageData"
-                  alt="{{ artwork.Name }}" style="height: 200px; object-fit: cover;">
+                  alt="{{ artwork.Name }}" style="height: 350px; object-fit: cover;">
                 <div class="card-body">
                   <h5 class="card-title text-primary justify-content-center text-center">{{ artwork.Name }}</h5>
                   <div>
