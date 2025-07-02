@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { Cycle } from '../models/cycle';
 import { environment } from '../../environments/environment';
 import { CreateCycle } from '../models/create-cycle';
 import { AuthService } from './auth.service';
+import { UpdateCycle } from '../models/cycle-update';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class CyclesService {
     return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/create", cycle, this.authService.getHttpOptions()));
   }
 
-  public updateCycle = (cycle: Cycle): any => {
+  public updateCycle = (cycle: UpdateCycle): any => {
     return firstValueFrom(this.http.post(this.baseUrl + "/api/Cycles/update", cycle, this.authService.getHttpOptions()));
   }
 
