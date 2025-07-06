@@ -16,3 +16,18 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.card-text {
+    text-align: justify;
+    max-height: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 7;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+
+.card-name {
+    padding-bottom: 5px;
+}
