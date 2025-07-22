@@ -11,15 +11,21 @@
             <div *ngFor="let item of purchasedItems" class="card mb-4 shadow-sm">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <img [src]="'data:image/png;base64,' + item.ImageData" alt="{{ item.Name }}" class="image-item">
-                    <div>
+                    <div class="payment-card">{{ item.Description }}</div>
+                    <div class="purchased-item-details">
                         <h5 class="m-0 font-weight-bold text-primary">{{ item.Name }}</h5>
-                        <p style="margin-bottom: 0px; margin-top: 16px;">Total Price: {{ item.Price * item.Quantity | currency }}</p>
-                        <p class="text-muted" style="font-size: 0.8em; opacity: 0.7;">{{ item.Price | currency }} each</p>
+                        <p style="margin-bottom: 0px; margin-top: 16px;">Total Price: {{ item.Price * item.Quantity |
+                            currency }}</p>
+                        <p class="text-muted" style="font-size: 0.8em; opacity: 0.7;">{{ item.Price | currency }} each
+                        </p>
                         <p>Quantity: {{ item.Quantity }}</p>
                     </div>
                 </div>
             </div>
-            <a routerLink="/home" class="btn btn-primary">Return to Home</a>
+            <div class="payment-nav">
+                <a routerLink="/home" class="btn btn-primary">Return to Home</a>
+                <h4>Total: <span class="total-price">{{ totalPrice() | currency }}</span></h4>
+            </div>
         </div>
     </div>
 </div>

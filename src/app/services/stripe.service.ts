@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { firstValueFrom } from "rxjs";
+import { first, firstValueFrom } from "rxjs";
 import { environment } from "../../environments/environment";
 import { Artwork } from "../models/artwork";
 import { AuthService } from "./auth.service";
@@ -20,5 +20,10 @@ export class StripeService {
     // with the given artworks. It returns a Promise that resolves to the response from the server.
     public createCheckoutSession = (artworks: Artwork[]): any => {
         return firstValueFrom(this.http.post(this.baseUrl + "/api/Stripe/createCheckoutSession", artworks, this.authService.getHttpOptions()));
+    }
+
+    // This method returns the successfully purchased items which were part of the Stripe Session.
+    public getSessionArtworks = (sessionId: string): any => {
+        return firstValueFrom(this.http.get(this.baseUrl + "/api/Stripe/getSessionArtworks/" + sessionId));
     }
 }
