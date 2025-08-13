@@ -27,6 +27,7 @@ import { UserCreateComponent } from "./components/user-create/user-create.compon
 import { UserUpdateComponent } from "./components/user-update/user-update.component";
 import { OrderHistoryComponent } from "./components/order-history/order-history.component";
 import { UserDetailsComponent } from "./components/user-details/user-details.component";
+import { ServicesComponent } from "./components/services/services.component";
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -54,7 +55,8 @@ const routes: Routes = [
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'successful-payment', component: SuccessfulPaymentComponent },
-    { path: 'unsuccessful-payment', component: UnsuccessfulPaymentComponent }
+    { path: 'unsuccessful-payment', component: UnsuccessfulPaymentComponent },
+    { path: 'services', component: ServicesComponent }
 ];
 
 @NgModule({
