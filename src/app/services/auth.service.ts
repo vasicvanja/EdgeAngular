@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Register } from '../models/register';
-import { BehaviorSubject, Observable, catchError, firstValueFrom, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom, map } from 'rxjs';
 import { Login } from '../models/login';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { ResetPassword } from '../models/reset-password';
 import { jwtDecode } from 'jwt-decode';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
   private loggedInSubject: BehaviorSubject<boolean>;
   private isAdminSubject: BehaviorSubject<boolean>;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private cartService: CartService) {
     this.baseUrl = environment.baseUrl;
     this.loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
     this.isAdminSubject = new BehaviorSubject<boolean>(this.isUserAdmin());
@@ -46,6 +47,7 @@ export class AuthService {
         localStorage.removeItem('authToken');
         this.loggedInSubject.next(false);
         this.isAdminSubject.next(false);
+        this.cartService.clearCart();
         return response;
       })
     );

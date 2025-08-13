@@ -5,12 +5,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Artwork } from '../../models/artwork';
 import { CartService } from '../../services/cart.service';
 import { CurrencyPipe, NgIf } from '@angular/common';
+import { ArtworkType } from '../../models/artwork-type';
 
 @Component({
-    selector: 'artwork-details',
-    templateUrl: './artwork-details.component.html',
-    styleUrl: './artwork-details.component.scss',
-    imports: [NgIf, CurrencyPipe]
+  selector: 'artwork-details',
+  templateUrl: './artwork-details.component.html',
+  styleUrl: './artwork-details.component.scss',
+  imports: [NgIf, CurrencyPipe]
 })
 export class ArtworkDetailsComponent implements OnInit {
 
@@ -18,6 +19,8 @@ export class ArtworkDetailsComponent implements OnInit {
   artworkId: any;
   cartItems: Artwork[] = [];
   initialQuantity!: number;
+  artworkTypes: string[] = Object.keys(ArtworkType).filter(key => isNaN(Number(key)));
+
 
   constructor(
     private artworksService: ArtworksService,
@@ -75,5 +78,9 @@ export class ArtworkDetailsComponent implements OnInit {
     } else {
       this.artwork.Quantity = this.initialQuantity;
     }
+  }
+
+  getArtworkType(type: number): string {
+    return ArtworkType[type];
   }
 }

@@ -10,25 +10,28 @@
           <div class="card-body">
             <h2 class="card-title text-center">{{ cycle.Name }}</h2>
             <hr>
-            <p class="text-muted">{{ cycle.Description }}</p>
+            <p class="text-muted details-description">{{ cycle.Description }}</p>
           </div>
         </div>
 
         <!-- Artworks Section -->
         <div *ngIf="cycle && cycle.Artworks.length > 0" class="mt-5">
-          <div class="row">
-            <div *ngFor="let artwork of cycle.Artworks" class="col-md-6 col-lg-4 mb-4">
+          <div class="row g-3">
+            <div *ngFor="let artwork of cycle.Artworks" class="col-md-6 col-lg-6 mb-6">
               <div class="card h-100 shadow-sm">
                 <img class="card-img-top" loading="lazy" [src]="'data:image/png;base64,' + artwork.ImageData"
-                  alt="{{ artwork.Name }}" style="height: 200px; object-fit: cover;">
+                  alt="{{ artwork.Name }}" style="height: 350px; object-fit: cover;">
                 <div class="card-body">
-                  <h5 class="card-title text-primary">{{ artwork.Name }}</h5>
-                  <p class="card-text"><strong>Year:</strong> {{ artwork.Year }}</p>
-                  <p class="card-text"><strong>Type:</strong> {{ artwork.Type }}</p>
+                  <h5 class="card-title text-primary justify-content-center text-center">{{ artwork.Name }}</h5>
+                  <div>
+                    <p><strong>Technique:</strong> {{ artwork.Technique }}</p>
+                    <p><strong>Dimensions:</strong> {{ artwork.Width }} x {{ artwork.Height }} cm</p>
+                    <p><strong>Type:</strong> {{ getArtworkType(artwork.Type) }}</p>
+                    <p><strong>Year:</strong> {{ artwork.Year }}</p>
+                  </div>
                   <div class="text-center">
-                    <button class="btn btn-primary btn-sm" (click)="openArtworkDetails(artwork)">
-                      View Details
-                    </button>
+                    <button class="btn btn-primary mt-2" (click)="openArtworkDetails(artwork)">View Details</button>
+                    <button class="btn btn-danger mt-2 separate-item" (click)="removeFromCycle(artwork)" *ngIf="isAdmin && isLoggedIn">Remove</button>
                   </div>
                 </div>
               </div>

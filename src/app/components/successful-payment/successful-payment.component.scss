@@ -1,0 +1,25 @@
+.image-item {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.payment-card {
+    width: 350px;
+}
+
+.purchased-item-details {
+    width: 200px;
+}
+
+.payment-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-price {
+    font-size: 1.5rem;
+    color: #4caf50;
+    font-weight: bold;
+}

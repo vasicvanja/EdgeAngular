@@ -24,7 +24,7 @@
                     <div class="card shadow-sm">
                         <img [src]="'data:image/png;base64,' + cycle.ImageData" loading="lazy" class="card-img-top" width="100%" height="225" alt="{{cycle.Name}}">
                         <div class="card-body">
-                            <span><b>{{ cycle.Name }}</b></span>
+                            <span class="card-name"><b>{{ cycle.Name }}</b></span>
                             <p class="card-text">{{ cycle.Description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -35,6 +35,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="text-center text-muted" *ngIf="displayedCycles.length === 0">
+                <p style="font-style: italic;">No Cycles</p>
             </div>
         </div>
         <br/>

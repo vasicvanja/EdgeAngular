@@ -4,18 +4,18 @@
             <h1 class="text-center mb-4">Contact Us</h1>
             <p class="lead">Feel free to reach out to us using the contact details below or by sending us a message:</p>
             <ul class="list-unstyled">
-                <li><strong>Email:</strong> vanja.vasic&#64;yahoo.com</li>
-                <li><strong>Phone:</strong> +1234567890</li>
-                <li><strong>Address:</strong> 123 Example St, City, Country</li>
+                <li><strong>Email:</strong> artstudioedge&#64;gmail.com</li>
+                <li><strong>Phone:</strong> +389 71 323 441</li>
+                <li><strong>Address:</strong> Blvd. Treta Makedonska Brigada no. 60</li>
             </ul>
-            <h2 class="mt-5 mb-4">Send Us an Email</h2>
+            <h2 class="mt-5 mb-4">Send Us an E-Mail</h2>
             <form #contactForm="ngForm" (ngSubmit)="createContactMessage()" class="py-3 needs-validation">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
+                    <label for="email" class="form-label">E-Mail:</label>
                     <input type="email" id="email" [(ngModel)]="contactMessage.Email" name="email" class="form-control" required
                         #email="ngModel" [ngClass]="{ 'is-invalid': contactForm.submitted && email.invalid }">
                     <div *ngIf="contactForm.submitted && email.invalid" class="invalid-feedback">
-                        Email is required
+                        E-Mail is required
                     </div>
                 </div>
                 <div class="mb-3">

@@ -4,6 +4,7 @@ import { UsersService } from '../../services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../models/user';
 import { NgClass, NgIf } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'user-details',
@@ -15,10 +16,13 @@ export class UserDetailsComponent implements OnInit {
 
   user!: User;
   userId!: string;
+  isAdmin: boolean = false;
+  isLoggedIn: boolean = false;
 
   constructor(
     private usersService: UsersService,
     private toastrService: ToastrService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router) {
 
@@ -34,6 +38,14 @@ export class UserDetailsComponent implements OnInit {
         console.error('User Id not provided in route parameters.');
       }
     });
+
+    this.authService.isUserAdmin$().subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
+    });
+
+    this.authService.isUserLoggedIn$().subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   async getUserDetails(userId: string) {
@@ -45,14 +57,13 @@ export class UserDetailsComponent implements OnInit {
       } else {
         this.toastrService.error(ErrorMessage);
       }
-
     } catch (error) {
       console.error(error);
     }
   }
 
-  viewOrderHistory(userId: string) {
-    this.router.navigate(['/order-history', userId]);
+  viewOrderHistory(userId: string, userName: string) {
+    this.router.navigate(['/order-history', userId, userName]);
   }
 
   openUserUpdate(userId: string) {

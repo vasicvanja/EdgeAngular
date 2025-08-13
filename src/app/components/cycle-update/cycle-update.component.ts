@@ -9,6 +9,7 @@ import { ArtworksService } from '../../services/artworks.service';
 import { Artwork } from '../../models/artwork';
 import { ModalComponent } from '../modal/modal.component';
 import { NgIf, NgClass, NgFor } from '@angular/common';
+import { UpdateCycle } from '../../models/cycle-update';
 
 @Component({
   selector: 'cycle-update',
@@ -96,12 +97,15 @@ export class CycleUpdateComponent implements OnInit {
     }
   }
 
-  private getUpdatedCycleData(): Cycle {
+  private getUpdatedCycleData(): UpdateCycle {
+    const selectedArtworksIds: number[] = this.cycleForm.controls['selectArtworks'].value;
+
     return {
-      ...this.cycle,
+      Id: this.cycle.Id,
       Name: this.cycleForm.controls['name'].value,
       Description: this.cycleForm.controls['description'].value,
-      ArtworkIds: this.cycle.Artworks ? this.cycle.Artworks.map(a => a.Id) : []
+      ImageData: this.cycle.ImageData,
+      ArtworkIds: selectedArtworksIds // Only send newly selected artworks
     };
   }
 

@@ -7,15 +7,17 @@
                         alt="{{ artwork.Name }}" style="object-fit: cover;">
                     <div class="card-body">
                         <h2 class="card-title text-center">{{ artwork.Name }}</h2>
-                        <p class="text-muted">{{ artwork.Description }}</p>
+                        <p class="text-muted details-description">{{ artwork.Description }}</p>
                         <hr>
                         <div class="row justify-content-center text-center">
                             <div class="col-md-6">
                                 <p><strong>Technique:</strong> {{ artwork.Technique }}</p>
-                                <p><strong>Year:</strong> {{ artwork.Year }}</p>
+                                <p><strong>Dimensions:</strong> {{ artwork.Width }} x {{ artwork.Height }} cm</p>
+                                <p><strong>Type:</strong> {{ getArtworkType(artwork.Type) }}</p>
                             </div>
                             <div class="col-md-6">
                                 <p><strong>Price:</strong> {{ artwork.Price | currency }}</p>
+                                <p><strong>Year:</strong> {{ artwork.Year }}</p>
                                 <p><strong>Quantity:</strong> {{ artwork.Quantity }}</p>
                             </div>
                         </div>

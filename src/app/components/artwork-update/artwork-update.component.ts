@@ -38,6 +38,8 @@ export class ArtworkUpdateComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       technique: ['', Validators.required],
+      width: ['', Validators.required],
+      height: ['', Validators.required],
       year: ['', Validators.required],
       price: ['', Validators.required],
       quantity: ['', Validators.required],
@@ -69,7 +71,7 @@ export class ArtworkUpdateComponent implements OnInit {
         this.toastrService.error(ResponseMessages.Only_image_files_are_allowed);
         return;
       }
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+      if (file.size > 10 * 1024 * 1024) { // 10MB limit
         this.toastrService.error(ResponseMessages.File_size_exceeds_limit);
         return;
       }
@@ -77,6 +79,7 @@ export class ArtworkUpdateComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.artwork.ImageData = e.target.result.split(',')[1]; // Get the base64 part
+        this.artworkForm.markAsDirty();
       };
       reader.readAsDataURL(file);
     }
@@ -91,6 +94,8 @@ export class ArtworkUpdateComponent implements OnInit {
           name: this.artwork.Name,
           description: this.artwork.Description,
           technique: this.artwork.Technique,
+          width: this.artwork.Width,
+          height: this.artwork.Height,
           year: this.artwork.Year,
           price: this.artwork.Price,
           quantity: this.artwork.Quantity,
@@ -135,6 +140,8 @@ export class ArtworkUpdateComponent implements OnInit {
       Name: this.artworkForm.controls['name'].value,
       Description: this.artworkForm.controls['description'].value,
       Technique: this.artworkForm.controls['technique'].value,
+      Width: this.artworkForm.controls['width'].value,
+      Height: this.artworkForm.controls['height'].value,
       Year: this.artworkForm.controls['year'].value,
       Price: this.artworkForm.controls['price'].value,
       Quantity: this.artworkForm.controls['quantity'].value,

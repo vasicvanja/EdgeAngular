@@ -5,6 +5,8 @@ export class Artwork {
     public Name: string;
     public Description: string;
     public Technique: string;
+    public Width: number;
+    public Height: number;
     public Year: number;
     public Price: number;
     public Quantity: number;
@@ -17,6 +19,8 @@ export class Artwork {
         Name: string = "",
         Description: string = "",
         Technique: string = "",
+        Width: number = 0,
+        Height: number = 0,
         Year: number = 0,
         Price: number = 0,
         Quantity: number = 0,
@@ -27,6 +31,8 @@ export class Artwork {
             this.Name = Name;
             this.Description = Description;
             this.Technique = Technique;
+            this.Height = Height;
+            this.Width = Width;
             this.Year = Year;
             this.Price = Price;
             this.Quantity = Quantity;

@@ -23,6 +23,7 @@ export class PagerComponent {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.pageChanged.emit(this.currentPage);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -30,6 +31,7 @@ export class PagerComponent {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.pageChanged.emit(this.currentPage);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -37,6 +39,7 @@ export class PagerComponent {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.pageChanged.emit(this.currentPage);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 }
