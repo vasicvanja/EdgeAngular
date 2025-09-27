@@ -39,7 +39,7 @@ const routes: Routes = [
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'user-create', component: UserCreateComponent, canActivate: [AuthGuard, AdminGuard] },
     { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard, AdminGuard] },
-    { path: 'user-details/:id', component: UserDetailsComponent, canActivate: [AuthGuard]},
+    { path: 'user-details/:id', component: UserDetailsComponent, canActivate: [AuthGuard] },
     { path: 'order-history/:id/:userName', component: OrderHistoryComponent, canActivate: [AuthGuard] },
     { path: 'artworks', component: ArtworksComponent },
     { path: 'artwork-details/:id', component: ArtworkDetailsComponent },
@@ -60,7 +60,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {
+        scrollPositionRestoration: 'enabled', // scrolls to top on navigation
+        anchorScrolling: 'enabled'           // also enables anchor (#id) scrolling
+    })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
