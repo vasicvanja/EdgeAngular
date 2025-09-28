@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ArtworksService } from '../../services/artworks.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,7 +6,7 @@ import { Artwork } from '../../models/artwork';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
 import { PagerComponent } from '../pager/pager.component';
-import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
+import { NgIf, NgFor, CurrencyPipe, NgClass } from '@angular/common';
 import { ArtworkFilter } from '../../models/artwork-filter';
 import { FormsModule } from '@angular/forms';
 import { CyclesService } from '../../services/cycles.service';
@@ -17,7 +17,7 @@ import { ArtworkType } from '../../models/artwork-type';
   selector: 'artworks',
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.scss',
-  imports: [NgIf, NgFor, PagerComponent, FormsModule, CurrencyPipe]
+  imports: [NgIf, NgFor, PagerComponent, FormsModule, CurrencyPipe, NgClass]
 })
 export class ArtworksComponent implements OnInit {
 
@@ -31,6 +31,7 @@ export class ArtworksComponent implements OnInit {
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
   filter: ArtworkFilter = new ArtworkFilter(null, 0, null, null, null, null, "", "");
+  @ViewChild(PagerComponent) pager!: PagerComponent;
 
   constructor(
     private artworksService: ArtworksService,
@@ -101,6 +102,10 @@ export class ArtworksComponent implements OnInit {
       if (Succeeded) {
         this.artworks = Data;
         this.onPageChanged(1);
+        if (this.pager) {
+          this.pager.currentPage = 1;   // reset to first page
+          this.pager.setPage(1);     // call pager’s update logic if you have one
+        }
       } else {
         this.toastrService.error(ErrorMessage);
       }
