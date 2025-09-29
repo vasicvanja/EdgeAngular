@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Cycle } from '../../models/cycle';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
 import { LogoutComponent } from '../logout/logout.component';
 import { NgIf, NgClass } from '@angular/common';
@@ -12,7 +12,7 @@ import { NgIf, NgClass } from '@angular/common';
     selector: 'nav-menu',
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.scss'],
-    imports: [RouterLink, NgIf, NgClass, LogoutComponent]
+    imports: [RouterLink, NgIf, NgClass, LogoutComponent, RouterLinkActive]
 })
 export class NavMenuComponent {
   cycles: Cycle[] = [];
