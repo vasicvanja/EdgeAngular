@@ -5,13 +5,13 @@ import { Router } from '@angular/router';
 import { Cycle } from '../../models/cycle';
 import { AuthService } from '../../services/auth.service';
 import { PagerComponent } from '../pager/pager.component';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, NgClass } from '@angular/common';
 
 @Component({
     selector: 'cycles',
     templateUrl: './cycles.component.html',
     styleUrl: './cycles.component.scss',
-    imports: [NgIf, NgFor, PagerComponent]
+    imports: [NgIf, NgFor, NgClass, PagerComponent]
 })
 export class CyclesComponent implements OnInit {
 

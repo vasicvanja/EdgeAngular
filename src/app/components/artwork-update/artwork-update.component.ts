@@ -45,7 +45,7 @@ export class ArtworkUpdateComponent implements OnInit {
       quantity: ['', Validators.required],
       imageData: [null],
       type: ['', Validators.required],
-      cycleId: ['', Validators.required]
+      cycleId: ['']
     });
   }
 

@@ -1,0 +1,18 @@
+<div class="container py-5">
+    <h1 class="text-center mb-5">Services</h1>
+    <p class="text-center mb-5 lead">
+        A showcase of the artistic and design services offered, each crafted with passion and precision.
+    </p>
+
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6" *ngFor="let service of services">
+            <div class="card h-100 shadow-sm border-0 service-card">
+                <div class="card-body text-center">
+                    <i class="bi {{service.icon}} display-4 text-primary mb-3"></i>
+                    <h5 class="card-title">{{service.title}}</h5>
+                    <p class="card-text">{{service.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
